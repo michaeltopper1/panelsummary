@@ -1,13 +1,23 @@
-Package: panelsummary
 Type: Package
-Title: What the Package Does (Title Case)
+Package: panelsummary
+Title: Create Publican Quality Regression Tables with Panels
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
+Authors@R: 
+    person("Michael", "Topper", , "miketopper123@gmail.com", role = c("aut", "cre"))
+Maintainer: Michael Topper <miketopper123@gmail.com>
+Description: Creates publication-ready regression tables with panels.
+    Solves the hassle of adding multiple panels (e.g., Panel A/Panel B) to
+    a single regression table.
+License: MIT + file LICENSE
 URL: https://github.com/michaeltopper1/panelsummary
 BugReports: https://github.com/michaeltopper1/panelsummary/issues
+Imports: 
+    dplyr (>= 1.0.9),
+    kableExtra (>= 1.3.4),
+    modelsummary (>= 1.0.2),
+    stringr (>= 1.4.1)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
