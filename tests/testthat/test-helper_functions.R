@@ -14,7 +14,7 @@ test_that("row indices for each panel appear and are correct::fixest", {
   truth <-  c(nrow(panel_df[[1]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]) + nrow(panel_df[[3]]))
   function_output <- get_panel_indices(panel_df)
 
-  expect_equal(truth, function_output)
+  expect_equal(function_output, truth)
 
 })
 
@@ -30,7 +30,7 @@ test_that("row indices for each panel appear and are correct::lm", {
   truth <- c(nrow(panel_df[[1]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]) + nrow(panel_df[[3]]))
   function_output <- get_panel_indices(panel_df)
 
-  expect_equal(truth, function_output)
+  expect_equal(function_output, truth)
 
 })
 
@@ -56,13 +56,15 @@ test_that("row indices for each panel appear and are forrect::fixest with collap
                                                                     output = "data.frame",
                                                                     gof_omit ='DF|Deviance|R2|AIC|BIC|R',
                                                                     gof_map = gm))
+  panel_df <- panel_df |>
+    remove_fe(3)
 
   number_panels <-  3
 
-  truth <- c(3, 6, 9, 11)
+  truth <- c(4, 8, 12, 14)
 
   function_output <- get_panel_indices_collapse(panel_df, number_panels)
 
-  expect_equal(truth, function_output)
+  expect_equal(function_output, truth)
 
 })

@@ -4,7 +4,7 @@
 ## panel_labels
 panelsummary <- function(
     ...,
-    output      = "data.frame",
+    format      = default,
     num_panels = 1,
     panel_labels = NULL,
     mean_dependent = F,
@@ -33,7 +33,7 @@ panelsummary <- function(
   }
 
   panel_df <- lapply(models, function(x) modelsummary::modelsummary(x,
-                                                                    output = output,
+                                                                    output = "data.frame",
                                                                     fmt = fmt, estimate = estimate,
                                                                     vcov = vcov, conf_level = 0.95,
                                                                     exponentiate = exponentiate,
@@ -76,7 +76,7 @@ panelsummary <- function(
   ## aligning models
   alignment <- paste(c("l", rep("c", number_models_minus_one)), collapse = "")
 
-  table_initial <- kableExtra::kbl(panel_df_cleaned, col.names = colnames, align = alignment,
+  table_initial <- knitr::kable(panel_df_cleaned, col.names = colnames, align = alignment,
                 caption = caption) |>
     kableExtra::kable_styling()
 
