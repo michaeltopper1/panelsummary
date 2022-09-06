@@ -4,12 +4,12 @@
 ## panel_labels
 panelsummary <- function(
     ...,
-    format      = default,
     num_panels = 1,
     panel_labels = NULL,
     mean_dependent = F,
     colnames = NULL,
     caption = NULL,
+    format = NULL,
     collapse_fe = F,
     fmt         = 3,
     estimate    = "estimate",
@@ -76,9 +76,13 @@ panelsummary <- function(
   ## aligning models
   alignment <- paste(c("l", rep("c", number_models_minus_one)), collapse = "")
 
-  table_initial <- knitr::kable(panel_df_cleaned, col.names = colnames, align = alignment,
-                caption = caption) |>
+
+  table_initial <- kableExtra::kbl(panel_df_cleaned, col.names = colnames, align = alignment,
+                                     caption = caption, format = format,
+                                     booktabs = T) |>
     kableExtra::kable_styling()
+
+
 
 
   ## adding the final panels to the kable object. This creates the panels

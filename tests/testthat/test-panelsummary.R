@@ -1,6 +1,3 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
-})
 
 test_that("panelsummary actually produces output", {
   reg_1 <- mtcars |>
