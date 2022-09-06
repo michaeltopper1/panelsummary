@@ -40,29 +40,20 @@ panelsummary <- function(
                                                                     stars = stars, coef_map = coef_map,
                                                                     gof_map = gof_map,
                                                                     gof_omit = gof_omit))
-  print(panel_df)
 
-
-
-  number_panels_minus_one <- num_panels -1
 
   ## getting number of rows per model:
   ## this helps to align where the pack_rows arguments will go.
-  rows_per_model <- panel_df |>
-    lapply(function(x) nrow(x)) |>
-    as.vector()|>
-    cumsum()
+  rows_per_model <- get_panel_indices(panel_df)
 
   if (collapse_fe == T & num_panels > 1) {
-    for (i in 1:number_panels_minus_one) {
-      panel_df[[i]] <- panel_df[[i]] |>
-        dplyr::filter(!stringr::str_detect(term, "^FE"))
-    }
-    ## this will override the rows per model made before
-    rows_per_model <- panel_df |>
-      lapply(function(x) nrow(x)) |>
-      as.vector()|>
-      cumsum()
+    ## removing fixed effects from all but the last panel
+    panel_df <- panel_df |>
+      remove_fe(num_panels)
+
+    ## updating the rows_per_model
+   rows_per_model <- get_panel_indices_collapse(panel_df, num_panels)
+
   }
 
   ## binding each of the data.frames together again and getting rid of NAs
@@ -91,10 +82,18 @@ panelsummary <- function(
 
 
   ## adding the final panels to the kable object. This creates the panels
-  table_final <- table_initial |>
-    add_panels(num_panels = num_panels,
-               panel_labels = panel_labels,
-               rows_per_model = rows_per_model)
+  if (collapse_fe == T) {
+    table_final <- table_initial |>
+      add_panels_cfe(num_panels = num_panels,
+                 panel_labels = panel_labels,
+                 rows_per_model = rows_per_model)
+  } else{
+    table_final <- table_initial |>
+      add_panels(num_panels = num_panels,
+                    panel_labels = panel_labels,
+                    rows_per_model = rows_per_model)
+  }
+
 
 
   return(table_final)

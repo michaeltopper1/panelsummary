@@ -1,0 +1,68 @@
+
+test_that("row indices for each panel appear and are correct::fixest", {
+  reg_1 <- mtcars |>
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+  reg_2 <- mtcars |>
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+  reg_3 <- mtcars |>
+    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+
+  models <- list(reg_1, reg_2, reg_3)
+
+  panel_df <- lapply(models, function(x) modelsummary::modelsummary(x,
+                                                                    output = "data.frame"))
+  truth <-  c(nrow(panel_df[[1]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]) + nrow(panel_df[[3]]))
+  function_output <- get_panel_indices(panel_df)
+
+  expect_equal(truth, function_output)
+
+})
+
+test_that("row indices for each panel appear and are correct::lm", {
+  reg_1 <- lm(mpg ~  cyl + gear + carb, data = mtcars)
+  reg_2 <- lm(disp ~ cyl + gear + carb, data = mtcars)
+  reg_3 <- lm(mpg ~  cyl + gear + carb + am, data = mtcars)
+
+  models <- list(reg_1, reg_2, reg_3)
+
+  panel_df <- lapply(models, function(x) modelsummary::modelsummary(x,
+                                                                    output = "data.frame"))
+  truth <- c(nrow(panel_df[[1]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]), nrow(panel_df[[1]]) + nrow(panel_df[[2]]) + nrow(panel_df[[3]]))
+  function_output <- get_panel_indices(panel_df)
+
+  expect_equal(truth, function_output)
+
+})
+
+
+test_that("row indices for each panel appear and are forrect::fixest with collapsed fe", {
+  reg_1 <- mtcars |>
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+  reg_2 <- mtcars |>
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+  reg_3 <- mtcars |>
+    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+
+  models <- list(reg_1, reg_2, reg_3)
+
+  gm <- tibble::tribble(
+    ~raw,        ~clean,          ~fmt,
+    "mean", "Mean of Dependent Variable", 3,
+    "nobs",      "Observations",             0,
+    "FE: gear", "FE: Gear", 0,
+    "FE: carb", "FE: Carb", 0)
+
+  panel_df <- lapply(models, function(x) modelsummary::modelsummary(x,
+                                                                    output = "data.frame",
+                                                                    gof_omit ='DF|Deviance|R2|AIC|BIC|R',
+                                                                    gof_map = gm))
+
+  number_panels <-  3
+
+  truth <- c(3, 6, 9, 11)
+
+  function_output <- get_panel_indices_collapse(panel_df, number_panels)
+
+  expect_equal(truth, function_output)
+
+})
