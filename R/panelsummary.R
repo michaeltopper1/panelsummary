@@ -38,6 +38,7 @@ panelsummary <- function(
 
   ## Defines the custom fixest glance_function which allows
   if (mean_dependent == T) {
+    warning("fixest will always output a mean until glance_custom.fixest is removed from the global environment")
     create_mean_fixest()
   }
 
@@ -56,6 +57,7 @@ panelsummary <- function(
   rows_per_model <- get_panel_indices(panel_df)
 
   if (collapse_fe == T & num_panels > 1) {
+    warning("panelsummary does not check if the fixed effects in each panel match—it always assumes they do!")
 
     ## removing fixed effects from all but the last panel
     panel_df <- panel_df |>
