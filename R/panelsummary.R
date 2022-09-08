@@ -11,6 +11,10 @@ panelsummary <- function(
     caption = NULL,
     format = NULL,
     collapse_fe = F,
+    bold = F,
+    italic = F,
+    hline_after = F,
+    hline_after_fe = T,
     fmt         = 3,
     estimate    = "estimate",
     statistic   = "std.error",
@@ -28,8 +32,9 @@ panelsummary <- function(
 
   models <- list(...)
 
-  ## checks if objects are of type that panelsummary can handle:see models_supported
-  check_objects(models)
+  ## checks if the dimensions match. If not, returns error.
+  check_dimensions_match(models, num_panels = num_panels)
+
 
   ## Defines the custom fixest glance_function which allows
   if (mean_dependent == T) {
@@ -94,12 +99,17 @@ panelsummary <- function(
     table_final <- table_initial |>
       add_panels_cfe(num_panels = num_panels,
                  panel_labels = panel_labels,
-                 rows_per_model = rows_per_model)
+                 rows_per_model = rows_per_model,
+                 bold = bold, italic = italic,
+                 hline_after = hline_after,
+                 hline_after_fe = hline_after_fe)
   } else{
     table_final <- table_initial |>
       add_panels(num_panels = num_panels,
                     panel_labels = panel_labels,
-                    rows_per_model = rows_per_model)
+                    rows_per_model = rows_per_model,
+                 bold = bold, italic = italic,
+                 hline_after = hline_after)
   }
 
 
