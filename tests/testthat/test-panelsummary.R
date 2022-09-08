@@ -20,9 +20,9 @@ test_that("panelsummary actually produces output", {
     "FE: carb", "FE: Carb", 0)
 
 
-  expect_error(panelsummary(list(reg_1, reg_1, reg_3), list(reg_3, reg_3), gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
+  expect_error(panelsummary(list(reg_1, reg_2, reg_3), list(reg_3, reg_3), gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
                             caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T, num_panels = 2,
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = c("MPG", "DISP"),
-                            collapse_fe = F), regexp = NA)
+                            collapse_fe = F, stars = T), regexp = NA)
 })

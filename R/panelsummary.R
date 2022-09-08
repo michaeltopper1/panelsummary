@@ -17,7 +17,7 @@ panelsummary <- function(
     vcov        = NULL,
     conf_level  = 0.95,
     exponentiate = FALSE,
-    stars       = c('*' = .1, '**' = .05, '***' = .01),
+    stars       = F,
     shape       = term + statistic ~ model,
     coef_map    = NULL,
     coef_omit   = NULL,
@@ -25,7 +25,11 @@ panelsummary <- function(
     gof_map     = NULL,
     gof_omit    = NULL) {
 
+
   models <- list(...)
+
+  ## checks if objects are of type that panelsummary can handle:see models_supported
+  check_objects(models)
 
   ## Defines the custom fixest glance_function which allows
   if (mean_dependent == T) {
@@ -47,6 +51,7 @@ panelsummary <- function(
   rows_per_model <- get_panel_indices(panel_df)
 
   if (collapse_fe == T & num_panels > 1) {
+
     ## removing fixed effects from all but the last panel
     panel_df <- panel_df |>
       remove_fe(num_panels)
@@ -65,22 +70,21 @@ panelsummary <- function(
     dplyr::mutate(term = ifelse(statistic == "std.error", "", term)) |>
     dplyr::select(-part, -statistic)
 
-  ## getting column names
+  ## getting the number of columns/models in the dataframe
   number_models <- ncol(panel_df_cleaned)
-  number_models_minus_one <- number_models - 1
+
+  ## if no columnnames inputted, create defaults (1), (2), ... (n)
   if (is.null(colnames)){
-    colnames <- c(" ", paste0("(",1:number_models_minus_one, ")"))
+    colnames <- create_column_names(number_models)
   }
 
-
   ## aligning models
-  alignment <- paste(c("l", rep("c", number_models_minus_one)), collapse = "")
+  alignment <- create_alignment(number_models)
 
 
   table_initial <- kableExtra::kbl(panel_df_cleaned, col.names = colnames, align = alignment,
                                      caption = caption, format = format,
-                                     booktabs = T) |>
-    kableExtra::kable_styling()
+                                     booktabs = T)
 
 
 

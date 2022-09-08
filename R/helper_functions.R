@@ -45,4 +45,19 @@ get_panel_indices_collapse <- function(panel_df, num_panels) {
 }
 
 
+## create column names
+create_column_names <- function(number_models) {
+  number_models_minus_one <- number_models - 1
+  columns <- c(" ", paste0("(",1:number_models_minus_one, ")"))
+  return(columns)
+}
+
+## create alignment
+create_alignment <- function(number_models) {
+  number_models_minus_one <- number_models - 1
+  alignment <- paste(c("l", rep("c", number_models_minus_one)), collapse = "")
+  return(alignment)
+}
+
+
 
