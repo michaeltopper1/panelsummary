@@ -59,5 +59,12 @@ create_alignment <- function(number_models) {
   return(alignment)
 }
 
+## move mean to the front:
+shift_means <- function(df) {
+  df <- lapply(df, function(x) x |>
+           dplyr::arrange(match(stringr::str_to_lower(part), "estimates"), match(stringr::str_to_lower(term), "mean")) |>
+             dplyr::mutate(term = ifelse(stringr::str_to_lower(term) == "mean", "Mean of Dependent Variable", term)))
+  return(df)
+}
 
 

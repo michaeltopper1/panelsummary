@@ -104,7 +104,7 @@ test_that("panelsummary actually produces output with lists as arguments", {
 
   gm <- tibble::tribble(
     ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Dependent Variable", 3,
+    "mean", "Mean of Variable", 3,
     "nobs",      "Observations",             0,
     "FE: gear", "FE: Gear", 0,
     "FE: carb", "FE: Carb", 0)

@@ -39,6 +39,7 @@ panelsummary <- function(
   ## Defines the custom fixest glance_function which allows
   if (mean_dependent == T) {
     warning("fixest will always output a mean until glance_custom.fixest is removed from the global environment")
+    ## creating the custom glance function
     create_mean_fixest()
   }
 
@@ -50,6 +51,11 @@ panelsummary <- function(
                                                                     stars = stars, coef_map = coef_map,
                                                                     gof_map = gof_map,
                                                                     gof_omit = gof_omit))
+  ## if true, reorder the rows so that mean is before FEs
+  if (isTRUE(mean_dependent) & is.null(gof_map)) {
+    panel_df <- panel_df |>
+      shift_means()
+  }
 
 
   ## getting number of rows per model:
