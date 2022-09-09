@@ -6,17 +6,12 @@
 <!-- badges: start -->
 
     #> ✔ Setting active project to '/Users/michaeltopper/panelsummary'
-    #> ✔ Creating '.github/'
-    #> ✔ Adding '^\\.github$' to '.Rbuildignore'
-    #> ✔ Adding '*.html' to '.github/.gitignore'
-    #> ✔ Creating '.github/workflows/'
     #> ✔ Saving 'r-lib/actions/examples/check-standard.yaml@v2' to '.github/workflows/R-CMD-check.yaml'
     #> • Learn more at <https://github.com/r-lib/actions/blob/v2/examples/README.md>.
-    #> ✔ Adding R-CMD-check badge to 'README.Rmd'
-    #> • Re-knit 'README.Rmd' with `devtools::build_readme()`
 
 [![Codecov test
 coverage](https://codecov.io/gh/michaeltopper1/panelsummary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/michaeltopper1/panelsummary?branch=master)
+[![R-CMD-check](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of panelsummary is to …

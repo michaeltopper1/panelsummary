@@ -17,8 +17,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 ```{r, echo = F}
-usethis::use_coverage()
 usethis::use_github_action_check_standard()
+usethis::use_coverage()
 ```
 
 [![Codecov test coverage](https://codecov.io/gh/michaeltopper1/panelsummary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/michaeltopper1/panelsummary?branch=master)
