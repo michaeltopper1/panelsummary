@@ -87,7 +87,7 @@ library(kableExtra)
 
 example_table |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_styling() |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
   
 ```
@@ -115,7 +115,7 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              gof_map = gm,
              coef_map = c("cyl" = "Cylinder")) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_styling() |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 
 ```
@@ -134,7 +134,7 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              coef_map = c("cyl" = "Cylinder"),
              collapse_fe = T) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_styling() |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 ```
 
@@ -150,7 +150,7 @@ panelsummary(mpg_model_1, disp_model_1,
              panel_labels = c("MPG", "Displacement"),
              gof_omit = "R|A|B",
              coef_map = c("cyl" = "Cylinder")) |>
-  kable_styling()
+  kable_classic(full_width = F, html_font = "Cambria")
 ```
 
 

@@ -427,11 +427,11 @@ library(kableExtra)
 
 example_table |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_styling() |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 ```
 
-<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 The correlation of cyl on disp and mpg
 </caption>
@@ -820,11 +820,11 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              gof_map = gm,
              coef_map = c("cyl" = "Cylinder")) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_styling() |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 ```
 
-<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 The correlation of cyl on disp and mpg
 </caption>
@@ -1048,14 +1048,14 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              coef_map = c("cyl" = "Cylinder"),
              collapse_fe = T) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_styling() |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 #> Warning in panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, :
 #> panelsummary does not check if the fixed effects in each panel match—it always
 #> assumes they do!
 ```
 
-<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 The correlation of cyl on disp and mpg
 </caption>
@@ -1242,10 +1242,10 @@ panelsummary(mpg_model_1, disp_model_1,
              panel_labels = c("MPG", "Displacement"),
              gof_omit = "R|A|B",
              coef_map = c("cyl" = "Cylinder")) |>
-  kable_styling()
+  kable_classic(full_width = F, html_font = "Cambria")
 ```
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
