@@ -83,6 +83,6 @@ test_that("add rows works with bold argument/italic/hline", {
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = c("MPG", "DISP"),
                             format = "latex",
-                            collapse_fe = T, stars = T, bold = T, hline_after = F, hline_after_fe = T), regexp = NA)
+                            collapse_fe = T, stars = T, bold = T, hline_after = F, hline_before_fe = T), regexp = NA)
 })
 

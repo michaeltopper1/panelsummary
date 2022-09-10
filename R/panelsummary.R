@@ -1,20 +1,45 @@
 
-## might need a number of panels argument so they can also label
-## num_panels
-## panel_labels
+#' Create a regression table with multiple panels
+#'
+#' @param ... A regression model or models (see panelsummary::models_supported for classes that are supported). The regression model can be a list of models or a singular object. If a list is passed in, one column for each list is created. Each argument will correspond to a panel.
+#' @param num_panels A numeric. The number of panels in the regression table. Note that this should match with the number of arguments passed into `...`.
+#' @param mean_dependent A boolean.
+#'    * `FALSE` (the default): the mean of the dependent variable will not be shown in the resulting table.
+#'    * `TRUE`: the mean of the dependent variable will be shown in the resulting table.
+#' @param colnames An optional vector of strings. The vector of strings should have the same length as the number columns of the table.
+#'    * `NULL` (the default): colnames are defaulted to a whitespace, followed by (1), (2), ....etc.
+#' @inheritParams kableExtra::caption
+#' @inheritParams kableExtra::format
+#'
+#' @param collapse_fe A boolean. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
+#'    * `FALSE` (the default): fixed effects are shown in each panel.
+#'    * `TRUE`: fixed effects are shown only at the bottom of the final panel, separated by a horizontal line (see hline_before_fe)
+#' @param bold A boolean. Determines whether the panel names should be in bold font.
+#'    * `FALSE` (the default): the panel names are not in bold.
+#'    * `TRUE`: the panel names are bolded
+#'
+#' @param italic A boolean. Determines whether the panel names should be in italics.
+#'    * `FALSE` (the default): the panel names are not in italics.
+#'    * `TRUE`: the panel names will be in italics.
+#'
+#'
+#'
+
+
+
 panelsummary <- function(
     ...,
     num_panels = 1,
     panel_labels = NULL,
-    mean_dependent = F,
+    mean_dependent = FALSE,
     colnames = NULL,
     caption = NULL,
     format = NULL,
     collapse_fe = F,
-    bold = F,
-    italic = F,
-    hline_after = F,
-    hline_after_fe = T,
+    bold = FALSE,
+    italic = FALSE,
+    hline_after = FALSE,
+    hline_before_fe = TRUE,
     fmt         = 3,
     estimate    = "estimate",
     statistic   = "std.error",
@@ -116,7 +141,7 @@ panelsummary <- function(
                  rows_per_model = rows_per_model,
                  bold = bold, italic = italic,
                  hline_after = hline_after,
-                 hline_after_fe = hline_after_fe)
+                 hline_before_fe = hline_before_fe)
   } else{
     table_final <- table_initial |>
       add_panels(num_panels = num_panels,
