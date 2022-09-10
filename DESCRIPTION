@@ -1,6 +1,6 @@
 Type: Package
 Package: panelsummary
-Title: Create Publican Quality Regression Tables with Panels
+Title: Create Publication-Ready Regression Tables with Panels
 Version: 0.1.0
 Authors@R: 
     person("Michael", "Topper", , "miketopper123@gmail.com", role = c("aut", "cre"))
