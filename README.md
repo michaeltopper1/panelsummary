@@ -5,16 +5,26 @@
 
 <!-- badges: start -->
 
-    #> ✔ Setting active project to '/Users/michaeltopper/panelsummary'
-    #> ✔ Saving 'r-lib/actions/examples/check-standard.yaml@v2' to '.github/workflows/R-CMD-check.yaml'
-    #> • Learn more at <https://github.com/r-lib/actions/blob/v2/examples/README.md>.
-
 [![Codecov test
 coverage](https://codecov.io/gh/michaeltopper1/panelsummary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/michaeltopper1/panelsummary?branch=master)
 [![R-CMD-check](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of panelsummary is to …
+`panelsummary` creates publication-quality regression tables that have
+multiple panels. Multiple panel regression tables are particularly
+useful for showing output for models that are estimated with multiple
+dependent variables. A simple call to `panelsummary::panelsummary` will
+create a regression table that can be viewed in the RStudio Viewer
+panel, be edited with `kableExtra`’s suite of customization functions,
+and be saved to latex. Moreover, `panelsummary` allows the mean of the
+dependent variable to be automatically added to the regression table—a
+feature that is currently absent out-of-the-box for most popular
+regression table packages.
+
+As of now, `panelsummary` is intended for use with the `fixest` package,
+although more model classes are planned. Please use the
+`panelsummary::models_supported` function to view a list of all model
+classes that are currently supported.
 
 ## Installation
 
@@ -26,38 +36,132 @@ You can install the development version of panelsummary from
 devtools::install_github("michaeltopper1/panelsummary")
 ```
 
-## Example
+## What makes panelsummary different?
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-# library(panelsummary)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+As a motivating example, consider the following (nonsensical) models:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(fixest)
+library(panelsummary)
+
+## mpg regressions--------
+mpg_model_1 <- mtcars |>
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+
+mpg_model_2 <- mtcars |>
+    fixest::feols(mpg ~ cyl | gear + carb + am, cluster = ~hp)
+
+## disp regressions --------
+disp_model_1 <- mtcars |>
+    fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
+
+disp_model_2 <- mtcars |>
+    fixest::feols(disp ~  cyl | gear + carb + am, cluster = ~hp)
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+Observe that of the four models specified above, the first two and last
+two mimic explanatory variables and differ only by dependent variables.
+Instead of creating a table for the two models with `mpg` as the
+dependent variable, and another for the two models with `disp` as the
+dependent variable, `panelsummary::panelsummary` can create one
+regression table with two (or more!) panels:
 
-You can also embed plots, for example:
+``` r
+example_table <- panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2), 
+             num_panels = 2, 
+             panel_labels = c("MPG", "Displacement"), 
+             stars = T,
+             caption = "The correlation of cyl on disp and mpg")
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+example_table
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+With one simple function, a variety of customization has taken place.
+However, `panelsummary` has plenty more to offer.
+
+### Customize with `kableExtra`
+
+`panelsummary` outputs an object with `kableExtra` class. This means
+that editing with `kableExtra`’s functions is as simple as piping in
+`kableExtra` functions:
+
+``` r
+library(kableExtra)
+
+example_table |>
+  add_header_above(c(" " = 1, "Models" = 2)) |>
+  kable_paper() |>
+  footnote("This table was created with a combination of panelsummary and kableExtra.")
+  
+```
+
+### Customize with `modelsummary` arguments
+
+The backend of `panelsummary` actually calls `modelsummary` and
+therefore, many `panelsummary` arguments are shared with `modelsummary`
+and work entirely the same. For instance, to reduce/rename the number of
+statistics shown on the table and clean up the variable names, you can
+use the arguments, `gof_map` and `coef_map` exactly as you would in
+`modelsummary`:
+
+``` r
+## creating a tibble to include only observations and fixed effects
+gm <- tibble::tribble(
+    ~raw,        ~clean,          ~fmt,
+    "nobs",      "Observations", 0,
+    "r.squared", "R2", 3,
+    "FE: gear", "FE: Gear", 0,
+    "FE: carb", "FE: Carb", 0,
+    "FE: am", "FE: AM", 0)
+
+
+## adding in the gof_map and coef_map arguments - identical to modelsummary
+panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2), 
+             num_panels = 2, 
+             panel_labels = c("MPG", "Displacement"), 
+             stars = T,
+             caption = "The correlation of cyl on disp and mpg",
+             gof_map = gm,
+             coef_map = c("cyl" = "Cylinder")) |>
+  add_header_above(c(" " = 1, "Models" = 2)) |>
+  kable_paper() |>
+  footnote("This table was created with a combination of panelsummary and kableExtra.")
+```
+
+### Collapsing fixed effects
+
+While the tables displayed are clear, there is a lot of redundant
+information in the fixed effects. It is common that multiple dependent
+variables are tested against the same variety of models. To increase
+clarity, you can collapse the fixed effects to their own panel using the
+`collapse_fe` argument:
+
+``` r
+panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2), 
+             num_panels = 2, 
+             panel_labels = c("MPG", "Displacement"), 
+             stars = T,
+             caption = "The correlation of cyl on disp and mpg",
+             gof_map = gm,
+             coef_map = c("cyl" = "Cylinder"),
+             collapse_fe = T) |>
+  add_header_above(c(" " = 1, "Models" = 2)) |>
+  kable_paper() |>
+  footnote("This table was created with a combination of panelsummary and kableExtra.")
+```
+
+### Adding the mean of the dependent variables
+
+One of the most enticing features of `panelsummary` is that it can
+automatically add in the mean of the dependent variables by setting the
+`mean_dependent` argument to `TRUE` which adds the mean to each panel:
+
+``` r
+panelsummary(mpg_model_1, disp_model_1, 
+             mean_dependent = T, 
+             num_panels = 2,
+             panel_labels = c("MPG", "Displacement"),
+             gof_omit = "R|A|B",
+             coef_map = c("cyl" = "Cylinder")) |>
+  kable_paper()
+```
