@@ -1,5 +1,9 @@
 
-## gets the indices of each of the breaks in the panel
+#' gets the row numbers for break points in the panels
+#'
+#' @keywords internal
+#' @noRd
+#'
 get_panel_indices <- function(panel) {
   panel |>
     lapply(function(x) nrow(x)) |>
@@ -7,8 +11,11 @@ get_panel_indices <- function(panel) {
     cumsum()
 }
 
-
-## gets the number of fixed effects in the final panel so that we can collapse panels
+#' gets the number of fixed effects in the last panel for collapse_fe purposes
+#'
+#' @keywords internal
+#' @noRd
+#'
 get_lpanel_fe <- function(df, panels){
   df[[panels]] |>
     dplyr::mutate(count_fe = sum(stringr::str_count(term, "^FE"))) |>
@@ -16,8 +23,11 @@ get_lpanel_fe <- function(df, panels){
     dplyr::pull(count_fe)
 }
 
-
-## removes all fixed effects except the final panel: only used for collapsing
+#' removes all fixed effects except the final panel (for collapse_fe)
+#'
+#' @keywords internal
+#' @noRd
+#'
 remove_fe <- function(panel_df, num_panels) {
   number_panels_minus_one <- num_panels - 1
   for (i in 1:number_panels_minus_one) {
@@ -27,8 +37,10 @@ remove_fe <- function(panel_df, num_panels) {
   return(panel_df)
 }
 
-
-## gets the indices of each of the breaks in the panel
+#' gets the indices of each of the breaks in the panel
+#'
+#' @keywords internal
+#' @noRd
 get_panel_indices_collapse <- function(panel_df, num_panels) {
 
   ## this will override the rows per model made before
@@ -45,21 +57,31 @@ get_panel_indices_collapse <- function(panel_df, num_panels) {
 }
 
 
-## create column names
+#' creates the column names of (1), (2), ...
+#'
+#' @keywords internal
+#' @noRd
+#'
 create_column_names <- function(number_models) {
   number_models_minus_one <- number_models - 1
   columns <- c(" ", paste0("(",1:number_models_minus_one, ")"))
   return(columns)
 }
 
-## create alignment
+#' creates alignment of left, center, center, ...
+#'
+#' @keywords internal
+#' @noRd
 create_alignment <- function(number_models) {
   number_models_minus_one <- number_models - 1
   alignment <- paste(c("l", rep("c", number_models_minus_one)), collapse = "")
   return(alignment)
 }
 
-## move mean to the front:
+#' shifts the custom glance means to above observations and renames
+#'
+#' @keywords internal
+#' @noRd
 shift_means <- function(df) {
   df <- lapply(df, function(x) x |>
            dplyr::arrange(match(stringr::str_to_lower(part), "estimates"), match(stringr::str_to_lower(term), "mean")) |>

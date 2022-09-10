@@ -1,9 +1,9 @@
 
-
-## object fixing for regression objects:
-
-
-## fixest: creates a mean called 'mean'
+#' creates a custom glance function for fixest objects with a mean
+#'
+#' @keywords internal
+#' @noRd
+#'
 create_mean_fixest <- function() {
   glance_custom.fixest <<- function(x, ...) {
     out <- data.frame("mean" = as.numeric(fixest::fitstat(x, type = "my")))
@@ -11,6 +11,11 @@ create_mean_fixest <- function() {
   }
 }
 
+#' creates a custom glance function for lm objects with a mean
+#'
+#' @keywords internal
+#' @noRd
+#'
 create_mean_lm <- function() {
   glance_custom.lm <<- function(x, ...) {
     out <- data.frame("mean" = sprintf("%.3f",mean(x$model[[1]], na.rm = T)))

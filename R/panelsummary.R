@@ -1,31 +1,74 @@
 
 #' Create a regression table with multiple panels
 #'
-#' @param ... A regression model or models (see panelsummary::models_supported for classes that are supported). The regression model can be a list of models or a singular object. If a list is passed in, one column for each list is created. Each argument will correspond to a panel.
+#' @description
+#' `panelsummary` Creates a beautiful and customizable regression table with panels. This function is best used to summarize multiple dependent variables that are passed through the same regression models. This function is intended for use with the fixest package and returns a kableExtra object which can then be edited using kableExtra's suite of functions.
+#'
+#' @param ... A regression model or models (see panelsummary::models_supported for classes that are supported).
+#'    * The regression model can be a list of models or a singular object.
+#'    * If a list is passed in, one column for each list is created. Each argument will correspond to a panel.
+#'    * If only one object is passed in, there will be no panels and the output will be similar to evaluating modelsummary::modelsummary() followed by kableExtra::kbl()
 #' @param num_panels A numeric. The number of panels in the regression table. Note that this should match with the number of arguments passed into `...`.
+#' @param panel_labels A character vector. The text to come after Panel A: and Panel B... in the table. Generally, it is the name of each dependent variable in the panel.
+#'    * `NULL` (the default): the panels will not have any text after Panel A:... and Panel B:... etc.
+#
 #' @param mean_dependent A boolean.
 #'    * `FALSE` (the default): the mean of the dependent variable will not be shown in the resulting table.
 #'    * `TRUE`: the mean of the dependent variable will be shown in the resulting table.
 #' @param colnames An optional vector of strings. The vector of strings should have the same length as the number columns of the table.
 #'    * `NULL` (the default): colnames are defaulted to a whitespace, followed by (1), (2), ....etc.
-#' @inheritParams kableExtra::caption
-#' @inheritParams kableExtra::format
-#'
+#' @param caption A string. The table caption.
+#' @param format A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.
 #' @param collapse_fe A boolean. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
 #'    * `FALSE` (the default): fixed effects are shown in each panel.
 #'    * `TRUE`: fixed effects are shown only at the bottom of the final panel, separated by a horizontal line (see hline_before_fe)
 #' @param bold A boolean. Determines whether the panel names should be in bold font.
 #'    * `FALSE` (the default): the panel names are not in bold.
 #'    * `TRUE`: the panel names are bolded
-#'
 #' @param italic A boolean. Determines whether the panel names should be in italics.
 #'    * `FALSE` (the default): the panel names are not in italics.
 #'    * `TRUE`: the panel names will be in italics.
+#' @param hline_after A boolean. Adds a horizontal line after the panel labels.
+#'    * `FALSE` (the default): there is not horizonal line after the panel labels.
+#'    * `TRUE`: a horizontal line will appear after the panel labels.
+#' @param hline_before_fe A boolean. To be used only when collapse_fe = TRUE. Adds a horizontal line before the fixed effects portion of the table.
+#' @inheritParams modelsummary::modelsummary
+#'
+#' @returns A kableExtra object that is instantly customizable by kableExtra's suite of functions.
+#'
+#' @examples
+#'
+#' # Panelsummary with Fixest -------------------------
+#'
+#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
+#'
+#' panelsummary(ols_1, ols_2, num_panels = 2, mean_dependent = T, colnames = c("MPG", "DISP"), caption = "The effect of cyl on MPG and DISP", italic = T, stars = T)
 #'
 #'
+#' ## Collapsing fixed effects----------------
 #'
-
-
+#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+#'
+#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
+#'
+#' panelsummary(ols_1, ols_2, num_panels = 2, mean_dependent = T, colapse_fe = T, colnames = c("MPG", "DISP"), caption = "The effect of cyl on MPG and DISP", italic = T, stars = T)
+#'
+#' ## Including multiple models------------------
+#'
+#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+#'
+#' ols_2 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+#'
+#' ols_3 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+#'
+#' ols_4 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
+#'
+#' panelsummary(list(ols_1, ols_2, ols_3), ols_4, num_panels = 2, panel_labels = c("MPG", "DISP"), caption = "Multiple models", stars = T)
+#'
+#'
+#' @export
+#'
 
 panelsummary <- function(
     ...,
@@ -35,7 +78,7 @@ panelsummary <- function(
     colnames = NULL,
     caption = NULL,
     format = NULL,
-    collapse_fe = F,
+    collapse_fe = FALSE,
     bold = FALSE,
     italic = FALSE,
     hline_after = FALSE,
@@ -47,7 +90,6 @@ panelsummary <- function(
     conf_level  = 0.95,
     exponentiate = FALSE,
     stars       = F,
-    shape       = term + statistic ~ model,
     coef_map    = NULL,
     coef_omit   = NULL,
     coef_rename = NULL,
