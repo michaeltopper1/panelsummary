@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -10,7 +11,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%",
-  eval = F
+  eval = T
 )
 ```
 
@@ -43,7 +44,7 @@ devtools::install_github("michaeltopper1/panelsummary")
 
 As a motivating example, consider the following (nonsensical) models:
 
-```{r}
+```{r, eval = T}
 library(fixest)
 library(panelsummary)
 
@@ -66,7 +67,7 @@ disp_model_2 <- mtcars |>
 
 Observe that of the four models specified above, the first two and last two mimic explanatory variables and differ only by dependent variables. Instead of creating a table for the two models with `mpg` as the dependent variable, and another for the two models with `disp` as the dependent variable, `panelsummary::panelsummary` can create one regression table with two (or more!) panels: 
 
-```{r}
+```{r, eval = T}
 example_table <- panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2), 
              num_panels = 2, 
              panel_labels = c("MPG", "Displacement"), 
@@ -86,7 +87,7 @@ library(kableExtra)
 
 example_table |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_paper() |>
+  kable_styling() |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
   
 ```
@@ -114,7 +115,7 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              gof_map = gm,
              coef_map = c("cyl" = "Cylinder")) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_paper() |>
+  kable_styling() |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 
 ```
@@ -133,7 +134,7 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              coef_map = c("cyl" = "Cylinder"),
              collapse_fe = T) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_paper() |>
+  kable_styling() |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 ```
 
@@ -149,7 +150,7 @@ panelsummary(mpg_model_1, disp_model_1,
              panel_labels = c("MPG", "Displacement"),
              gof_omit = "R|A|B",
              coef_map = c("cyl" = "Cylinder")) |>
-  kable_paper()
+  kable_styling()
 ```
 
 

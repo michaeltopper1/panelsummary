@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+    #> ✔ Setting active project to '/Users/michaeltopper/panelsummary'
+    #> ✔ Saving 'r-lib/actions/examples/check-standard.yaml@v2' to '.github/workflows/R-CMD-check.yaml'
+    #> • Learn more at <https://github.com/r-lib/actions/blob/v2/examples/README.md>.
+
 [![Codecov test
 coverage](https://codecov.io/gh/michaeltopper1/panelsummary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/michaeltopper1/panelsummary?branch=master)
 [![R-CMD-check](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml)
@@ -76,8 +80,341 @@ example_table <- panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1,
 example_table
 ```
 
-With one simple function, a variety of customization has taken place.
-However, `panelsummary` has plenty more to offer.
+<table>
+<caption>
+The correlation of cyl on disp and mpg
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+1)  </th>
+    <th style="text-align:center;">
+
+    2)  </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr grouplength="14">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel A: MPG
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        cyl
+        </td>
+        <td style="text-align:center;">
+        -0.907
+        </td>
+        <td style="text-align:center;">
+        -1.093
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (0.789)
+        </td>
+        <td style="text-align:center;">
+        (0.801)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Num.Obs.
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.818
+        </td>
+        <td style="text-align:center;">
+        0.835
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Adj.
+        </td>
+        <td style="text-align:center;">
+        0.755
+        </td>
+        <td style="text-align:center;">
+        0.768
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within
+        </td>
+        <td style="text-align:center;">
+        0.058
+        </td>
+        <td style="text-align:center;">
+        0.088
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within Adj.
+        </td>
+        <td style="text-align:center;">
+        0.017
+        </td>
+        <td style="text-align:center;">
+        0.046
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        AIC
+        </td>
+        <td style="text-align:center;">
+        154.3
+        </td>
+        <td style="text-align:center;">
+        151.1
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        BIC
+        </td>
+        <td style="text-align:center;">
+        157.2
+        </td>
+        <td style="text-align:center;">
+        154.0
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        RMSE
+        </td>
+        <td style="text-align:center;">
+        2.53
+        </td>
+        <td style="text-align:center;">
+        2.41
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Std.Errors
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: gear
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: carb
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: am
+        </td>
+        <td style="text-align:center;">
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr grouplength="14">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel B: Displacement
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        cyl
+        </td>
+        <td style="text-align:center;">
+        43.306\*\*
+        </td>
+        <td style="text-align:center;">
+        43.905\*\*
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (13.075)
+        </td>
+        <td style="text-align:center;">
+        (13.489)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Num.Obs.
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.909
+        </td>
+        <td style="text-align:center;">
+        0.910
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Adj.
+        </td>
+        <td style="text-align:center;">
+        0.878
+        </td>
+        <td style="text-align:center;">
+        0.873
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within
+        </td>
+        <td style="text-align:center;">
+        0.399
+        </td>
+        <td style="text-align:center;">
+        0.401
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within Adj.
+        </td>
+        <td style="text-align:center;">
+        0.373
+        </td>
+        <td style="text-align:center;">
+        0.373
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        AIC
+        </td>
+        <td style="text-align:center;">
+        325.5
+        </td>
+        <td style="text-align:center;">
+        325.4
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        BIC
+        </td>
+        <td style="text-align:center;">
+        328.4
+        </td>
+        <td style="text-align:center;">
+        328.3
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        RMSE
+        </td>
+        <td style="text-align:center;">
+        36.76
+        </td>
+        <td style="text-align:center;">
+        36.68
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Std.Errors
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: gear
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: carb
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: am
+        </td>
+        <td style="text-align:center;">
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        With one simple function, a variety of customization has taken
+        place. However, `panelsummary` has plenty more to offer.
 
 ### Customize with `kableExtra`
 
@@ -90,12 +427,371 @@ library(kableExtra)
 
 example_table |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_paper() |>
+  kable_styling() |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
-  
 ```
 
-### Customize with `modelsummary` arguments
+<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>
+The correlation of cyl on disp and mpg
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+
+Models
+
+</div>
+
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+1)  </th>
+    <th style="text-align:center;">
+
+    2)  </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr grouplength="14">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel A: MPG
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        cyl
+        </td>
+        <td style="text-align:center;">
+        -0.907
+        </td>
+        <td style="text-align:center;">
+        -1.093
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (0.789)
+        </td>
+        <td style="text-align:center;">
+        (0.801)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Num.Obs.
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.818
+        </td>
+        <td style="text-align:center;">
+        0.835
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Adj.
+        </td>
+        <td style="text-align:center;">
+        0.755
+        </td>
+        <td style="text-align:center;">
+        0.768
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within
+        </td>
+        <td style="text-align:center;">
+        0.058
+        </td>
+        <td style="text-align:center;">
+        0.088
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within Adj.
+        </td>
+        <td style="text-align:center;">
+        0.017
+        </td>
+        <td style="text-align:center;">
+        0.046
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        AIC
+        </td>
+        <td style="text-align:center;">
+        154.3
+        </td>
+        <td style="text-align:center;">
+        151.1
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        BIC
+        </td>
+        <td style="text-align:center;">
+        157.2
+        </td>
+        <td style="text-align:center;">
+        154.0
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        RMSE
+        </td>
+        <td style="text-align:center;">
+        2.53
+        </td>
+        <td style="text-align:center;">
+        2.41
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Std.Errors
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: gear
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: carb
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: am
+        </td>
+        <td style="text-align:center;">
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr grouplength="14">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel B: Displacement
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        cyl
+        </td>
+        <td style="text-align:center;">
+        43.306\*\*
+        </td>
+        <td style="text-align:center;">
+        43.905\*\*
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (13.075)
+        </td>
+        <td style="text-align:center;">
+        (13.489)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Num.Obs.
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.909
+        </td>
+        <td style="text-align:center;">
+        0.910
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Adj.
+        </td>
+        <td style="text-align:center;">
+        0.878
+        </td>
+        <td style="text-align:center;">
+        0.873
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within
+        </td>
+        <td style="text-align:center;">
+        0.399
+        </td>
+        <td style="text-align:center;">
+        0.401
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2 Within Adj.
+        </td>
+        <td style="text-align:center;">
+        0.373
+        </td>
+        <td style="text-align:center;">
+        0.373
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        AIC
+        </td>
+        <td style="text-align:center;">
+        325.5
+        </td>
+        <td style="text-align:center;">
+        325.4
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        BIC
+        </td>
+        <td style="text-align:center;">
+        328.4
+        </td>
+        <td style="text-align:center;">
+        328.3
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        RMSE
+        </td>
+        <td style="text-align:center;">
+        36.76
+        </td>
+        <td style="text-align:center;">
+        36.68
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Std.Errors
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        <td style="text-align:center;">
+        by: hp
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: gear
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: carb
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: am
+        </td>
+        <td style="text-align:center;">
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+        <td style="padding: 0; " colspan="100%">
+        <span style="font-style: italic;">Note: </span>
+        </td>
+        </tr>
+        <tr>
+        <td style="padding: 0; " colspan="100%">
+        <sup></sup> This table was created with a combination of
+        panelsummary and kableExtra.
+        </td>
+        </tr>
+        </tfoot>
+        </table>
+
+        ### Customize with `modelsummary` arguments
 
 The backend of `panelsummary` actually calls `modelsummary` and
 therefore, many `panelsummary` arguments are shared with `modelsummary`
@@ -124,9 +820,215 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              gof_map = gm,
              coef_map = c("cyl" = "Cylinder")) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_paper() |>
+  kable_styling() |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
 ```
+
+<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>
+The correlation of cyl on disp and mpg
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+
+Models
+
+</div>
+
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+1)  </th>
+    <th style="text-align:center;">
+
+    2)  </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr grouplength="7">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel A: MPG
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Cylinder
+        </td>
+        <td style="text-align:center;">
+        -0.907
+        </td>
+        <td style="text-align:center;">
+        -1.093
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (0.789)
+        </td>
+        <td style="text-align:center;">
+        (0.801)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Observations
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.818
+        </td>
+        <td style="text-align:center;">
+        0.835
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: Gear
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: Carb
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: AM
+        </td>
+        <td style="text-align:center;">
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr grouplength="7">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel B: Displacement
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Cylinder
+        </td>
+        <td style="text-align:center;">
+        43.306\*\*
+        </td>
+        <td style="text-align:center;">
+        43.905\*\*
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (13.075)
+        </td>
+        <td style="text-align:center;">
+        (13.489)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Observations
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.909
+        </td>
+        <td style="text-align:center;">
+        0.910
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: Gear
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: Carb
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        FE: AM
+        </td>
+        <td style="text-align:center;">
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+        <td style="padding: 0; " colspan="100%">
+        <span style="font-style: italic;">Note: </span>
+        </td>
+        </tr>
+        <tr>
+        <td style="padding: 0; " colspan="100%">
+        <sup></sup> This table was created with a combination of
+        panelsummary and kableExtra.
+        </td>
+        </tr>
+        </tfoot>
+        </table>
 
 ### Collapsing fixed effects
 
@@ -146,9 +1048,186 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
              coef_map = c("cyl" = "Cylinder"),
              collapse_fe = T) |>
   add_header_above(c(" " = 1, "Models" = 2)) |>
-  kable_paper() |>
+  kable_styling() |>
   footnote("This table was created with a combination of panelsummary and kableExtra.")
+#> Warning in panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, :
+#> panelsummary does not check if the fixed effects in each panel match—it always
+#> assumes they do!
 ```
+
+<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>
+The correlation of cyl on disp and mpg
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+
+Models
+
+</div>
+
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+1)  </th>
+    <th style="text-align:center;">
+
+    2)  </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr grouplength="4">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel A: MPG
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Cylinder
+        </td>
+        <td style="text-align:center;">
+        -0.907
+        </td>
+        <td style="text-align:center;">
+        -1.093
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (0.789)
+        </td>
+        <td style="text-align:center;">
+        (0.801)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Observations
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.818
+        </td>
+        <td style="text-align:center;">
+        0.835
+        </td>
+        </tr>
+        <tr grouplength="4">
+        <td colspan="3" style="border-bottom: 1px solid;">
+        Panel B: Displacement
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Cylinder
+        </td>
+        <td style="text-align:center;">
+        43.306\*\*
+        </td>
+        <td style="text-align:center;">
+        43.905\*\*
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        </td>
+        <td style="text-align:center;">
+        (13.075)
+        </td>
+        <td style="text-align:center;">
+        (13.489)
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        Observations
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        <td style="text-align:center;">
+        32
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+        R2
+        </td>
+        <td style="text-align:center;">
+        0.909
+        </td>
+        <td style="text-align:center;">
+        0.910
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;">
+        FE: Gear
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;">
+        FE: Carb
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        <tr>
+        <td style="text-align:left;">
+        FE: AM
+        </td>
+        <td style="text-align:center;">
+        </td>
+        <td style="text-align:center;">
+        X
+        </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+        <td style="padding: 0; " colspan="100%">
+        <span style="font-style: italic;">Note: </span>
+        </td>
+        </tr>
+        <tr>
+        <td style="padding: 0; " colspan="100%">
+        <sup></sup> This table was created with a combination of
+        panelsummary and kableExtra.
+        </td>
+        </tr>
+        </tfoot>
+        </table>
 
 ### Adding the mean of the dependent variables
 
@@ -163,5 +1242,139 @@ panelsummary(mpg_model_1, disp_model_1,
              panel_labels = c("MPG", "Displacement"),
              gof_omit = "R|A|B",
              coef_map = c("cyl" = "Cylinder")) |>
-  kable_paper()
+  kable_styling()
 ```
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+
+1)  </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr grouplength="7">
+    <td colspan="2" style="border-bottom: 1px solid;">
+    Panel A: MPG
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Cylinder
+    </td>
+    <td style="text-align:center;">
+    -0.907
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    </td>
+    <td style="text-align:center;">
+    (0.789)
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Mean of Dependent Variable
+    </td>
+    <td style="text-align:center;">
+    20.091
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Num.Obs.
+    </td>
+    <td style="text-align:center;">
+    32
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Std.Errors
+    </td>
+    <td style="text-align:center;">
+    by: hp
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    FE: gear
+    </td>
+    <td style="text-align:center;">
+    X
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    FE: carb
+    </td>
+    <td style="text-align:center;">
+    X
+    </td>
+    </tr>
+    <tr grouplength="7">
+    <td colspan="2" style="border-bottom: 1px solid;">
+    Panel B: Displacement
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Cylinder
+    </td>
+    <td style="text-align:center;">
+    43.306
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    </td>
+    <td style="text-align:center;">
+    (13.075)
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Mean of Dependent Variable
+    </td>
+    <td style="text-align:center;">
+    230.722
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Num.Obs.
+    </td>
+    <td style="text-align:center;">
+    32
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    Std.Errors
+    </td>
+    <td style="text-align:center;">
+    by: hp
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    FE: gear
+    </td>
+    <td style="text-align:center;">
+    X
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+    FE: carb
+    </td>
+    <td style="text-align:center;">
+    X
+    </td>
+    </tr>
+    </tbody>
+    </table>
