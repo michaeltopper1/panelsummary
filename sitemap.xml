@@ -25,7 +25,16 @@
     <loc>https://michaeltopper1.github.io/panelsummary/reference/check_dimensions_match.html</loc>
   </url>
   <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/hello.html</loc>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_alignment.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_column_names.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_lpanel_fe.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices_collapse.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/index.html</loc>
@@ -35,5 +44,11 @@
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/remove_fe.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/shift_means.html</loc>
   </url>
 </urlset>

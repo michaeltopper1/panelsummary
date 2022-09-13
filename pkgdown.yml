@@ -2,7 +2,7 @@ pandoc: 2.14.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-09-13T05:07Z
+last_built: 2022-09-13T06:02Z
 urls:
   reference: https://michaeltopper1.github.io/panelsummary/reference
   article: https://michaeltopper1.github.io/panelsummary/articles
