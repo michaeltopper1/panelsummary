@@ -21,7 +21,7 @@ test_that("add rows works with bold argument", {
 
 
   expect_error(panelsummary(list(reg_1), reg_2, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
-                            caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T, num_panels = 2,
+                            caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T,
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = c("MPG", "DISP"),
                             collapse_fe = F, stars = T, bold = T), regexp = NA)
@@ -50,7 +50,7 @@ test_that("add rows works with italic argument", {
 
 
   expect_error(panelsummary(list(reg_1), reg_2, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
-                            caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T, num_panels = 2,
+                            caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T,
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = c("MPG", "DISP"),
                             collapse_fe = F, stars = T, bold = T, italic = T), regexp = NA)
@@ -79,7 +79,7 @@ test_that("add rows works with bold argument/italic/hline", {
 
 
   expect_error(panelsummary(list(reg_1), reg_2, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
-                            caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T, num_panels = 2,
+                            caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T,
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = c("MPG", "DISP"),
                             format = "latex",

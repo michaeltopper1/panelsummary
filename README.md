@@ -92,6 +92,8 @@ the variable names, you can use the arguments, `gof_map` and `coef_map`
 exactly as you would in `modelsummary`:
 
 ``` r
+library(kableExtra)
+
 ## creating a tibble to include only observati59ons and fixed effects
 gm <- tibble::tribble(
     ~raw,        ~clean,          ~fmt,
@@ -139,3 +141,7 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
 ```
 
 <img src="man/figures/example_table_3.png" width="100%" />
+
+### Find the Mean of the Dependent Variable!
+
+### Easily Knitable to HTML and LaTeX!

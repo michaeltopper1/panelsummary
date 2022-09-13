@@ -8,7 +8,6 @@
 #'    * The regression model can be a list of models or a singular object.
 #'    * If a list is passed in, one column for each list is created. Each argument will correspond to a panel.
 #'    * If only one object is passed in, there will be no panels and the output will be similar to evaluating modelsummary::modelsummary() followed by kableExtra::kbl()
-#' @param num_panels A numeric. The number of panels in the regression table. Note that this should match with the number of arguments passed into `...`.
 #' @param panel_labels A character vector. The text to come after Panel A: and Panel B... in the table. Generally, it is the name of each dependent variable in the panel.
 #'    * `NULL` (the default): the panels will not have any text after Panel A:... and Panel B:... etc.
 #
@@ -72,7 +71,6 @@
 
 panelsummary <- function(
     ...,
-    num_panels = 1,
     panel_labels = NULL,
     mean_dependent = FALSE,
     colnames = NULL,
@@ -99,8 +97,13 @@ panelsummary <- function(
 
   models <- list(...)
 
+  num_panels <- length(models)
+
   ## checks if the dimensions match. If not, returns error.
-  check_dimensions_match(models, num_panels = num_panels)
+  if (!is.null(panel_labels)) {
+    check_dimensions_match(models, panel_labels = panel_labels)
+  }
+
 
 
   ## Defines the custom fixest glance_function which allows

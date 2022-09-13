@@ -92,6 +92,8 @@ With one simple function, a variety of customization has taken place. However, `
 `panelsummary` outputs an object with `kableExtra` class. This means that editing with `kableExtra`'s functions is as simple as piping in `kableExtra` functions. Moreover, the backend of `panelsummary` calls `modelsummary`, and therefore, many `panelsummary` arguments are shared with `modelsummary` and work entirely the same. For instance, to reduce/rename the number of statistics shown on the table and clean up the variable names, you can use the arguments, `gof_map` and  `coef_map` exactly as you would in `modelsummary`:
 
 ```{r}
+library(kableExtra)
+
 ## creating a tibble to include only observati59ons and fixed effects
 gm <- tibble::tribble(
     ~raw,        ~clean,          ~fmt,
@@ -141,5 +143,8 @@ panelsummary(list(mpg_model_1, mpg_model_2), list(disp_model_1, disp_model_2),
 knitr::include_graphics("man/figures/example_table_3.png")
 ```
 
+### Find the Mean of the Dependent Variable!
+
+### Easily Knitable to HTML and LaTeX!
 
 
