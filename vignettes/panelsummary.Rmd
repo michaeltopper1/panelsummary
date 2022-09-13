@@ -123,3 +123,35 @@ panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1, list(mpg_1, mpg_2),
 
 At this time, `panelsummary` **will only support up to five panels**. This is done intentionally to discourage an overly long table. 
 
+## Adding Significance-Stars
+
+To add significance stars, simply set the `stars` argument to `TRUE`. By default, `panelsummary` uses the following convention (symbol=pvalue): +=.1, \*=.05, \*\*=.01, \*\*\*=0.001.
+
+To change the significance, a character vector can be passed in with custom values:
+
+```{r}
+## change the significance stars to match economic convention
+table_stars <- panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1, 
+             coef_map = c("hp" = "Horse Power",
+                          "cyl" = "Cylinder",
+                          "drat" = "Rear Axle Ratio",
+                          "wt" = "Weight (1000lbs)"),
+             gof_map = gm,
+             stars =c('*' = .1, '**' = .05, '***' = .01),
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
+table_stars 
+```
+
+## Customizing With `kableExtra`
+
+When `panelsummary::panelsummary` is executed, a `kableExtra` object is created. The benefit of this feature is that all of `kableExtra`'s customizing functions are ready to pipe into. For instance, suppose a header above the model numbers, a footnote denoting significance:
+```{r}
+library(kableExtra)
+
+table_stars |> 
+  kable_classic() |> 
+  add_header_above(c(" " = 1, "Models Using mtcars" = 3)) |> 
+  footnote(list("* p < 0.1, ** p < 0.05, *** p < 0.01",
+                "Customizations done using kableExtra package"))
+```
+
