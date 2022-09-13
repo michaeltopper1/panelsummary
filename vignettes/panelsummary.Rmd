@@ -1,10 +1,12 @@
 ---
-title: "panelsummary"
+title: "Introduction to panelsummary"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{panelsummary}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Introduction to panelsummary}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -14,8 +16,110 @@ knitr::opts_chunk$set(
 )
 ```
 
+`panelsummary` consists of one main function, `panelsummary::panelsummary`, to provide a simple, yet customizable way to create a regression table with multiple panels. As of this writing, the package is intended for use with regressions of class `lm` and `fixest`, with an emphasis on the latter. There are more classes in the pipeline, and you can always check `panelsummary::models_supported` for an exhaustive list of models supported. 
+
+To begin, load in the `panelsummary` package.
+
 ```{r setup}
 library(panelsummary)
 ```
 
-# Getting Started 
+
+## Motivating Example
+
+To motivate the power of `panelsummary`, consider a model using the `mtcars` dataset:
+
+$$ Y_{i} = hp_i + cyl_i + e_i$$
+Where $Y_i$ is the dependent variable, which can be either $mpg_i$ or $disp$ of car $i$, $hp_i$ is the horsepower, $cyl_i$ is the number of cylinders, and $e_i$ is the error term. To estimate this model with both of the dependent variables, the following code is provided:
+
+```{r}
+## estimating the model with two depedent variables:
+## 1) mpg and 2) disp
+mpg_1 <- lm(mpg ~ hp + cyl, data = mtcars)
+disp_1 <- lm(disp ~ hp + cyl, data = mtcars)
+```
+
+While one option to present the regression coefficients in a table would be to create a separate regression table for each, there is a more concise, and cleaner way to present this information. This is where `panelsummary` is most useful. With a simple pass of `panelsummary::panelsummary`, a beautiful regression table is created without any additional editing, and can immediately be viewed in the RStudio Viewer panel. 
+
+```{r}
+## creating a beautiful regression table with panelsummary
+panelsummary(mpg_1, disp_1, 
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
+```
+
+Note that the number of arguments passed into `...` is how the delineation of panels is determined. Importantly, the length of the character vector passed into `panel_labels` must match the number of arguments passed into `...`. This ensures that each panel has its own label. 
+
+## Cleaning Variable Names
+
+Behind the scenes, `panelsummary` uses `modelsummary` to help create the regression tables. The benefit of this is the ability to use `coef_map` argument (which is passed through to `modelsummary::modelsummary`) to clean variable names. Recall that to use `coef_map`, the syntax is `c("old_name" = "new_name")`:
+
+```{r}
+panelsummary(mpg_1, disp_1, 
+             coef_map = c("hp" = "Horse Power",
+                          "cyl" = "Cylinder"),
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
+```
+
+For more information on `coef_map`, see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#coef-renameomitmap).
+
+## Excluding Goodness-of-Fit Statistics
+
+Similar to cleaning names, `panelsummary` also supports the `gof_map` and `gof_omit` arguments from `modelsummary`. In the following, `gof_map` will be used to change the name of "Num.Obs" to "Observations" and "F" to "F-stat", while removing the other goodness-of-fit statistics:
+
+
+```{r}
+## mapping the goodness of fit statistics to new names - see modelsummary for more details
+gm <- tibble::tribble(
+        ~raw,      ~clean,          ~fmt,  ~omit,
+        "nobs",      "Observations",     0,  FALSE,
+        "F", "F-stat",               3,  FALSE
+)
+panelsummary(mpg_1, disp_1, 
+             coef_map = c("hp" = "Horse Power",
+                          "cyl" = "Cylinder"),
+             gof_map = gm,
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
+```
+
+For more information on how to use `gof_map`, see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map).
+
+## Adding Additional Models to the Table
+
+It is simple to add additional models to each panel in the table. This is most useful when presenting robustness of estimates with a variety of different explanatory variables. As an example, consider three more models with `mpg` as the dependent variable:
+
+```{r}
+## creating two additional models for the first panel 
+mpg_2 <- lm(mpg ~ hp + cyl + drat, data = mtcars)
+mpg_3 <- lm(mpg ~hp + cyl + drat + wt, data = mtcars)
+```
+
+To add these models to Panel A, simply replace `mpg_1` with `list(mpg_1, mpg_2, mpg_3)` in the original code:
+
+```{r}
+panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1, 
+             coef_map = c("hp" = "Horse Power",
+                          "cyl" = "Cylinder",
+                          "drat" = "Rear Axle Ratio",
+                          "wt" = "Weight (1000lbs)"),
+             gof_map = gm,
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
+```
+
+## Adding Additional Panels to the Table
+
+As alluded to, the number of arguments passed into `...` will determine the number of panels created in the table. Hence, simply add another argument to `...`, and a corresponding label to `panel_labels`:
+
+```{r}
+panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1, list(mpg_1, mpg_2),
+             coef_map = c("hp" = "Horse Power",
+                          "cyl" = "Cylinder",
+                          "drat" = "Rear Axle Ratio",
+                          "wt" = "Weight (1000lbs)"),
+             gof_map = gm,
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement", "Panel C: Demonstration of Additional Panel"))
+```
+
+
+
+At this time, `panelsummary` **will only support up to five panels**. This is done intentionally to discourage an overly long table. 
+

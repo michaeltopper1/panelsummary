@@ -1,4 +1,7 @@
 url: https://michaeltopper1.github.io/panelsummary/
 template:
   bootstrap: 5
+  bootswatch: sandstone
+  bslib:
+    pkgdown-nav-height: 100px
 
