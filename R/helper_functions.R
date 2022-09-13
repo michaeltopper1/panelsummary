@@ -14,7 +14,6 @@ get_panel_indices <- function(panel) {
 #' gets the number of fixed effects in the last panel for collapse_fe purposes
 #'
 #' @keywords internal
-#' @noRd
 #'
 get_lpanel_fe <- function(df, panels){
   df[[panels]] |>
@@ -26,7 +25,6 @@ get_lpanel_fe <- function(df, panels){
 #' removes all fixed effects except the final panel (for collapse_fe)
 #'
 #' @keywords internal
-#' @noRd
 #'
 remove_fe <- function(panel_df, num_panels) {
   number_panels_minus_one <- num_panels - 1
@@ -40,7 +38,7 @@ remove_fe <- function(panel_df, num_panels) {
 #' gets the indices of each of the breaks in the panel
 #'
 #' @keywords internal
-#' @noRd
+
 get_panel_indices_collapse <- function(panel_df, num_panels) {
 
   ## this will override the rows per model made before
@@ -60,8 +58,7 @@ get_panel_indices_collapse <- function(panel_df, num_panels) {
 #' creates the column names of (1), (2), ...
 #'
 #' @keywords internal
-#' @noRd
-#'
+
 create_column_names <- function(number_models) {
   number_models_minus_one <- number_models - 1
   columns <- c(" ", paste0("(",1:number_models_minus_one, ")"))
@@ -71,7 +68,6 @@ create_column_names <- function(number_models) {
 #' creates alignment of left, center, center, ...
 #'
 #' @keywords internal
-#' @noRd
 create_alignment <- function(number_models) {
   number_models_minus_one <- number_models - 1
   alignment <- paste(c("l", rep("c", number_models_minus_one)), collapse = "")
@@ -81,7 +77,6 @@ create_alignment <- function(number_models) {
 #' shifts the custom glance means to above observations and renames
 #'
 #' @keywords internal
-#' @noRd
 shift_means <- function(df) {
   df <- lapply(df, function(x) x |>
            dplyr::arrange(match(stringr::str_to_lower(part), "estimates"), match(stringr::str_to_lower(term), "mean")) |>

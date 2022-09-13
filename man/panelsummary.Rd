@@ -6,7 +6,6 @@
 \usage{
 panelsummary(
   ...,
-  num_panels = 1,
   panel_labels = NULL,
   mean_dependent = FALSE,
   colnames = NULL,
@@ -23,7 +22,7 @@ panelsummary(
   vcov = NULL,
   conf_level = 0.95,
   exponentiate = FALSE,
-  stars = F,
+  stars = FALSE,
   coef_map = NULL,
   coef_omit = NULL,
   coef_rename = NULL,
@@ -37,10 +36,8 @@ panelsummary(
 * If a list is passed in, one column for each list is created. Each argument will correspond to a panel.
 * If only one object is passed in, there will be no panels and the output will be similar to evaluating modelsummary::modelsummary() followed by kableExtra::kbl()}
 
-\item{num_panels}{A numeric. The number of panels in the regression table. Note that this should match with the number of arguments passed into `...`.}
-
 \item{panel_labels}{A character vector. The text to come after Panel A: and Panel B... in the table. Generally, it is the name of each dependent variable in the panel.
-* `NULL` (the default): the panels will not have any text after Panel A:... and Panel B:... etc.}
+* `NULL` (the default): the panels will be labeled Panel A, Panel B,...etc.}
 
 \item{mean_dependent}{A boolean.
 * `FALSE` (the default): the mean of the dependent variable will not be shown in the resulting table.
@@ -181,7 +178,7 @@ model information. This argument accepts 4 types of values:
 A kableExtra object that is instantly customizable by kableExtra's suite of functions.
 }
 \description{
-`panelsummary` Creates a beautiful and customizable regression table with panels. This function is best used to summarize multiple dependent variables that are passed through the same regression models. This function is intended for use with the fixest package and returns a kableExtra object which can then be edited using kableExtra's suite of functions.
+`panelsummary` Creates a beautiful and customizable regression table with panels. This function is best used to summarize multiple dependent variables that are passed through the same regression models. This function returns a kableExtra object which can then be edited using kableExtra's suite of functions.
 }
 \examples{
 
@@ -190,7 +187,10 @@ A kableExtra object that is instantly customizable by kableExtra's suite of func
 ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
 ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
 
-panelsummary(ols_1, ols_2, num_panels = 2, mean_dependent = T, colnames = c("MPG", "DISP"), caption = "The effect of cyl on MPG and DISP", italic = T, stars = T)
+panelsummary(ols_1, ols_2, mean_dependent = TRUE,
+            panel_labels = c("Panel A:MPG", "Panel B: DISP"),
+            caption = "The effect of cyl on MPG and DISP",
+            italic = TRUE, stars = TRUE)
 
 
 ## Collapsing fixed effects----------------
@@ -199,7 +199,10 @@ ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
 
 ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
 
-panelsummary(ols_1, ols_2, num_panels = 2, mean_dependent = T, colapse_fe = T, colnames = c("MPG", "DISP"), caption = "The effect of cyl on MPG and DISP", italic = T, stars = T)
+panelsummary(ols_1, ols_2, mean_dependent = TRUE,
+            collapse_fe = TRUE, panel_labels = c("Panel A: MPG", "Panel B: DISP"),
+            caption = "The effect of cyl on MPG and DISP",
+            italic = TRUE, stars = TRUE)
 
 ## Including multiple models------------------
 
@@ -211,7 +214,10 @@ ols_3 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
 
 ols_4 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
 
-panelsummary(list(ols_1, ols_2, ols_3), ols_4, num_panels = 2, panel_labels = c("MPG", "DISP"), caption = "Multiple models", stars = T)
+panelsummary(list(ols_1, ols_2, ols_3), ols_4,
+             panel_labels = c("Panel A: MPG", "Panel B: DISP"),
+              caption = "Multiple models",
+              stars = TRUE)
 
 
 }

@@ -4,12 +4,12 @@
 \alias{check_dimensions_match}
 \title{check if the dimensions work}
 \usage{
-check_dimensions_match(models, num_panels)
+check_dimensions_match(models, panel_labels)
 }
 \arguments{
 \item{models}{the regression models to check the dimensions of}
 
-\item{num_panels}{the number of panels passed from panelsummary}
+\item{panel_labels}{the labels for each panel.}
 }
 \description{
 check if the dimensions work
