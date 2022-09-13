@@ -2,7 +2,6 @@
 #' gets the row numbers for break points in the panels
 #'
 #' @keywords internal
-#' @noRd
 #'
 get_panel_indices <- function(panel) {
   panel |>
@@ -38,7 +37,7 @@ remove_fe <- function(panel_df, num_panels) {
 #' gets the indices of each of the breaks in the panel
 #'
 #' @keywords internal
-
+#'
 get_panel_indices_collapse <- function(panel_df, num_panels) {
 
   ## this will override the rows per model made before
@@ -58,7 +57,7 @@ get_panel_indices_collapse <- function(panel_df, num_panels) {
 #' creates the column names of (1), (2), ...
 #'
 #' @keywords internal
-
+#'
 create_column_names <- function(number_models) {
   number_models_minus_one <- number_models - 1
   columns <- c(" ", paste0("(",1:number_models_minus_one, ")"))

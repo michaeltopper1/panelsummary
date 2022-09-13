@@ -148,7 +148,7 @@ panelsummary <- function(
   rows_per_model <- get_panel_indices(panel_df)
 
   if (collapse_fe == T & num_panels > 1) {
-    warning("panelsummary does not check if the fixed effects in each panel match—it always assumes they do!")
+    warning("panelsummary does not check if the fixed effects in each panel match. It always assumes they do!")
 
     ## removing fixed effects from all but the last panel
     panel_df <- panel_df |>

@@ -2,7 +2,6 @@
 #' creates a custom glance function for fixest objects with a mean
 #'
 #' @keywords internal
-#' @noRd
 #'
 create_mean_fixest <- function() {
   glance_custom.fixest <<- function(x, ...) {
@@ -14,7 +13,6 @@ create_mean_fixest <- function() {
 #' creates a custom glance function for lm objects with a mean
 #'
 #' @keywords internal
-#' @noRd
 #'
 create_mean_lm <- function() {
   glance_custom.lm <<- function(x, ...) {
