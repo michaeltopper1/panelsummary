@@ -13,12 +13,9 @@ test_that("panelsummary produces output with single arguments", {
 
   models <- list(reg_1, reg_2, reg_3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Dependent Variable", 3,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+                   clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+                   fmt = c(3, 0, 0 ,0))
 
 
   expect_error(panelsummary(reg_1, reg_2, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
@@ -43,12 +40,9 @@ test_that("panelsummary produces error if too many arguments in labels and only 
 
   models <- list(reg_1, reg_2, reg_3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Dependent Variable", 3,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+                   clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+                   fmt = c(3, 0, 0 ,0))
 
 
   expect_error(panelsummary(reg_1,  gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
@@ -73,12 +67,9 @@ test_that("panelsummary produces output with list argument and non-list argument
 
   models <- list(reg_1, reg_2, reg_3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Dependent Variable", 3,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+                   clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+                   fmt = c(3, 0, 0 ,0))
 
 
   expect_error(panelsummary(list(reg_1, reg_2, reg_3), reg_1,  gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
@@ -102,13 +93,10 @@ test_that("panelsummary actually produces output with lists as arguments", {
 
   models <- list(reg_1, reg_2, reg_3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Variable", 3,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
 
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+             clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+             fmt = c(3, 0, 0 ,0))
 
   expect_error(panelsummary(list(reg_1, reg_2, reg_3), list(reg_3, reg_3), gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
                             caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T,

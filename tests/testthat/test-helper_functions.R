@@ -45,11 +45,9 @@ test_that("row indices for each panel appear and are correct::fixest with collap
 
   models <- list(reg_mt1, reg_mt2, reg_mt3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+                   clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+                   fmt = c(3, 0, 0 ,0))
 
   panel_df <- lapply(models, function(x) modelsummary::modelsummary(x,
                                                                     output = "data.frame",

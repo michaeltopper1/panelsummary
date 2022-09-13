@@ -12,12 +12,9 @@ test_that("add rows works with bold argument", {
 
   models <- list(reg_1, reg_2, reg_3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Dependent Variable", 3,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+                   clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+                   fmt = c(3, 0, 0 ,0))
 
 
   expect_error(panelsummary(list(reg_1), reg_2, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
@@ -41,12 +38,9 @@ test_that("add rows works with italic argument", {
 
   models <- list(reg_1, reg_2, reg_3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Dependent Variable", 3,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+                   clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+                   fmt = c(3, 0, 0 ,0))
 
 
   expect_error(panelsummary(list(reg_1), reg_2, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
@@ -70,12 +64,9 @@ test_that("add rows works with bold argument/italic/hline", {
 
   models <- list(reg_1, reg_2, reg_3)
 
-  gm <- tibble::tribble(
-    ~raw,        ~clean,          ~fmt,
-    "mean", "Mean of Dependent Variable", 3,
-    "nobs",      "Observations",             0,
-    "FE: gear", "FE: Gear", 0,
-    "FE: carb", "FE: Carb", 0)
+  gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
+                         clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
+                         fmt = c(3, 0, 0 ,0))
 
 
   expect_error(panelsummary(list(reg_1), reg_2, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
