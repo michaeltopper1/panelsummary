@@ -31,7 +31,16 @@
     <loc>https://michaeltopper1.github.io/panelsummary/reference/create_column_names.html</loc>
   </url>
   <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_mean_fixest.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_mean_lm.html</loc>
+  </url>
+  <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/get_lpanel_fe.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices_collapse.html</loc>
