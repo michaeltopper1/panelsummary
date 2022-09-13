@@ -1162,6 +1162,466 @@ Observations
 </table>
 <p>At this time, <code>panelsummary</code> <strong>will only support up to five panels</strong>. This is done intentionally to discourage an overly long table.</p>
 </div>
+<div class="section level2">
+<h2 id="adding-significance-stars">Adding Significance-Stars<a class="anchor" aria-label="anchor" href="#adding-significance-stars"></a>
+</h2>
+<p>To add significance stars, simply set the <code>stars</code> argument to <code>TRUE</code>. By default, <code>panelsummary</code> uses the following convention (symbol=pvalue): +=.1, *=.05, **=.01, ***=0.001.</p>
+<p>To change the significance, a character vector can be passed in with custom values:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## change the significance stars to match economic convention</span></span>
+<span><span class="va">table_stars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span>, <span class="va">mpg_3</span><span class="op">)</span>, <span class="va">disp_1</span>, </span>
+<span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span> <span class="op">=</span> <span class="st">"Horse Power"</span>,</span>
+<span>                          <span class="st">"cyl"</span> <span class="op">=</span> <span class="st">"Cylinder"</span>,</span>
+<span>                          <span class="st">"drat"</span> <span class="op">=</span> <span class="st">"Rear Axle Ratio"</span>,</span>
+<span>                          <span class="st">"wt"</span> <span class="op">=</span> <span class="st">"Weight (1000lbs)"</span><span class="op">)</span>,</span>
+<span>             gof_map <span class="op">=</span> <span class="va">gm</span>,</span>
+<span>             stars <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'*'</span> <span class="op">=</span> <span class="fl">.1</span>, <span class="st">'**'</span> <span class="op">=</span> <span class="fl">.05</span>, <span class="st">'***'</span> <span class="op">=</span> <span class="fl">.01</span><span class="op">)</span>,</span>
+<span>             panel_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Panel A: MPG"</span>, <span class="st">"Panel B: Displacement"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">table_stars</span> </span></code></pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+<ol style="list-style-type: decimal"><li></ol>
+</th>
+<th style="text-align:center;">
+<ol start="2" style="list-style-type: decimal"><li></ol>
+</th>
+<th style="text-align:center;">
+<ol start="3" style="list-style-type: decimal"><li></ol>
+</th>
+</tr></thead>
+<tbody>
+<tr grouplength="9">
+<td colspan="4" style="border-bottom: 1px solid;">
+Panel A: MPG
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Horse Power
+</td>
+<td style="text-align:center;">
+-0.019
+</td>
+<td style="text-align:center;">
+-0.029*
+</td>
+<td style="text-align:center;">
+-0.021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.015)
+</td>
+<td style="text-align:center;">
+(0.015)
+</td>
+<td style="text-align:center;">
+(0.013)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cylinder
+</td>
+<td style="text-align:center;">
+-2.265***
+</td>
+<td style="text-align:center;">
+-1.361*
+</td>
+<td style="text-align:center;">
+-0.762
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.576)
+</td>
+<td style="text-align:center;">
+(0.735)
+</td>
+<td style="text-align:center;">
+(0.635)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Rear Axle Ratio
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+2.841*
+</td>
+<td style="text-align:center;">
+0.818
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(1.522)
+</td>
+<td style="text-align:center;">
+(1.387)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Weight (1000lbs)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+-2.973***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.818)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Observations
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+32
+</td>
+</tr>
+<tr grouplength="5">
+<td colspan="4" style="border-bottom: 1px solid;">
+Panel B: Displacement
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Horse Power
+</td>
+<td style="text-align:center;">
+0.236
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.258)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cylinder
+</td>
+<td style="text-align:center;">
+55.063***
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(9.898)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Observations
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level2">
+<h2 id="customizing-with-kableextra">Customizing With <code>kableExtra</code><a class="anchor" aria-label="anchor" href="#customizing-with-kableextra"></a>
+</h2>
+<p>When <code><a href="../reference/panelsummary.html">panelsummary::panelsummary</a></code> is executed, a <code>kableExtra</code> object is created. The benefit of this feature is that all of <code>kableExtra</code>’s customizing functions are ready to pipe into. For instance, suppose a header above the model numbers, a footnote denoting significance:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">table_stars</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Models Using mtcars"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html" class="external-link">footnote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"* p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01"</span>,</span>
+<span>                <span class="st">"Customizations done using kableExtra package"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;border-bottom: 0;'>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+Models Using mtcars
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+<ol style="list-style-type: decimal"><li></ol>
+</th>
+<th style="text-align:center;">
+<ol start="2" style="list-style-type: decimal"><li></ol>
+</th>
+<th style="text-align:center;">
+<ol start="3" style="list-style-type: decimal"><li></ol>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="9">
+<td colspan="4" style="border-bottom: 1px solid;">
+Panel A: MPG
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Horse Power
+</td>
+<td style="text-align:center;">
+-0.019
+</td>
+<td style="text-align:center;">
+-0.029*
+</td>
+<td style="text-align:center;">
+-0.021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.015)
+</td>
+<td style="text-align:center;">
+(0.015)
+</td>
+<td style="text-align:center;">
+(0.013)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cylinder
+</td>
+<td style="text-align:center;">
+-2.265***
+</td>
+<td style="text-align:center;">
+-1.361*
+</td>
+<td style="text-align:center;">
+-0.762
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.576)
+</td>
+<td style="text-align:center;">
+(0.735)
+</td>
+<td style="text-align:center;">
+(0.635)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Rear Axle Ratio
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+2.841*
+</td>
+<td style="text-align:center;">
+0.818
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(1.522)
+</td>
+<td style="text-align:center;">
+(1.387)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Weight (1000lbs)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+-2.973***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.818)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Observations
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+32
+</td>
+</tr>
+<tr grouplength="5">
+<td colspan="4" style="border-bottom: 1px solid;">
+Panel B: Displacement
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Horse Power
+</td>
+<td style="text-align:center;">
+0.236
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.258)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cylinder
+</td>
+<td style="text-align:center;">
+55.063***
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(9.898)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Observations
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;">Note: </span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> * p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01
+</td>
+</tr>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> Customizations done using kableExtra package
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
