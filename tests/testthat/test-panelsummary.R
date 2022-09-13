@@ -114,5 +114,5 @@ test_that("panelsummary actually produces output with lists as arguments", {
                             caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T,
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = c("MPG", "DISP"),
-                            collapse_fe = F, stars = T), regexp = NA)
+                            collapse_fe = T, stars = T), regexp = NA)
 })

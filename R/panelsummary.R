@@ -2,14 +2,14 @@
 #' Create a regression table with multiple panels
 #'
 #' @description
-#' `panelsummary` Creates a beautiful and customizable regression table with panels. This function is best used to summarize multiple dependent variables that are passed through the same regression models. This function is intended for use with the fixest package and returns a kableExtra object which can then be edited using kableExtra's suite of functions.
+#' `panelsummary` Creates a beautiful and customizable regression table with panels. This function is best used to summarize multiple dependent variables that are passed through the same regression models. This function returns a kableExtra object which can then be edited using kableExtra's suite of functions.
 #'
 #' @param ... A regression model or models (see panelsummary::models_supported for classes that are supported).
 #'    * The regression model can be a list of models or a singular object.
 #'    * If a list is passed in, one column for each list is created. Each argument will correspond to a panel.
 #'    * If only one object is passed in, there will be no panels and the output will be similar to evaluating modelsummary::modelsummary() followed by kableExtra::kbl()
 #' @param panel_labels A character vector. The text to come after Panel A: and Panel B... in the table. Generally, it is the name of each dependent variable in the panel.
-#'    * `NULL` (the default): the panels will not have any text after Panel A:... and Panel B:... etc.
+#'    * `NULL` (the default): the panels will be labeled Panel A, Panel B,...etc.
 #
 #' @param mean_dependent A boolean.
 #'    * `FALSE` (the default): the mean of the dependent variable will not be shown in the resulting table.
@@ -174,8 +174,6 @@ panelsummary <- function(
   table_initial <- kableExtra::kbl(panel_df_cleaned, col.names = colnames, align = alignment,
                                      caption = caption, format = format,
                                      booktabs = T)
-
-
 
 
   ## adding the final panels to the kable object. This creates the panels
