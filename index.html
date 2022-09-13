@@ -112,7 +112,9 @@
 </h3>
 <p><code>panelsummary</code> outputs an object with <code>kableExtra</code> class. This means that editing with <code>kableExtra</code>’s functions is as simple as piping in <code>kableExtra</code> functions. Moreover, the backend of <code>panelsummary</code> calls <code>modelsummary</code>, and therefore, many <code>panelsummary</code> arguments are shared with <code>modelsummary</code> and work entirely the same. For instance, to reduce/rename the number of statistics shown on the table and clean up the variable names, you can use the arguments, <code>gof_map</code> and <code>coef_map</code> exactly as you would in <code>modelsummary</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## creating a tibble to include only observati59ons and fixed effects</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## creating a tibble to include only observati59ons and fixed effects</span></span>
 <span><span class="va">gm</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>    <span class="op">~</span><span class="va">raw</span>,        <span class="op">~</span><span class="va">clean</span>,          <span class="op">~</span><span class="va">fmt</span>,</span>
 <span>    <span class="st">"nobs"</span>,      <span class="st">"Observations"</span>, <span class="fl">0</span>,</span>
@@ -130,8 +132,8 @@
 <span>             caption <span class="op">=</span> <span class="st">"Using mapping arguments as in modelsummary and customizing with kableExtra"</span>,</span>
 <span>             gof_map <span class="op">=</span> <span class="va">gm</span>,</span>
 <span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span> <span class="op">=</span> <span class="st">"Cylinder"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Estimated Models"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">footnote</span><span class="op">(</span><span class="st">"This table was created with a combination of panelsummary and kableExtra."</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Estimated Models"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html" class="external-link">footnote</a></span><span class="op">(</span><span class="st">"This table was created with a combination of panelsummary and kableExtra."</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/example_table_2.png" width="100%"></p>
 </div>
 <div class="section level3">
@@ -148,10 +150,14 @@
 <span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span> <span class="op">=</span> <span class="st">"Cylinder"</span><span class="op">)</span>,</span>
 <span>             collapse_fe <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>             italic <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Estimated Models"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">footnote</span><span class="op">(</span><span class="st">"This table was created with a combination of panelsummary and kableExtra."</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Estimated Models"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html" class="external-link">footnote</a></span><span class="op">(</span><span class="st">"This table was created with a combination of panelsummary and kableExtra."</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/example_table_3.png" width="100%"></p>
 </div>
+<div class="section level3"><h3 id="find-the-mean-of-the-dependent-variable">Find the Mean of the Dependent Variable!<a class="anchor" aria-label="anchor" href="#find-the-mean-of-the-dependent-variable"></a>
+</h3></div>
+<div class="section level3"><h3 id="easily-knitable-to-html-and-latex">Easily Knitable to HTML and LaTeX!<a class="anchor" aria-label="anchor" href="#easily-knitable-to-html-and-latex"></a>
+</h3></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
