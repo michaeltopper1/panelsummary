@@ -46,7 +46,7 @@ devtools::install_github("michaeltopper1/panelsummary")
 
 `panelsummary` can easily create beautiful paneled tables without any manual editing:
 
-```{r, echo = F}
+```{r, echo = F, eval = T}
 knitr::include_graphics("docs/reference/figures/example_table_readme.png")
 ```
 
