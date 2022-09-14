@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   panelsummary: panelsummary.html
-last_built: 2022-09-13T21:52Z
+last_built: 2022-09-14T00:17Z
 urls:
   reference: https://michaeltopper1.github.io/panelsummary/reference
   article: https://michaeltopper1.github.io/panelsummary/articles

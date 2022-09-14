@@ -93,7 +93,7 @@
 
 
 <dt>mean_dependent</dt>
-<dd><p>A boolean.
+<dd><p>A boolean. For use with fixest objects only.
 * `FALSE` (the default): the mean of the dependent variable will not be shown in the resulting table.
 * `TRUE`: the mean of the dependent variable will be shown in the resulting table.</p></dd>
 
@@ -112,7 +112,7 @@
 
 
 <dt>collapse_fe</dt>
-<dd><p>A boolean. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
+<dd><p>A boolean. For use with fixest objects only. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
 * `FALSE` (the default): fixed effects are shown in each panel.
 * `TRUE`: fixed effects are shown only at the bottom of the final panel, separated by a horizontal line (see hline_before_fe)</p></dd>
 
@@ -136,7 +136,7 @@
 
 
 <dt>hline_before_fe</dt>
-<dd><p>A boolean. To be used only when collapse_fe = TRUE. Adds a horizontal line before the fixed effects portion of the table.</p></dd>
+<dd><p>A boolean. To be used only when collapse_fe = TRUE, and hence with fixest objects only. Adds a horizontal line before the fixed effects portion of the table.</p></dd>
 
 
 <dt>fmt</dt>
@@ -259,7 +259,131 @@ model information. This argument accepts 4 types of values:</p><ul><li><p>NULL (
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Panelsummary with Fixest -------------------------</span></span></span>
+<span class="r-in"><span><span class="co"># Panelsummary with lm -------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">reg_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">reg_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">panelsummary</span><span class="op">(</span><span class="va">reg_1</span>, <span class="va">reg_2</span>, panel_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Panel A: MPG"</span>, <span class="st">"Panel B: Displacement"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;th style="text-align:left;"&gt;   &lt;/th&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;th style="text-align:center;"&gt; (1) &lt;/th&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;/thead&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;tbody&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr grouplength="13"&gt;&lt;td colspan="2" style="border-bottom: 1px solid;"&gt;Panel A: MPG&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; (Intercept) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 36.908 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; (2.191) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; hp &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; -0.019 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; (0.015) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; cyl &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; -2.265 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; (0.576) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Num.Obs. &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; R2 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 0.741 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; R2 Adj. &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 0.723 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; AIC &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 169.6 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; BIC &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 175.4 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Log.Lik. &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; -80.781 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; RMSE &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 3.02 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr grouplength="13"&gt;&lt;td colspan="2" style="border-bottom: 1px solid;"&gt;Panel B: Displacement&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; (Intercept) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; -144.569 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; (37.652) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; hp &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 0.236 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; (0.258) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; cyl &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 55.063 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; (9.898) &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Num.Obs. &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; R2 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 0.819 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; R2 Adj. &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 0.806 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; AIC &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 351.6 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; BIC &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 357.4 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; Log.Lik. &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; -171.793 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt; RMSE &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:center;"&gt; 51.91 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/tbody&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Panelsummary with fixest -------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ols_1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ols_2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span></span>
@@ -363,7 +487,7 @@ model information. This argument accepts 4 types of values:</p><ul><li><p>NULL (
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Collapsing fixed effects----------------</span></span></span>
+<span class="r-in"><span><span class="co">## Collapsing fixed effects (fixest-only)----------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ols_1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

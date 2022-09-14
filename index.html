@@ -81,86 +81,33 @@
 <div class="section level2">
 <h2 id="what-makes-panelsummary-different">What makes panelsummary different?<a class="anchor" aria-label="anchor" href="#what-makes-panelsummary-different"></a>
 </h2>
-<p><strong>Note: All tables shown are displayed as they appear when compiled to LaTeX</strong></p>
-<p>As a motivating example, consider the following models:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lrberge.github.io/fixest/" class="external-link">fixest</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/michaeltopper1/panelsummary" class="external-link">panelsummary</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## mpg regressions--------</span></span>
-<span><span class="va">mpg_model_1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">mpg_model_2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span> <span class="op">+</span> <span class="va">am</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## disp regressions --------</span></span>
-<span><span class="va">disp_model_1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">disp_model_2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span> <span class="op">+</span> <span class="va">am</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span></code></pre></div>
-<p>Observe that of the four models, the first two and last two mimic explanatory variables and differ only by dependent variables. Instead of creating a table for the two models with <code>mpg</code> as the dependent variable, and another for the two models with <code>disp</code> as the dependent variable, <code><a href="reference/panelsummary.html">panelsummary::panelsummary</a></code> can create one regression table with two (or more!) panels:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">example_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_model_1</span>, <span class="va">mpg_model_2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">disp_model_1</span>, <span class="va">disp_model_2</span><span class="op">)</span>, </span>
-<span>             num_panels <span class="op">=</span> <span class="fl">2</span>, </span>
-<span>             panel_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MPG"</span>, <span class="st">"Displacement"</span><span class="op">)</span>, </span>
-<span>             stars <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>             caption <span class="op">=</span> <span class="st">"The correlation of cyl on disp and mpg"</span>,</span>
-<span>             italic <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
-<span><span class="va">example_table</span></span></code></pre></div>
-<p><img src="reference/figures/example_table.png" width="100%"> With one simple function, a variety of customization has taken place. However, <code>panelsummary</code> has plenty more to offer.</p>
+<p><code>panelsummary</code> can easily create beautiful paneled tables without any manual editing:</p>
 <div class="section level3">
-<h3 id="customize-with-kableextra-and-use-familiar-modelsummary-arguments">Customize with <code>kableExtra</code> and use familiar <code>modelsummary</code> arguments<a class="anchor" aria-label="anchor" href="#customize-with-kableextra-and-use-familiar-modelsummary-arguments"></a>
+<h3 id="edit-with-kableextra">Edit with <code>kableExtra</code>
+<a class="anchor" aria-label="anchor" href="#edit-with-kableextra"></a>
 </h3>
-<p><code>panelsummary</code> outputs an object with <code>kableExtra</code> class. This means that editing with <code>kableExtra</code>’s functions is as simple as piping in <code>kableExtra</code> functions. Moreover, the backend of <code>panelsummary</code> calls <code>modelsummary</code>, and therefore, many <code>panelsummary</code> arguments are shared with <code>modelsummary</code> and work entirely the same. For instance, to reduce/rename the number of statistics shown on the table and clean up the variable names, you can use the arguments, <code>gof_map</code> and <code>coef_map</code> exactly as you would in <code>modelsummary</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## creating a tibble to include only observati59ons and fixed effects</span></span>
-<span><span class="va">gm</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>    <span class="op">~</span><span class="va">raw</span>,        <span class="op">~</span><span class="va">clean</span>,          <span class="op">~</span><span class="va">fmt</span>,</span>
-<span>    <span class="st">"nobs"</span>,      <span class="st">"Observations"</span>, <span class="fl">0</span>,</span>
-<span>    <span class="st">"r.squared"</span>, <span class="st">"R2"</span>, <span class="fl">3</span>,</span>
-<span>    <span class="st">"FE: gear"</span>, <span class="st">"FE: Gear"</span>, <span class="fl">0</span>,</span>
-<span>    <span class="st">"FE: carb"</span>, <span class="st">"FE: Carb"</span>, <span class="fl">0</span>,</span>
-<span>    <span class="st">"FE: am"</span>, <span class="st">"FE: AM"</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co">## adding in the gof_map and coef_map arguments - identical to modelsummary</span></span>
-<span><span class="fu"><a href="reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_model_1</span>, <span class="va">mpg_model_2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">disp_model_1</span>, <span class="va">disp_model_2</span><span class="op">)</span>, </span>
-<span>             num_panels <span class="op">=</span> <span class="fl">2</span>, </span>
-<span>             panel_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MPG"</span>, <span class="st">"Displacement"</span><span class="op">)</span>, </span>
-<span>             stars <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>             caption <span class="op">=</span> <span class="st">"Using mapping arguments as in modelsummary and customizing with kableExtra"</span>,</span>
-<span>             gof_map <span class="op">=</span> <span class="va">gm</span>,</span>
-<span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span> <span class="op">=</span> <span class="st">"Cylinder"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Estimated Models"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html" class="external-link">footnote</a></span><span class="op">(</span><span class="st">"This table was created with a combination of panelsummary and kableExtra."</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/example_table_2.png" width="100%"></p>
+<p>One of the strongest cases to use <code>panelsummary</code> is that it returns a <code>kableExtra</code> object. This means that you can easily customize your table using <code>kableExtra</code>’s suite of functions with the pipe operator (<code>|&gt;</code>).</p>
 </div>
 <div class="section level3">
-<h3 id="collapsing-fixed-effects">Collapsing fixed effects<a class="anchor" aria-label="anchor" href="#collapsing-fixed-effects"></a>
+<h3 id="use-modelsummary-arguments">Use <code>modelsummary</code> arguments<a class="anchor" aria-label="anchor" href="#use-modelsummary-arguments"></a>
 </h3>
-<p>While the tables displayed are clear, there is a lot of redundant information in the fixed effects. It is common that multiple dependent variables are tested against the same variety of models. To increase clarity, you can collapse the fixed effects to their own panel using the <code>collapse_fe</code> argument:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_model_1</span>, <span class="va">mpg_model_2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">disp_model_1</span>, <span class="va">disp_model_2</span><span class="op">)</span>, </span>
-<span>             num_panels <span class="op">=</span> <span class="fl">2</span>, </span>
-<span>             panel_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MPG"</span>, <span class="st">"Displacement"</span><span class="op">)</span>, </span>
-<span>             stars <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>             caption <span class="op">=</span> <span class="st">"Collapsing fixed effects using panelsummary"</span>,</span>
-<span>             gof_map <span class="op">=</span> <span class="va">gm</span>,</span>
-<span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span> <span class="op">=</span> <span class="st">"Cylinder"</span><span class="op">)</span>,</span>
-<span>             collapse_fe <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>             italic <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Estimated Models"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html" class="external-link">footnote</a></span><span class="op">(</span><span class="st">"This table was created with a combination of panelsummary and kableExtra."</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/example_table_3.png" width="100%"></p>
+<p>Under the hood, <code><a href="reference/panelsummary.html">panelsummary::panelsummary</a></code> calls <code><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary::modelsummary</a></code> and inherits many of the same arguments. Some examples of arguments that are shared:</p>
+<ul>
+<li>
+<code>stars</code> - indicate significance.</li>
+<li>
+<code>coef_map</code> - subset, rename, and reorder coefficients.</li>
+<li>
+<code>coef_omit</code> - use regular expressions to determine which coefficients should be omitted from the table.</li>
+<li>
+<code>gof_map</code> - rename, reorder, and omit goodness-of-fit statistics.</li>
+</ul>
 </div>
-<div class="section level3"><h3 id="find-the-mean-of-the-dependent-variable">Find the Mean of the Dependent Variable!<a class="anchor" aria-label="anchor" href="#find-the-mean-of-the-dependent-variable"></a>
-</h3></div>
-<div class="section level3"><h3 id="easily-knitable-to-html-and-latex">Easily Knitable to HTML and LaTeX!<a class="anchor" aria-label="anchor" href="#easily-knitable-to-html-and-latex"></a>
-</h3></div>
+<div class="section level3">
+<h3 id="learn-more">Learn more!<a class="anchor" aria-label="anchor" href="#learn-more"></a>
+</h3>
+<p>To learn more about <code>panelsummary</code>, get started with the <a href="https://michaeltopper1.github.io/panelsummary/articles/panelsummary.html">introductory vignette</a>.</p>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
