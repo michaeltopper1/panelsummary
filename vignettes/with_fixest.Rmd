@@ -1,0 +1,103 @@
+---
+title: "Using panelsummary with fixest"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using panelsummary with fixest}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette focuses on using the `panelsummary` package with the `fixest` package. `fixest` has become one of the most popular regression packages for economists, and therefore further capabilities have been implemented in `panelsummary` to work seemlessly with `fixest`. There will be two main capabilities that this vignette covers:
+
+1. Adding the mean of the dependent variable.
+2. Collapsing fixed effects.
+
+## Adding the Mean of the Dependent Variable
+
+To start, load in the `fixest`, `panelsummary`, and `kableExtra` packages. 
+
+```{r setup}
+library(panelsummary)
+library(fixest) ## for regressions
+library(kableExtra) ## for further table customization
+```
+
+For demonstration purposes, four regressions are estimated with the `fixest` package using the `feols` function and the `mtcars` data:
+
+```{r}
+## estimating two models for mpg
+mpg_1 <- mtcars |>
+    feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+
+mpg_2 <- mtcars |>
+    feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+
+
+## estimating the same two models for disp
+disp_1 <- mtcars |> 
+  feols(disp ~ cyl | gear + carb, cluster = ~hp)
+
+disp_2 <- mtcars |> 
+  feols(disp ~ cyl | gear + carb + am, cluster = ~hp)
+```
+
+To create a regression table with two panels (Panel A: MPG/Panel B: Displacement) and two models in each, the lists `list(mpg_1, mpg_2)` and `list(disp_1, disp_2)` can be passed into the arguments for `...`. However, since each of these models is of the class `fixest` (i.e., created with the `fixest` package), the `mean_dependent` argument can be set to `TRUE` to show the means of the dependent variable in each column:
+
+```{r}
+panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2), 
+             mean_dependent = TRUE,
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
+             caption = "Automated Mean of Dependent Variable") |> 
+  kable_classic()
+```
+
+Notice that a new row was placed before the "Num.Obs." row in each panel with the mean of the dependent variable. Note that the placement of the mean can be reordered with the `gof_map` argument. For instance, suppose the desired table consists only of number of observations, the mean of dependent variable, and fixed effects, in that respective order. A new tibble can be created (see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map)) to map/rename these goodness-of-fit statistics into the correct order. **Observe that the mean of the dependent variable's raw name is `mean`, and in this case, is being renamed to `Mean(DV)`.**
+
+```{r}
+## creating a renaming tibble to pass into panelsummary 
+gm <- tibble::tribble(
+        ~raw,      ~clean,          ~fmt,  ~omit,
+        "nobs", "Observations", 0,  FALSE,
+        "mean", "Mean(DV)", 3, FALSE,
+        "FE: gear", "FE: Gear", 0, FALSE,
+        "FE: carb", "FE: Carb", 0, FALSE,
+        "FE: am", "FE: AM", 0, FALSE,
+        "F", "F-stat", 3,  FALSE
+)
+
+## creating the regression table
+panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
+             mean_dependent = TRUE,
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
+             gof_map = gm,
+             caption = "Automated Mean of Dependent Variable-Renamed and Reordered") |> 
+  kable_classic() |> 
+  footnote("'mean' is the raw name when mapping")
+
+```
+
+## Collapsing Fixed Effects
+
+Notice that in the tables above that the fixed effects in columns (1) and (2) are the same across each panel. To reduce the number of rows, the `collapse_fe` argument can be used to show a separate panel containing only the fixed effects:
+
+```{r}
+panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
+             mean_dependent = TRUE,
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
+             gof_map = gm,
+             caption = "Collapsed Fixed Effects",
+             collapse_fe = T) |> 
+  kable_classic() |> 
+  footnote("Collapsing the fixed effects assumes the fixed effects in all panels are the same!")
+```
+
+Although it does not appear in HTML, a LaTeX version of this table will include a horizontal line separating the fixed effects from the other panels. This can be switched off using the `hline_before_fe` argument. 

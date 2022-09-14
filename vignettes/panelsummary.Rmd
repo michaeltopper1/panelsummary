@@ -159,13 +159,19 @@ table_stars |>
                 "Customizations done using kableExtra package"))
 ```
 
-## Adding the Mean of Depedent Variable
 
+## Renaming Colnames
 
-```{r}
-panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1,
-             mean_dependent = T,
-             stars =c('*' = .1, '**' = .05, '***' = .01),
-             panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
-```
+To be written.
+
+## Italics/Bolds/Horizontal Lines
+
+To be written.
+
+## Use with `fixest`
+
+The `panelsummary` package works best with the `fixest` package to fully take advantage of its offerings. See the [Using `panelsummary` with `fixest` vignette](). Some of the capabilities include:
+
+* Collapsing fixed effects
+* Including the mean of the dependent variable.
 
