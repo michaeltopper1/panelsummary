@@ -12,7 +12,9 @@ editor_options:
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 4
 )
 ```
 
@@ -144,14 +146,26 @@ table_stars
 
 ## Customizing With `kableExtra`
 
-When `panelsummary::panelsummary` is executed, a `kableExtra` object is created. The benefit of this feature is that all of `kableExtra`'s customizing functions are ready to pipe into. For instance, suppose a header above the model numbers, a footnote denoting significance:
+When `panelsummary::panelsummary` is executed, a `kableExtra` object is created. The benefit of this feature is that all of `kableExtra`'s customizing functions are ready to pipe into. For instance, suppose a table calls for a new theme, a header above the model numbers, a footnote denoting significance:
+
 ```{r}
 library(kableExtra)
 
+## customizing the table with kableExtra
 table_stars |> 
-  kable_classic() |> 
+  kable_classic(full_width = F, html_font = "Cambria") |> 
   add_header_above(c(" " = 1, "Models Using mtcars" = 3)) |> 
   footnote(list("* p < 0.1, ** p < 0.05, *** p < 0.01",
                 "Customizations done using kableExtra package"))
+```
+
+## Adding the Mean of Depedent Variable
+
+
+```{r}
+panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1,
+             mean_dependent = T,
+             stars =c('*' = .1, '**' = .05, '***' = .01),
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
 ```
 

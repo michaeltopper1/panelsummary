@@ -11,14 +11,14 @@
 #' @param panel_labels A character vector. The text to come after Panel A: and Panel B... in the table. Generally, it is the name of each dependent variable in the panel.
 #'    * `NULL` (the default): the panels will be labeled Panel A, Panel B,...etc.
 #
-#' @param mean_dependent A boolean.
+#' @param mean_dependent A boolean. For use with fixest objects only.
 #'    * `FALSE` (the default): the mean of the dependent variable will not be shown in the resulting table.
 #'    * `TRUE`: the mean of the dependent variable will be shown in the resulting table.
 #' @param colnames An optional vector of strings. The vector of strings should have the same length as the number columns of the table.
 #'    * `NULL` (the default): colnames are defaulted to a whitespace, followed by (1), (2), ....etc.
 #' @param caption A string. The table caption.
 #' @param format A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.
-#' @param collapse_fe A boolean. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
+#' @param collapse_fe A boolean. For use with fixest objects only. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
 #'    * `FALSE` (the default): fixed effects are shown in each panel.
 #'    * `TRUE`: fixed effects are shown only at the bottom of the final panel, separated by a horizontal line (see hline_before_fe)
 #' @param bold A boolean. Determines whether the panel names should be in bold font.
@@ -30,14 +30,22 @@
 #' @param hline_after A boolean. Adds a horizontal line after the panel labels.
 #'    * `FALSE` (the default): there is not horizonal line after the panel labels.
 #'    * `TRUE`: a horizontal line will appear after the panel labels.
-#' @param hline_before_fe A boolean. To be used only when collapse_fe = TRUE. Adds a horizontal line before the fixed effects portion of the table.
+#' @param hline_before_fe A boolean. To be used only when collapse_fe = TRUE, and hence with fixest objects only. Adds a horizontal line before the fixed effects portion of the table.
 #' @inheritParams modelsummary::modelsummary
 #'
 #' @returns A kableExtra object that is instantly customizable by kableExtra's suite of functions.
 #'
 #' @examples
 #'
-#' # Panelsummary with Fixest -------------------------
+#' # Panelsummary with lm -------------------------
+#'
+#' reg_1 <- lm(mpg ~ hp + cyl, data = mtcars)
+#' reg_2 <- lm(disp ~ hp + cyl, data = mtcars)
+#'
+#' panelsummary(reg_1, reg_2, panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
+#'
+#'
+#' # Panelsummary with fixest -------------------------
 #'
 #' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
 #' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
@@ -48,7 +56,7 @@
 #'             italic = TRUE, stars = TRUE)
 #'
 #'
-#' ## Collapsing fixed effects----------------
+#' ## Collapsing fixed effects (fixest-only)----------------
 #'
 #' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
 #'
