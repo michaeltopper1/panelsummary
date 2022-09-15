@@ -36,8 +36,8 @@ panelsummary(
 * If a list is passed in, one column for each list is created. Each argument will correspond to a panel.
 * If only one object is passed in, there will be no panels and the output will be similar to evaluating modelsummary::modelsummary() followed by kableExtra::kbl()}
 
-\item{panel_labels}{A character vector. The text to come after Panel A: and Panel B... in the table. Generally, it is the name of each dependent variable in the panel.
-* `NULL` (the default): the panels will be labeled Panel A, Panel B,...etc.}
+\item{panel_labels}{A character vector. How to label each panel in the table.
+* `NULL` (the default): the panels will be labeled "Panel A:", "Panel B:",...etc.}
 
 \item{mean_dependent}{A boolean. For use with fixest objects only.
 * `FALSE` (the default): the mean of the dependent variable will not be shown in the resulting table.
