@@ -62,7 +62,7 @@ panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
              mean_dependent = TRUE,
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
              caption = "Automated Mean of Dependent Variable") |> 
-  kable_classic()
+  kable_classic(full_width = F, html_font = "Cambria") 
 ```
 
 Notice that a new row was placed before the "Num.Obs." row in each panel with the mean of the dependent variable. Note that the placement of the mean can be reordered with the `gof_map` argument. For instance, suppose the desired table consists only of number of observations, the mean of dependent variable, and fixed effects, in that respective order. A new tibble can be created (see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map)) to map/rename these goodness-of-fit statistics into the correct order. **Observe that the mean of the dependent variable's raw name is `mean`, and in this case, is being renamed to `Mean(DV)`.**
@@ -85,7 +85,7 @@ panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
              gof_map = gm,
              caption = "Automated Mean of Dependent Variable-Renamed and Reordered") |> 
-  kable_classic() |> 
+  kable_classic(full_width = F, html_font = "Cambria") |> 
   footnote("'mean' is the raw name when mapping")
 
 ```
@@ -101,7 +101,7 @@ panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
              gof_map = gm,
              caption = "Collapsed Fixed Effects",
              collapse_fe = T) |> 
-  kable_classic() |> 
+  kable_classic(full_width = F, html_font = "Cambria") |> 
   footnote("Collapsing the fixed effects assumes the fixed effects in all panels are the same!")
 ```
 

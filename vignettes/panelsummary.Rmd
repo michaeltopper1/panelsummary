@@ -179,7 +179,8 @@ panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1,
              gof_map = gm,
              stars =c('*' = .1, '**' = .05, '***' = .01),
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
-             colnames = c("Column 1", "Column 2", "Column 3", "Column 4"))
+             colnames = c("Column 1", "Column 2", "Column 3", "Column 4")) |> 
+  kable_classic(full_width = F, html_font = "Cambria") 
 ```
 
 
