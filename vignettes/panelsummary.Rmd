@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
   fig.align = "center",
   fig.height = 4
 )
+options(kableExtra.auto_format = FALSE)
 ```
 
 `panelsummary` consists of one main function, `panelsummary::panelsummary`, to provide a simple, yet customizable way to create a regression table with multiple panels. As of this writing, the package is intended for use with regressions of class `lm` and `fixest`, with an emphasis on the latter. There are more classes in the pipeline, and you can always check `panelsummary::models_supported` for an exhaustive list of models supported. 
@@ -162,11 +163,28 @@ table_stars |>
 
 ## Renaming Colnames
 
-To be written.
+By default, `panelsummary` names the first column with an empty space, and each subsequent column with the numbers (1), (2), (3)...etc. To rename the columns, use the `colnames` argument and pass in a character vector which matches the length of the columns in the table. In this particular example, the columnames are set to "Column 1", "Column 2", "Column 3", and "Column 4". Note that no element in the vector may be empty and hence, a single whitespace character is needed to give a blank look (not shown here):
+
+```{r}
+panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1, 
+             coef_map = c("hp" = "Horse Power",
+                          "cyl" = "Cylinder",
+                          "drat" = "Rear Axle Ratio",
+                          "wt" = "Weight (1000lbs)"),
+             gof_map = gm,
+             stars =c('*' = .1, '**' = .05, '***' = .01),
+             panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
+             colnames = c("Column 1", "Column 2", "Column 3", "Column 4"))
+```
+
 
 ## Italics/Bolds/Horizontal Lines
 
-To be written.
+The labels passed into `panel_labels` can be changed to bold and/or italics using the `bold` and `italic` arguments. Furthermore, horizontal lines can be added below each label using the `hline_after` argument.
+
+## Output 
+
+The output is controlled using the `format` argument. By default, a `kableExtra` object is created which works seamlessly with Rmarkdown and knits automatically to LaTeX and HTML. For users that prefer to use their own LaTeX software over Rmarkdown, the `format` option can be switched to "latex" to give the corresponding LaTeX code for the table. *Note:* the tables are automatically set to booktabs style and therefore the booktabs LaTeX package is necessary (`usepackage{booktabs}`) in your tex file if the LaTeX output is copy and pasted. 
 
 ## Use with `fixest`
 
@@ -174,4 +192,3 @@ The `panelsummary` package works best with the `fixest` package to fully take ad
 
 * Collapsing fixed effects
 * Including the mean of the dependent variable.
-
