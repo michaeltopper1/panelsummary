@@ -10,14 +10,10 @@ create_mean_fixest <- function() {
   }
 }
 
-#' creates a custom glance function for lm objects with a mean
-#'
-#' @keywords internal
-#'
-create_mean_lm <- function() {
-  glance_custom.lm <<- function(x, ...) {
-    out <- data.frame("mean" = sprintf("%.3f",mean(x$model[[1]], na.rm = T)))
-  }
-}
+# create_mean_lm <- function() {
+#   glance_custom.lm <<- function(x, ...) {
+#     out <- data.frame("mean" = sprintf("%.3f",mean(x$model[[1]], na.rm = T)))
+#   }
+# }
 
 
