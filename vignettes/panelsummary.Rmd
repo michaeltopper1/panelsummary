@@ -1,11 +1,6 @@
 ---
 title: "Introduction to panelsummary"
-output: 
-  html_document:
-    theme: simplex
-    toc: true
-    toc_depth: 2
-    toc_float: true
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to panelsummary}
   %\VignetteEncoding{UTF-8}
@@ -21,7 +16,7 @@ knitr::opts_chunk$set(
   fig.align = "center",
   fig.height = 4
 )
-options(kableExtra.auto_format = FALSE)
+options(knitr.table.format = "html") 
 ```
 
 `panelsummary` consists of one main function, `panelsummary::panelsummary`, to provide a simple, yet customizable way to create a regression table with multiple panels. As of this writing, the package is intended for use with regressions of class `lm` and `fixest`, with an emphasis on the latter. There are more classes in the pipeline, and you can always check `panelsummary::models_supported` for an exhaustive list of models supported. 
