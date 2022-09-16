@@ -1,6 +1,11 @@
 ---
 title: "Introduction to panelsummary"
-output: rmarkdown::html_vignette
+output: 
+  html_document:
+    theme: simplex
+    toc: true
+    toc_depth: 2
+    toc_float: true
 vignette: >
   %\VignetteIndexEntry{Introduction to panelsummary}
   %\VignetteEncoding{UTF-8}
