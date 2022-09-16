@@ -1632,12 +1632,229 @@ Observations
 <div class="section level2">
 <h2 id="renaming-colnames">Renaming Colnames<a class="anchor" aria-label="anchor" href="#renaming-colnames"></a>
 </h2>
-<p>To be written.</p>
+<p>By default, <code>panelsummary</code> names the first column with an empty space, and each subsequent column with the numbers (1), (2), (3)…etc. To rename the columns, use the <code>colnames</code> argument and pass in a character vector which matches the length of the columns in the table. In this particular example, the columnames are set to “Column 1”, “Column 2”, “Column 3”, and “Column 4”. Note that no element in the vector may be empty and hence, a single whitespace character is needed to give a blank look (not shown here):</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span>, <span class="va">mpg_3</span><span class="op">)</span>, <span class="va">disp_1</span>, </span>
+<span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span> <span class="op">=</span> <span class="st">"Horse Power"</span>,</span>
+<span>                          <span class="st">"cyl"</span> <span class="op">=</span> <span class="st">"Cylinder"</span>,</span>
+<span>                          <span class="st">"drat"</span> <span class="op">=</span> <span class="st">"Rear Axle Ratio"</span>,</span>
+<span>                          <span class="st">"wt"</span> <span class="op">=</span> <span class="st">"Weight (1000lbs)"</span><span class="op">)</span>,</span>
+<span>             gof_map <span class="op">=</span> <span class="va">gm</span>,</span>
+<span>             stars <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'*'</span> <span class="op">=</span> <span class="fl">.1</span>, <span class="st">'**'</span> <span class="op">=</span> <span class="fl">.05</span>, <span class="st">'***'</span> <span class="op">=</span> <span class="fl">.01</span><span class="op">)</span>,</span>
+<span>             panel_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Panel A: MPG"</span>, <span class="st">"Panel B: Displacement"</span><span class="op">)</span>,</span>
+<span>             colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Column 1"</span>, <span class="st">"Column 2"</span>, <span class="st">"Column 3"</span>, <span class="st">"Column 4"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+Column 1
+</th>
+<th style="text-align:center;">
+Column 2
+</th>
+<th style="text-align:center;">
+Column 3
+</th>
+<th style="text-align:center;">
+Column 4
+</th>
+</tr></thead>
+<tbody>
+<tr grouplength="9">
+<td colspan="4" style="border-bottom: 1px solid;">
+Panel A: MPG
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Horse Power
+</td>
+<td style="text-align:center;">
+-0.019
+</td>
+<td style="text-align:center;">
+-0.029*
+</td>
+<td style="text-align:center;">
+-0.021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.015)
+</td>
+<td style="text-align:center;">
+(0.015)
+</td>
+<td style="text-align:center;">
+(0.013)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cylinder
+</td>
+<td style="text-align:center;">
+-2.265***
+</td>
+<td style="text-align:center;">
+-1.361*
+</td>
+<td style="text-align:center;">
+-0.762
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.576)
+</td>
+<td style="text-align:center;">
+(0.735)
+</td>
+<td style="text-align:center;">
+(0.635)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Rear Axle Ratio
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+2.841*
+</td>
+<td style="text-align:center;">
+0.818
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(1.522)
+</td>
+<td style="text-align:center;">
+(1.387)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Weight (1000lbs)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+-2.973***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.818)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Observations
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+32
+</td>
+</tr>
+<tr grouplength="5">
+<td colspan="4" style="border-bottom: 1px solid;">
+Panel B: Displacement
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Horse Power
+</td>
+<td style="text-align:center;">
+0.236
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(0.258)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cylinder
+</td>
+<td style="text-align:center;">
+55.063***
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+</td>
+<td style="text-align:center;">
+(9.898)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Observations
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level2">
 <h2 id="italicsboldshorizontal-lines">Italics/Bolds/Horizontal Lines<a class="anchor" aria-label="anchor" href="#italicsboldshorizontal-lines"></a>
 </h2>
-<p>To be written.</p>
+<p>The labels passed into <code>panel_labels</code> can be changed to bold and/or italics using the <code>bold</code> and <code>italic</code> arguments. Furthermore, horizontal lines can be added below each label using the <code>hline_after</code> argument.</p>
+</div>
+<div class="section level2">
+<h2 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+</h2>
+<p>The output is controlled using the <code>format</code> argument. By default, a <code>kableExtra</code> object is created which works seamlessly with Rmarkdown and knits automatically to LaTeX and HTML. For users that prefer to use their own LaTeX software over Rmarkdown, the <code>format</code> option can be switched to “latex” to give the corresponding LaTeX code for the table. <em>Note:</em> the tables are automatically set to booktabs style and therefore the booktabs LaTeX package is necessary (<code>usepackage{booktabs}</code>) in your tex file if the LaTeX output is copy and pasted.</p>
 </div>
 <div class="section level2">
 <h2 id="use-with-fixest">Use with <code>fixest</code><a class="anchor" aria-label="anchor" href="#use-with-fixest"></a>
