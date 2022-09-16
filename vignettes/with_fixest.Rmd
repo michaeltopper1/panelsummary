@@ -16,6 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{js, echo = F}
+$( document ).ready(function() {
+  $(".lightable-classic").removeClass("table").css("display", "table");
+});
+```
 This vignette focuses on using the `panelsummary` package with the `fixest` package. `fixest` has become one of the most popular regression packages for economists, and therefore further capabilities have been implemented in `panelsummary` to work seemlessly with `fixest`. There will be two main capabilities that this vignette covers:
 
 1. Adding the mean of the dependent variable.
