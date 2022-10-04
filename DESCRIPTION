@@ -8,7 +8,7 @@ Maintainer: Michael Topper <miketopper123@gmail.com>
 Description: Creates publication-ready regression tables with panels.
     Solves the hassle of adding multiple panels (e.g., Panel A/Panel B) to
     a single regression table.
-License: MIT + file LICENSE
+License: GPL (>= 3)
 URL: https://github.com/michaeltopper1/panelsummary,
     https://michaeltopper1.github.io/panelsummary/
 BugReports: https://github.com/michaeltopper1/panelsummary/issues
