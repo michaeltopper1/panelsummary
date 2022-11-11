@@ -87,7 +87,7 @@
 #'
 
 panelsummary <- function(
-    ...,
+    model_list,
     panel_labels = NULL,
     mean_dependent = FALSE,
     colnames = NULL,
@@ -112,7 +112,7 @@ panelsummary <- function(
     gof_omit    = NULL) {
 
 
-  models <- list(...)
+  models <- model_list
 
   num_panels <- length(models)
 
