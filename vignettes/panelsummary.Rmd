@@ -135,7 +135,7 @@ At this time, `panelsummary` **will only support up to five panels**. This is do
 
 To add significance stars, simply set the `stars` argument to `TRUE`. By default, `panelsummary` uses the following convention (symbol=pvalue): +=.1, \*=.05, \*\*=.01, \*\*\*=0.001.
 
-To change the significance, a character vector can be passed in with custom values:
+However, you can also change the significance stars by passing in a vector of corresponding significance:
 
 ```{r}
 ## change the significance stars to match economic convention
@@ -145,10 +145,13 @@ table_stars <- panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1,
                           "drat" = "Rear Axle Ratio",
                           "wt" = "Weight (1000lbs)"),
              gof_map = gm,
-             stars =c('*' = .1, '**' = .05, '***' = .01),
+             stars = c('*' = .1, '**' = .05, '***' = .01),
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
 table_stars 
 ```
+
+
+However, you if you plan on using the econonomics convention of \*=.1, \*\*=.05, \*\*\*=.01, you can simply pass in the word "econ".
 
 ## Customizing With `kableExtra`
 

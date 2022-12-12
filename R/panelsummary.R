@@ -35,6 +35,8 @@
 #'
 #' @returns A kableExtra object that is instantly customizable by kableExtra's suite of functions.
 #'
+#'
+#'
 #' @examples
 #'
 #' # Panelsummary with lm -------------------------
@@ -86,6 +88,7 @@
 #' @export
 #'
 
+#' @importFrom rlang .data
 panelsummary <- function(
     ...,
     panel_labels = NULL,
@@ -103,7 +106,6 @@ panelsummary <- function(
     statistic   = "std.error",
     vcov        = NULL,
     conf_level  = 0.95,
-    exponentiate = FALSE,
     stars       = FALSE,
     coef_map    = NULL,
     coef_omit   = NULL,
@@ -124,6 +126,12 @@ panelsummary <- function(
     panel_labels <- create_panels_null(num_panels)
   }
 
+  ## creates economic significance convention stars
+  if (length(stars) == 1){
+    if (stars == "econ"){
+      stars <- econ_stars()
+    }
+  }
 
 
   ## Defines the custom fixest glance_function which allows
@@ -137,7 +145,6 @@ panelsummary <- function(
                                                                     output = "data.frame",
                                                                     fmt = fmt, estimate = estimate,
                                                                     vcov = vcov, conf_level = 0.95,
-                                                                    exponentiate = exponentiate,
                                                                     stars = stars, coef_map = coef_map,
                                                                     gof_map = gof_map,
                                                                     gof_omit = gof_omit))
@@ -173,11 +180,11 @@ panelsummary <- function(
   ## binding each of the data.frames together again and getting rid of NAs
   panel_df <- panel_df |>
     dplyr::bind_rows() |>
-    dplyr::mutate(dplyr::across(where(is.character), ~stringr::str_replace_na(., replacement = "")))
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~stringr::str_replace_na(., replacement = "")))
 
   panel_df_cleaned <- panel_df |>
-    dplyr::mutate(term = ifelse(statistic == "std.error", "", term)) |>
-    dplyr::select(-part, -statistic)
+    dplyr::mutate(term = ifelse(.data$statistic == "std.error", "", .data$term)) |>
+    dplyr::select(-.data$part, -.data$statistic)
 
   ## getting the number of columns/models in the dataframe
   number_models <- ncol(panel_df_cleaned)
