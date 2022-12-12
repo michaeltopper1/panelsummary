@@ -87,21 +87,41 @@
 $( document ).ready(function() {
   $(".lightable-classic").removeClass("table").css("display", "table");
 });
-</script><p><code>panelsummary</code> consists of one main function, <code><a href="../reference/panelsummary.html">panelsummary::panelsummary</a></code>, to provide a simple, yet customizable way to create a regression table with multiple panels. As of this writing, the package is intended for use with regressions of class <code>lm</code> and <code>fixest</code>, with an emphasis on the latter. There are more classes in the pipeline, and you can always check <code><a href="../reference/models_supported.html">panelsummary::models_supported</a></code> for an exhaustive list of models supported.</p>
+</script><p><code>panelsummary</code> consists of one main function,
+<code><a href="../reference/panelsummary.html">panelsummary::panelsummary</a></code>, to provide a simple, yet
+customizable way to create a regression table with multiple panels. As
+of this writing, the package is intended for use with regressions of
+class <code>lm</code> and <code>fixest</code>, with an emphasis on the
+latter. There are more classes in the pipeline, and you can always check
+<code><a href="../reference/models_supported.html">panelsummary::models_supported</a></code> for an exhaustive list of
+models supported.</p>
 <p>To begin, load in the <code>panelsummary</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/michaeltopper1/panelsummary" class="external-link">panelsummary</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="motivating-example">Motivating Example<a class="anchor" aria-label="anchor" href="#motivating-example"></a>
 </h2>
-<p>To motivate the power of <code>panelsummary</code>, consider a model using the <code>mtcars</code> dataset:</p>
-<p><span class="math display">\[ Y_{i} = hp_i + cyl_i + e_i\]</span> Where <span class="math inline">\(Y_i\)</span> is the dependent variable, which can be either <span class="math inline">\(mpg_i\)</span> or <span class="math inline">\(disp\)</span> of car <span class="math inline">\(i\)</span>, <span class="math inline">\(hp_i\)</span> is the horsepower, <span class="math inline">\(cyl_i\)</span> is the number of cylinders, and <span class="math inline">\(e_i\)</span> is the error term. To estimate this model with both of the dependent variables, the following code is provided:</p>
+<p>To motivate the power of <code>panelsummary</code>, consider a model
+using the <code>mtcars</code> dataset:</p>
+<p><span class="math display">\[ Y_{i} = hp_i + cyl_i + e_i\]</span>
+Where <span class="math inline">\(Y_i\)</span> is the dependent
+variable, which can be either <span class="math inline">\(mpg_i\)</span>
+or <span class="math inline">\(disp\)</span> of car <span class="math inline">\(i\)</span>, <span class="math inline">\(hp_i\)</span> is the horsepower, <span class="math inline">\(cyl_i\)</span> is the number of cylinders, and
+<span class="math inline">\(e_i\)</span> is the error term. To estimate
+this model with both of the dependent variables, the following code is
+provided:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## estimating the model with two depedent variables:</span></span>
 <span><span class="co">## 1) mpg and 2) disp</span></span>
 <span><span class="va">mpg_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">disp_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
-<p>While one option to present the regression coefficients in a table would be to create a separate regression table for each, there is a more concise, and cleaner way to present this information. This is where <code>panelsummary</code> is most useful. With a simple pass of <code><a href="../reference/panelsummary.html">panelsummary::panelsummary</a></code>, a beautiful regression table is created without any additional editing, and can immediately be viewed in the RStudio Viewer panel.</p>
+<p>While one option to present the regression coefficients in a table
+would be to create a separate regression table for each, there is a more
+concise, and cleaner way to present this information. This is where
+<code>panelsummary</code> is most useful. With a simple pass of
+<code><a href="../reference/panelsummary.html">panelsummary::panelsummary</a></code>, a beautiful regression table is
+created without any additional editing, and can immediately be viewed in
+the RStudio Viewer panel.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## creating a beautiful regression table with panelsummary</span></span>
 <span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">disp_1</span>, </span>
@@ -329,12 +349,21 @@ RMSE
 </tr>
 </tbody>
 </table>
-<p>Note that the number of arguments passed into <code>...</code> is how the delineation of panels is determined. Importantly, the length of the character vector passed into <code>panel_labels</code> must match the number of arguments passed into <code>...</code>. This ensures that each panel has its own label.</p>
+<p>Note that the number of arguments passed into <code>...</code> is how
+the delineation of panels is determined. Importantly, the length of the
+character vector passed into <code>panel_labels</code> must match the
+number of arguments passed into <code>...</code>. This ensures that each
+panel has its own label.</p>
 </div>
 <div class="section level2">
 <h2 id="cleaning-variable-names">Cleaning Variable Names<a class="anchor" aria-label="anchor" href="#cleaning-variable-names"></a>
 </h2>
-<p>Behind the scenes, <code>panelsummary</code> uses <code>modelsummary</code> to help create the regression tables. The benefit of this is the ability to use <code>coef_map</code> argument (which is passed through to <code><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary::modelsummary</a></code>) to clean variable names. Recall that to use <code>coef_map</code>, the syntax is <code>c("old_name" = "new_name")</code>:</p>
+<p>Behind the scenes, <code>panelsummary</code> uses
+<code>modelsummary</code> to help create the regression tables. The
+benefit of this is the ability to use <code>coef_map</code> argument
+(which is passed through to <code><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary::modelsummary</a></code>) to
+clean variable names. Recall that to use <code>coef_map</code>, the
+syntax is <code>c("old_name" = "new_name")</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">disp_1</span>, </span>
 <span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span> <span class="op">=</span> <span class="st">"Horse Power"</span>,</span>
@@ -533,12 +562,17 @@ RMSE
 </tr>
 </tbody>
 </table>
-<p>For more information on <code>coef_map</code>, see the <a href="https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#coef-renameomitmap" class="external-link">modelsummary website</a>.</p>
+<p>For more information on <code>coef_map</code>, see the <a href="https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#coef-renameomitmap" class="external-link">modelsummary
+website</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="excluding-goodness-of-fit-statistics">Excluding Goodness-of-Fit Statistics<a class="anchor" aria-label="anchor" href="#excluding-goodness-of-fit-statistics"></a>
 </h2>
-<p>Similar to cleaning names, <code>panelsummary</code> also supports the <code>gof_map</code> and <code>gof_omit</code> arguments from <code>modelsummary</code>. In the following, <code>gof_map</code> will be used to change the name of “Num.Obs” to “Observations” and “F” to “F-stat”, while removing the other goodness-of-fit statistics:</p>
+<p>Similar to cleaning names, <code>panelsummary</code> also supports
+the <code>gof_map</code> and <code>gof_omit</code> arguments from
+<code>modelsummary</code>. In the following, <code>gof_map</code> will
+be used to change the name of “Num.Obs” to “Observations” and “F” to
+“F-stat”, while removing the other goodness-of-fit statistics:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## mapping the goodness of fit statistics to new names - see modelsummary for more details</span></span>
 <span><span class="va">gm</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
@@ -648,17 +682,22 @@ Observations
 </tr>
 </tbody>
 </table>
-<p>For more information on how to use <code>gof_map</code>, see the <a href="https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map" class="external-link">modelsummary website</a>.</p>
+<p>For more information on how to use <code>gof_map</code>, see the <a href="https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map" class="external-link">modelsummary
+website</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="adding-additional-models-to-the-table">Adding Additional Models to the Table<a class="anchor" aria-label="anchor" href="#adding-additional-models-to-the-table"></a>
 </h2>
-<p>It is simple to add additional models to each panel in the table. This is most useful when presenting robustness of estimates with a variety of different explanatory variables. As an example, consider three more models with <code>mpg</code> as the dependent variable:</p>
+<p>It is simple to add additional models to each panel in the table.
+This is most useful when presenting robustness of estimates with a
+variety of different explanatory variables. As an example, consider
+three more models with <code>mpg</code> as the dependent variable:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## creating two additional models for the first panel </span></span>
 <span><span class="va">mpg_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">mpg_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span><span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">drat</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
-<p>To add these models to Panel A, simply replace <code>mpg_1</code> with <code>list(mpg_1, mpg_2, mpg_3)</code> in the original code:</p>
+<p>To add these models to Panel A, simply replace <code>mpg_1</code>
+with <code>list(mpg_1, mpg_2, mpg_3)</code> in the original code:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span>, <span class="va">mpg_3</span><span class="op">)</span>, <span class="va">disp_1</span>, </span>
 <span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span> <span class="op">=</span> <span class="st">"Horse Power"</span>,</span>
@@ -872,7 +911,10 @@ Observations
 <div class="section level2">
 <h2 id="adding-additional-panels-to-the-table">Adding Additional Panels to the Table<a class="anchor" aria-label="anchor" href="#adding-additional-panels-to-the-table"></a>
 </h2>
-<p>As alluded to, the number of arguments passed into <code>...</code> will determine the number of panels created in the table. Hence, simply add another argument to <code>...</code>, and a corresponding label to <code>panel_labels</code>:</p>
+<p>As alluded to, the number of arguments passed into <code>...</code>
+will determine the number of panels created in the table. Hence, simply
+add another argument to <code>...</code>, and a corresponding label to
+<code>panel_labels</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span>, <span class="va">mpg_3</span><span class="op">)</span>, <span class="va">disp_1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span><span class="op">)</span>,</span>
 <span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span> <span class="op">=</span> <span class="st">"Horse Power"</span>,</span>
@@ -1173,13 +1215,19 @@ Observations
 </tr>
 </tbody>
 </table>
-<p>At this time, <code>panelsummary</code> <strong>will only support up to five panels</strong>. This is done intentionally to discourage an overly long table.</p>
+<p>At this time, <code>panelsummary</code> <strong>will only support up
+to five panels</strong>. This is done intentionally to discourage an
+overly long table.</p>
 </div>
 <div class="section level2">
 <h2 id="adding-significance-stars">Adding Significance-Stars<a class="anchor" aria-label="anchor" href="#adding-significance-stars"></a>
 </h2>
-<p>To add significance stars, simply set the <code>stars</code> argument to <code>TRUE</code>. By default, <code>panelsummary</code> uses the following convention (symbol=pvalue): +=.1, *=.05, **=.01, ***=0.001.</p>
-<p>To change the significance, a character vector can be passed in with custom values:</p>
+<p>To add significance stars, simply set the <code>stars</code> argument
+to <code>TRUE</code>. By default, <code>panelsummary</code> uses the
+following convention (symbol=pvalue): +=.1, *=.05, **=.01,
+***=0.001.</p>
+<p>However, you can also change the significance stars by passing in a
+vector of corresponding significance:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## change the significance stars to match economic convention</span></span>
 <span><span class="va">table_stars</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span>, <span class="va">mpg_3</span><span class="op">)</span>, <span class="va">disp_1</span>, </span>
@@ -1188,7 +1236,7 @@ Observations
 <span>                          <span class="st">"drat"</span> <span class="op">=</span> <span class="st">"Rear Axle Ratio"</span>,</span>
 <span>                          <span class="st">"wt"</span> <span class="op">=</span> <span class="st">"Weight (1000lbs)"</span><span class="op">)</span>,</span>
 <span>             gof_map <span class="op">=</span> <span class="va">gm</span>,</span>
-<span>             stars <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'*'</span> <span class="op">=</span> <span class="fl">.1</span>, <span class="st">'**'</span> <span class="op">=</span> <span class="fl">.05</span>, <span class="st">'***'</span> <span class="op">=</span> <span class="fl">.01</span><span class="op">)</span>,</span>
+<span>             stars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'*'</span> <span class="op">=</span> <span class="fl">.1</span>, <span class="st">'**'</span> <span class="op">=</span> <span class="fl">.05</span>, <span class="st">'***'</span> <span class="op">=</span> <span class="fl">.01</span><span class="op">)</span>,</span>
 <span>             panel_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Panel A: MPG"</span>, <span class="st">"Panel B: Displacement"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">table_stars</span> </span></code></pre></div>
 <table class="table">
@@ -1392,11 +1440,17 @@ Observations
 </tr>
 </tbody>
 </table>
+<p>However, you if you plan on using the econonomics convention of *=.1,
+**=.05, ***=.01, you can simply pass in the word “econ”.</p>
 </div>
 <div class="section level2">
 <h2 id="customizing-with-kableextra">Customizing With <code>kableExtra</code><a class="anchor" aria-label="anchor" href="#customizing-with-kableextra"></a>
 </h2>
-<p>When <code><a href="../reference/panelsummary.html">panelsummary::panelsummary</a></code> is executed, a <code>kableExtra</code> object is created. The benefit of this feature is that all of <code>kableExtra</code>’s customizing functions are ready to pipe into. For instance, suppose a table calls for a new theme, a header above the model numbers, a footnote denoting significance:</p>
+<p>When <code><a href="../reference/panelsummary.html">panelsummary::panelsummary</a></code> is executed, a
+<code>kableExtra</code> object is created. The benefit of this feature
+is that all of <code>kableExtra</code>’s customizing functions are ready
+to pipe into. For instance, suppose a table calls for a new theme, a
+header above the model numbers, a footnote denoting significance:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span>
 <span></span>
@@ -1639,7 +1693,14 @@ Observations
 <div class="section level2">
 <h2 id="renaming-colnames">Renaming Colnames<a class="anchor" aria-label="anchor" href="#renaming-colnames"></a>
 </h2>
-<p>By default, <code>panelsummary</code> names the first column with an empty space, and each subsequent column with the numbers (1), (2), (3)…etc. To rename the columns, use the <code>colnames</code> argument and pass in a character vector which matches the length of the columns in the table. In this particular example, the columnames are set to “Column 1”, “Column 2”, “Column 3”, and “Column 4”. Note that no element in the vector may be empty and hence, a single whitespace character is needed to give a blank look (not shown here):</p>
+<p>By default, <code>panelsummary</code> names the first column with an
+empty space, and each subsequent column with the numbers (1), (2),
+(3)…etc. To rename the columns, use the <code>colnames</code> argument
+and pass in a character vector which matches the length of the columns
+in the table. In this particular example, the columnames are set to
+“Column 1”, “Column 2”, “Column 3”, and “Column 4”. Note that no element
+in the vector may be empty and hence, a single whitespace character is
+needed to give a blank look (not shown here):</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span>, <span class="va">mpg_3</span><span class="op">)</span>, <span class="va">disp_1</span>, </span>
 <span>             coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span> <span class="op">=</span> <span class="st">"Horse Power"</span>,</span>
@@ -1857,17 +1918,31 @@ Observations
 <div class="section level2">
 <h2 id="italicsboldshorizontal-lines">Italics/Bolds/Horizontal Lines<a class="anchor" aria-label="anchor" href="#italicsboldshorizontal-lines"></a>
 </h2>
-<p>The labels passed into <code>panel_labels</code> can be changed to bold and/or italics using the <code>bold</code> and <code>italic</code> arguments. Furthermore, horizontal lines can be added below each label using the <code>hline_after</code> argument.</p>
+<p>The labels passed into <code>panel_labels</code> can be changed to
+bold and/or italics using the <code>bold</code> and <code>italic</code>
+arguments. Furthermore, horizontal lines can be added below each label
+using the <code>hline_after</code> argument.</p>
 </div>
 <div class="section level2">
 <h2 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
 </h2>
-<p>The output is controlled using the <code>format</code> argument. By default, a <code>kableExtra</code> object is created which works seamlessly with Rmarkdown and knits automatically to LaTeX and HTML. For users that prefer to use their own LaTeX software over Rmarkdown, the <code>format</code> option can be switched to “latex” to give the corresponding LaTeX code for the table. <em>Note:</em> the tables are automatically set to booktabs style and therefore the booktabs LaTeX package is necessary (<code>usepackage{booktabs}</code>) in your tex file if the LaTeX output is copy and pasted.</p>
+<p>The output is controlled using the <code>format</code> argument. By
+default, a <code>kableExtra</code> object is created which works
+seamlessly with Rmarkdown and knits automatically to LaTeX and HTML. For
+users that prefer to use their own LaTeX software over Rmarkdown, the
+<code>format</code> option can be switched to “latex” to give the
+corresponding LaTeX code for the table. <em>Note:</em> the tables are
+automatically set to booktabs style and therefore the booktabs LaTeX
+package is necessary (<code>usepackage{booktabs}</code>) in your tex
+file if the LaTeX output is copy and pasted.</p>
 </div>
 <div class="section level2">
 <h2 id="use-with-fixest">Use with <code>fixest</code><a class="anchor" aria-label="anchor" href="#use-with-fixest"></a>
 </h2>
-<p>The <code>panelsummary</code> package works best with the <code>fixest</code> package to fully take advantage of its offerings. See the <a href="">Using <code>panelsummary</code> with <code>fixest</code> vignette</a>. Some of the capabilities include:</p>
+<p>The <code>panelsummary</code> package works best with the
+<code>fixest</code> package to fully take advantage of its offerings.
+See the <a href="">Using <code>panelsummary</code> with
+<code>fixest</code> vignette</a>. Some of the capabilities include:</p>
 <ul>
 <li>Collapsing fixed effects</li>
 <li>Including the mean of the dependent variable.</li>

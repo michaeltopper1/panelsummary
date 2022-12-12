@@ -37,6 +37,9 @@
     <loc>https://michaeltopper1.github.io/panelsummary/reference/check_dimensions_match.html</loc>
   </url>
   <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/clean_raw.html</loc>
+  </url>
+  <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/create_alignment.html</loc>
   </url>
   <url>
@@ -47,6 +50,9 @@
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/create_panels_null.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/econ_stars.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/get_lpanel_fe.html</loc>
@@ -64,7 +70,13 @@
     <loc>https://michaeltopper1.github.io/panelsummary/reference/models_supported.html</loc>
   </url>
   <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary-package.html</loc>
+  </url>
+  <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary_raw.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/remove_fe.html</loc>

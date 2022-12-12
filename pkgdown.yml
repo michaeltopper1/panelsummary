@@ -1,10 +1,10 @@
-pandoc: 2.14.2
+pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   panelsummary: panelsummary.html
   with_fixest: with_fixest.html
-last_built: 2022-10-04T05:24Z
+last_built: 2022-12-12T18:15Z
 urls:
   reference: https://michaeltopper1.github.io/panelsummary/reference
   article: https://michaeltopper1.github.io/panelsummary/articles

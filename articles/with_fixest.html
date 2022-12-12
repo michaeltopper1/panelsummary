@@ -87,7 +87,12 @@
 $( document ).ready(function() {
   $(".lightable-classic").removeClass("table").css("display", "table");
 });
-</script><p>This vignette focuses on using the <code>panelsummary</code> package with the <code>fixest</code> package. <code>fixest</code> has become one of the most popular regression packages for economists, and therefore further capabilities have been implemented in <code>panelsummary</code> to work seemlessly with <code>fixest</code>. There will be two main capabilities that this vignette covers:</p>
+</script><p>This vignette focuses on using the <code>panelsummary</code> package
+with the <code>fixest</code> package. <code>fixest</code> has become one
+of the most popular regression packages for economists, and therefore
+further capabilities have been implemented in <code>panelsummary</code>
+to work seemlessly with <code>fixest</code>. There will be two main
+capabilities that this vignette covers:</p>
 <ol style="list-style-type: decimal">
 <li>Adding the mean of the dependent variable.</li>
 <li>Collapsing fixed effects.</li>
@@ -95,12 +100,15 @@ $( document ).ready(function() {
 <div class="section level2">
 <h2 id="adding-the-mean-of-the-dependent-variable">Adding the Mean of the Dependent Variable<a class="anchor" aria-label="anchor" href="#adding-the-mean-of-the-dependent-variable"></a>
 </h2>
-<p>To start, load in the <code>fixest</code>, <code>panelsummary</code>, and <code>kableExtra</code> packages.</p>
+<p>To start, load in the <code>fixest</code>, <code>panelsummary</code>,
+and <code>kableExtra</code> packages.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/michaeltopper1/panelsummary" class="external-link">panelsummary</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lrberge.github.io/fixest/" class="external-link">fixest</a></span><span class="op">)</span> <span class="co">## for regressions</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span> <span class="co">## for further table customization</span></span></code></pre></div>
-<p>For demonstration purposes, four regressions are estimated with the <code>fixest</code> package using the <code>feols</code> function and the <code>mtcars</code> data:</p>
+<p>For demonstration purposes, four regressions are estimated with the
+<code>fixest</code> package using the <code>feols</code> function and
+the <code>mtcars</code> data:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## estimating two models for mpg</span></span>
 <span><span class="va">mpg_1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
@@ -116,7 +124,14 @@ $( document ).ready(function() {
 <span></span>
 <span><span class="va">disp_2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span> <span class="op">+</span> <span class="va">am</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span><span class="op">)</span></span></code></pre></div>
-<p>To create a regression table with two panels (Panel A: MPG/Panel B: Displacement) and two models in each, the lists <code>list(mpg_1, mpg_2)</code> and <code>list(disp_1, disp_2)</code> can be passed into the arguments for <code>...</code>. However, since each of these models is of the class <code>fixest</code> (i.e., created with the <code>fixest</code> package), the <code>mean_dependent</code> argument can be set to <code>TRUE</code> to show the means of the dependent variable in each column:</p>
+<p>To create a regression table with two panels (Panel A: MPG/Panel B:
+Displacement) and two models in each, the lists
+<code>list(mpg_1, mpg_2)</code> and <code>list(disp_1, disp_2)</code>
+can be passed into the arguments for <code>...</code>. However, since
+each of these models is of the class <code>fixest</code> (i.e., created
+with the <code>fixest</code> package), the <code>mean_dependent</code>
+argument can be set to <code>TRUE</code> to show the means of the
+dependent variable in each column:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">disp_1</span>, <span class="va">disp_2</span><span class="op">)</span>, </span>
 <span>             mean_dependent <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -138,7 +153,7 @@ Automated Mean of Dependent Variable
 </th>
 </tr></thead>
 <tbody>
-<tr grouplength="11">
+<tr grouplength="15">
 <td colspan="3" style="border-bottom: 1px solid;">
 Panel A: MPG
 </td>
@@ -188,13 +203,57 @@ Num.Obs.
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2
+</td>
+<td style="text-align:center;">
+0.818
+</td>
+<td style="text-align:center;">
+0.835
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.755
+</td>
+<td style="text-align:center;">
+0.768
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2 Within
+</td>
+<td style="text-align:center;">
+0.058
+</td>
+<td style="text-align:center;">
+0.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2 Within Adj.
+</td>
+<td style="text-align:center;">
+0.017
+</td>
+<td style="text-align:center;">
+0.046
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 AIC
 </td>
 <td style="text-align:center;">
-154.3
+168.3
 </td>
 <td style="text-align:center;">
-151.1
+167.1
 </td>
 </tr>
 <tr>
@@ -202,10 +261,10 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
-157.2
+181.4
 </td>
 <td style="text-align:center;">
-154.0
+181.8
 </td>
 </tr>
 <tr>
@@ -262,7 +321,7 @@ FE: am
 X
 </td>
 </tr>
-<tr grouplength="11">
+<tr grouplength="15">
 <td colspan="3" style="border-bottom: 1px solid;">
 Panel B: Displacement
 </td>
@@ -312,13 +371,57 @@ Num.Obs.
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2
+</td>
+<td style="text-align:center;">
+0.909
+</td>
+<td style="text-align:center;">
+0.910
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.878
+</td>
+<td style="text-align:center;">
+0.873
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2 Within
+</td>
+<td style="text-align:center;">
+0.399
+</td>
+<td style="text-align:center;">
+0.401
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+R2 Within Adj.
+</td>
+<td style="text-align:center;">
+0.373
+</td>
+<td style="text-align:center;">
+0.373
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 AIC
 </td>
 <td style="text-align:center;">
-325.5
+339.5
 </td>
 <td style="text-align:center;">
-325.4
+341.4
 </td>
 </tr>
 <tr>
@@ -326,10 +429,10 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
-328.4
+352.7
 </td>
 <td style="text-align:center;">
-328.3
+356.0
 </td>
 </tr>
 <tr>
@@ -388,7 +491,16 @@ X
 </tr>
 </tbody>
 </table>
-<p>Notice that a new row was placed before the “Num.Obs.” row in each panel with the mean of the dependent variable. Note that the placement of the mean can be reordered with the <code>gof_map</code> argument. For instance, suppose the desired table consists only of number of observations, the mean of dependent variable, and fixed effects, in that respective order. A new tibble can be created (see the <a href="https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map" class="external-link">modelsummary website</a>) to map/rename these goodness-of-fit statistics into the correct order. <strong>Observe that the mean of the dependent variable’s raw name is <code>mean</code>, and in this case, is being renamed to <code>Mean(DV)</code>.</strong></p>
+<p>Notice that a new row was placed before the “Num.Obs.” row in each
+panel with the mean of the dependent variable. Note that the placement
+of the mean can be reordered with the <code>gof_map</code> argument. For
+instance, suppose the desired table consists only of number of
+observations, the mean of dependent variable, and fixed effects, in that
+respective order. A new tibble can be created (see the <a href="https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map" class="external-link">modelsummary
+website</a>) to map/rename these goodness-of-fit statistics into the
+correct order. <strong>Observe that the mean of the dependent variable’s
+raw name is <code>mean</code>, and in this case, is being renamed to
+<code>Mean(DV)</code>.</strong></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## creating a renaming tibble to pass into panelsummary </span></span>
 <span><span class="va">gm</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
@@ -602,7 +714,10 @@ X
 <div class="section level2">
 <h2 id="collapsing-fixed-effects">Collapsing Fixed Effects<a class="anchor" aria-label="anchor" href="#collapsing-fixed-effects"></a>
 </h2>
-<p>Notice that in the tables above that the fixed effects in columns (1) and (2) are the same across each panel. To reduce the number of rows, the <code>collapse_fe</code> argument can be used to show a separate panel containing only the fixed effects:</p>
+<p>Notice that in the tables above that the fixed effects in columns (1)
+and (2) are the same across each panel. To reduce the number of rows,
+the <code>collapse_fe</code> argument can be used to show a separate
+panel containing only the fixed effects:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/panelsummary.html">panelsummary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mpg_1</span>, <span class="va">mpg_2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">disp_1</span>, <span class="va">disp_2</span><span class="op">)</span>,</span>
 <span>             mean_dependent <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -767,12 +882,16 @@ X
 </tr>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<sup></sup> Collapsing the fixed effects assumes the fixed effects in all panels are the same!
+<sup></sup> Collapsing the fixed effects assumes the fixed effects in
+all panels are the same!
 </td>
 </tr>
 </tfoot>
 </table>
-<p>Although it does not appear in HTML, a LaTeX version of this table will include a horizontal line separating the fixed effects from the other panels. This can be switched off using the <code>hline_before_fe</code> argument.</p>
+<p>Although it does not appear in HTML, a LaTeX version of this table
+will include a horizontal line separating the fixed effects from the
+other panels. This can be switched off using the
+<code>hline_before_fe</code> argument.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
