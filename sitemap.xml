@@ -34,19 +34,25 @@
     <loc>https://michaeltopper1.github.io/panelsummary/reference/add_panels_cfe.html</loc>
   </url>
   <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/change_to_lists.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/check_class_fixest.html</loc>
+  </url>
+  <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/check_dimensions_match.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/clean_raw.html</loc>
   </url>
   <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/connect_means.html</loc>
+  </url>
+  <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/create_alignment.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/create_column_names.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_mean_fixest.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/create_panels_null.html</loc>
@@ -56,6 +62,9 @@
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/get_lpanel_fe.html</loc>
+  </url>
+  <url>
+    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_means_fixest.html</loc>
   </url>
   <url>
     <loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices.html</loc>
