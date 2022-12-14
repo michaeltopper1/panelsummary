@@ -198,11 +198,11 @@ The output is controlled using the `format` argument. By default, a `kableExtra`
 
 ## Use with `fixest`
 
-The `panelsummary` package works best with the `fixest` package to fully take advantage of its offerings. See the [Using `panelsummary` with `fixest` vignette](). Some of the capabilities include:
+The `panelsummary` package works best with the `fixest` package to fully take advantage of its offerings. See the [Using `panelsummary` with `fixest` vignette](https://michaeltopper1.github.io/panelsummary/articles/with_fixest.html). Some of the capabilities include:
 
 * Collapsing fixed effects
 * Including the mean of the dependent variable.
 
 ## Adding rows to a panelsummary table
 
-Adding custom rows requires a different workflow rather than simply calling `panelsummary::panelsummary`, although it is still quite simple. See the [Adding Rows to a panelsummary Table]() vignette for a detailed example.
+Adding custom rows requires a different workflow rather than simply calling `panelsummary::panelsummary`, although it is still quite simple. See the [Adding Rows to a panelsummary Table](https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html) vignette for a detailed example.
