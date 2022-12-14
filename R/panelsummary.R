@@ -134,11 +134,9 @@ panelsummary <- function(
   }
 
 
-  ## Defines the custom fixest glance_function which allows
-  if (mean_dependent == T) {
-    # warning("fixest will always output a mean until glance_custom.fixest is removed from the global environment")
-    ## creating the custom glance function
-    create_mean_fixest()
+  ## Finds the means of the dependent variable from fixest classes only
+  if (isTRUE(mean_dependent)) {
+    means <- get_means_fixest(models, fmt)
   }
 
   panel_df <- lapply(models, function(x) modelsummary::modelsummary(x,
@@ -149,10 +147,12 @@ panelsummary <- function(
                                                                     gof_map = gof_map,
                                                                     gof_omit = gof_omit))
 
-  ## omits the custom fixest from the global environment so no warning necessary
+  ## connects the means to the data frame
   if (isTRUE(mean_dependent)) {
-    rm(glance_custom.fixest, envir = globalenv())
-  }
+    panel_df <- panel_df |>
+      connect_means(means)
+    }
+
 
   ## if true, reorder the rows so that mean is before FEs
   if (isTRUE(mean_dependent) & is.null(gof_map)) {

@@ -10,8 +10,6 @@ panelsummary_raw(
   colnames = NULL,
   caption = NULL,
   format = NULL,
-  bold = FALSE,
-  italic = FALSE,
   fmt = 3,
   estimate = "estimate",
   statistic = "std.error",
@@ -49,14 +47,6 @@ panelsummary_raw(
 \item{caption}{A string. The table caption.}
 
 \item{format}{A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.}
-
-\item{bold}{A boolean. Determines whether the panel names should be in bold font.
-* `FALSE` (the default): the panel names are not in bold.
-* `TRUE`: the panel names are bolded}
-
-\item{italic}{A boolean. Determines whether the panel names should be in italics.
-* `FALSE` (the default): the panel names are not in italics.
-* `TRUE`: the panel names will be in italics.}
 
 \item{fmt}{determines how to format numeric values
 \itemize{
