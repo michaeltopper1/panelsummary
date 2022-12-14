@@ -155,7 +155,7 @@ panelsummary <- function(
 
 
   ## if true, reorder the rows so that mean is before FEs
-  if (isTRUE(mean_dependent) & is.null(gof_map)) {
+  if (isTRUE(mean_dependent)) {
     panel_df <- panel_df |>
       shift_means()
   }
