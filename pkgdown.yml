@@ -2,9 +2,10 @@ pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
+  adding_rows: adding_rows.html
   panelsummary: panelsummary.html
   with_fixest: with_fixest.html
-last_built: 2022-12-14T06:41Z
+last_built: 2022-12-14T21:26Z
 urls:
   reference: https://michaeltopper1.github.io/panelsummary/reference
   article: https://michaeltopper1.github.io/panelsummary/articles
