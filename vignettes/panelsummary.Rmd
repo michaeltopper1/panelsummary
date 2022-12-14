@@ -195,9 +195,14 @@ The labels passed into `panel_labels` can be changed to bold and/or italics usin
 
 The output is controlled using the `format` argument. By default, a `kableExtra` object is created which works seamlessly with Rmarkdown and knits automatically to LaTeX and HTML. For users that prefer to use their own LaTeX software over Rmarkdown, the `format` option can be switched to "latex" to give the corresponding LaTeX code for the table. *Note:* the tables are automatically set to booktabs style and therefore the booktabs LaTeX package is necessary (`usepackage{booktabs}`) in your tex file if the LaTeX output is copy and pasted. 
 
+
 ## Use with `fixest`
 
 The `panelsummary` package works best with the `fixest` package to fully take advantage of its offerings. See the [Using `panelsummary` with `fixest` vignette](). Some of the capabilities include:
 
 * Collapsing fixed effects
 * Including the mean of the dependent variable.
+
+## Adding rows to a panelsummary table
+
+Adding custom rows requires a different workflow rather than simply calling `panelsummary::panelsummary`, although it is still quite simple. See the [Adding Rows to a panelsummary Table]() vignette for a detailed example.

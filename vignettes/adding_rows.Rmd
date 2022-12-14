@@ -2,7 +2,7 @@
 title: "Adding Rows to a panelsummary Table"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{adding_rows}
+  %\VignetteIndexEntry{Adding Rows to a panelsummary Table}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -124,6 +124,7 @@ bootstrap_table |>
   kableExtra::pack_rows("Panel B: Cyl", 13, 24, 
                         italic = T,
                         bold = F) |> 
-  kableExtra::footnote(list("* p < 0.1, ** p < 0.05, *** p < 0.01"))
+  kableExtra::footnote(list("* p < 0.1, ** p < 0.05, *** p < 0.01")) |> 
+  kableExtra::kable_classic(full_width = F, html_font = "Cambria") 
 ```
 
