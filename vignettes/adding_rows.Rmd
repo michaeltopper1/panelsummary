@@ -85,7 +85,7 @@ The return value of this output is a dataframe without panel labels. Given that 
 bootstrap_table <- panelsummary_raw(panel_a_mpg, panel_b_wt,
                  stars = "econ",
                  mean_dependent = T,
-                 gof_omit = "^R") |> 
+                 gof_omit = "R") |> 
   dplyr::add_row(term = "Wild Cluster Boot P-value (cyl)",
                  `Model 1` = ".001",
                  `Model 2` = ".002",
