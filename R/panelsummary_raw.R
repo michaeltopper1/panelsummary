@@ -11,12 +11,6 @@
 #'    * `NULL` (the default): colnames are defaulted to a whitespace, followed by (1), (2), ....etc.
 #' @param caption A string. The table caption.
 #' @param format A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.
-#' @param bold A boolean. Determines whether the panel names should be in bold font.
-#'    * `FALSE` (the default): the panel names are not in bold.
-#'    * `TRUE`: the panel names are bolded
-#' @param italic A boolean. Determines whether the panel names should be in italics.
-#'    * `FALSE` (the default): the panel names are not in italics.
-#'    * `TRUE`: the panel names will be in italics.
 #' @inheritParams modelsummary::modelsummary
 #'
 #' @returns A kableExtra object that is instantly customizable by kableExtra's suite of functions.
@@ -59,8 +53,6 @@ panelsummary_raw <- function(
     colnames = NULL,
     caption = NULL,
     format = NULL,
-    bold = FALSE,
-    italic = FALSE,
     fmt         = 3,
     estimate    = "estimate",
     statistic   = "std.error",
@@ -87,11 +79,9 @@ panelsummary_raw <- function(
 
 
 
-  ## Defines the custom fixest glance_function which allows
-  if (mean_dependent == T) {
-    # warning("fixest will always output a mean until glance_custom.fixest is removed from the global environment")
-    ## creating the custom glance function
-    create_mean_fixest()
+  ## Finds the means of the dependent variable from fixest classes only
+  if (isTRUE(mean_dependent)) {
+    means <- get_means_fixest(models, fmt)
   }
 
 
@@ -104,9 +94,10 @@ panelsummary_raw <- function(
                                                                     gof_map = gof_map,
                                                                     gof_omit = gof_omit))
 
-  ## omits the custom fixest from the global environment so no warning necessary
+  ## connects the means to the data frame
   if (isTRUE(mean_dependent)) {
-    rm(glance_custom.fixest, envir = globalenv())
+    panel_df <- panel_df |>
+      connect_means(means)
   }
 
   ## if true, reorder the rows so that mean is before FEs
@@ -115,6 +106,7 @@ panelsummary_raw <- function(
       shift_means()
   }
 
+  ## binding each of the data.frames together again and getting rid of NAs
   panel_df <- panel_df |>
     dplyr::bind_rows() |>
     dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~stringr::str_replace_na(., replacement = "")))
