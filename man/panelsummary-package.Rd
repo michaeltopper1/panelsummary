@@ -20,5 +20,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Michael Topper \email{miketopper123@gmail.com}
 
+Other contributors:
+\itemize{
+  \item Vincent Arel-Bundock (Some documentation is inherited from modelsummary) [copyright holder]
+}
+
 }
 \keyword{internal}

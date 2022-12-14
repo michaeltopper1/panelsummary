@@ -3,7 +3,7 @@ Package: panelsummary
 Title: Create Publication-Ready Regression Tables with Panels
 Version: 0.1.0
 Authors@R: c(
-    person("Michael", "Topper", , "miketopper123@gmail.com", role = c("aut", "cre"))
+    person("Michael", "Topper", , "miketopper123@gmail.com", role = c("aut", "cre")),
     person("Vincent", "Arel-Bundock", role = c("cph"), 
     comment = "Some documentation is inherited from modelsummary")
     )
