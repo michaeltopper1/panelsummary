@@ -2,8 +2,11 @@ Type: Package
 Package: panelsummary
 Title: Create Publication-Ready Regression Tables with Panels
 Version: 0.1.0
-Authors@R: 
+Authors@R: c(
     person("Michael", "Topper", , "miketopper123@gmail.com", role = c("aut", "cre"))
+    person("Vincent", "Arel-Bundock", role = c("cph"), 
+    comment = "Some documentation is inherited from modelsummary")
+    )
 Maintainer: Michael Topper <miketopper123@gmail.com>
 Description: Creates publication-ready regression tables with panels.
     Solves the hassle of adding multiple panels (e.g., Panel A/Panel B) to
