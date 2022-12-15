@@ -576,10 +576,10 @@ IID
 <code class="sourceCode R"><span><span class="co">## creating the final panels.</span></span>
 <span><span class="va">bootstrap_table</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/clean_raw.html">clean_raw</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"A customized panelsummary table with added rows."</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/group_rows.html" class="external-link">pack_rows</a></span><span class="op">(</span><span class="st">"Panel A: MPG"</span>, <span class="fl">1</span>, <span class="fl">12</span>,</span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/group_rows.html" class="external-link">pack_rows</a></span><span class="op">(</span><span class="st">"Panel A: MPG"</span>, <span class="fl">1</span>, <span class="fl">14</span>,</span>
 <span>                        italic <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>                        bold <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/group_rows.html" class="external-link">pack_rows</a></span><span class="op">(</span><span class="st">"Panel B: Cyl"</span>, <span class="fl">13</span>, <span class="fl">24</span>, </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/group_rows.html" class="external-link">pack_rows</a></span><span class="op">(</span><span class="st">"Panel B: Cyl"</span>, <span class="fl">15</span>, <span class="fl">28</span>, </span>
 <span>                        italic <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>                        bold <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html" class="external-link">footnote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"* p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -599,7 +599,7 @@ A customized panelsummary table with added rows.
 </th>
 </tr></thead>
 <tbody>
-<tr grouplength="12">
+<tr grouplength="14">
 <td colspan="3" style="border-bottom: 1px solid;">
 <em>Panel A: MPG</em>
 </td>
@@ -728,11 +728,6 @@ AIC
 165.2
 </td>
 </tr>
-<tr grouplength="12">
-<td colspan="3" style="border-bottom: 1px solid;">
-<em>Panel B: Cyl</em>
-</td>
-</tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
 BIC
@@ -753,6 +748,11 @@ IID
 </td>
 <td style="text-align:center;">
 IID
+</td>
+</tr>
+<tr grouplength="14">
+<td colspan="3" style="border-bottom: 1px solid;">
+<em>Panel B: Cyl</em>
 </td>
 </tr>
 <tr>
@@ -858,7 +858,7 @@ Mean of Dependent Variable
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 Num.Obs.
 </td>
 <td style="text-align:center;">
@@ -869,7 +869,7 @@ Num.Obs.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 AIC
 </td>
 <td style="text-align:center;">
@@ -880,7 +880,7 @@ AIC
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 BIC
 </td>
 <td style="text-align:center;">
@@ -891,7 +891,7 @@ BIC
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 Std.Errors
 </td>
 <td style="text-align:center;">
