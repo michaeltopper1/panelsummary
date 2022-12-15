@@ -65,7 +65,7 @@ panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
   kable_classic(full_width = F, html_font = "Cambria") 
 ```
 
-Notice that a new row was placed before the "Num.Obs." row in each panel with the mean of the dependent variable. This is the default setting. If you would like to change where the mean is placed, you will need to customize using the `panelsummary::panelsummary_raw` function (see the  [Adding Rows to a panelsummary Table](https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html) vignette for more details). Now, using `gof_map` (see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map)) the goodness-of-fit statistics will be mapped/renamed. **Note: Observe that the mean of the dependent variable is not included in these mapped statistics and  cannot be reordered without panelsummary::panelsummary_raw.**
+Notice that a new row was placed before the "Num.Obs." row in each panel with the mean of the dependent variable. This is the default setting. If you would like to change where the mean is placed, you will need to customize using the `panelsummary::panelsummary_raw` function (see the  [Adding Rows to a panelsummary Table](https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html) vignette for more details). Now, using `gof_map` (see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map)) the goodness-of-fit statistics will be mapped/renamed. **Note: Observe that the mean of the dependent variable is not included in the mapped statistics and  cannot be reordered without panelsummary::panelsummary_raw.**
 
 ```{r}
 ## creating a renaming tibble to pass into panelsummary 
