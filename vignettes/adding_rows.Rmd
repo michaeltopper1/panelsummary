@@ -98,6 +98,7 @@ bootstrap_table <- panelsummary_raw(panel_a_mpg, panel_b_wt,
 bootstrap_table
 ```
 
+
 Now the dataframe is ready to be passed into `kableExtra::kbl` to further customize it with panel headers/columnnames etc. Alternatively, you can use the `panelsummary::clean_raw` function to get a few desirable traits and speed up the process. In particular, the  `panelsummary::clean_raw` function does the following by default:
 
 * Passes the dataframe into `kableExtra::kbl` 
