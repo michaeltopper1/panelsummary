@@ -119,10 +119,10 @@ Finally, to get the desired panel labels, you will need to use `kableExtra::pack
 ## creating the final panels.
 bootstrap_table |> 
   clean_raw(caption = "A customized panelsummary table with added rows.") |> 
-  kableExtra::pack_rows("Panel A: MPG", 1, 12,
+  kableExtra::pack_rows("Panel A: MPG", 1, 14,
                         italic = T,
                         bold = F) |> 
-  kableExtra::pack_rows("Panel B: Cyl", 13, 24, 
+  kableExtra::pack_rows("Panel B: Cyl", 15, 28, 
                         italic = T,
                         bold = F) |> 
   kableExtra::footnote(list("* p < 0.1, ** p < 0.05, *** p < 0.01")) |> 
