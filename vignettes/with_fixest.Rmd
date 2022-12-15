@@ -21,7 +21,7 @@ $( document ).ready(function() {
   $(".lightable-classic").removeClass("table").css("display", "table");
 });
 ```
-This vignette focuses on using the `panelsummary` package with the `fixest` package. `fixest` has become one of the most popular regression packages for economists, and therefore further capabilities have been implemented in `panelsummary` to work seemlessly with `fixest`. There will be two main capabilities that this vignette covers:
+This vignette focuses on using the `panelsummary` package with the `fixest` package. `fixest` has become one of the most popular regression packages for economists, and therefore further capabilities have been implemented in `panelsummary` to work seamlessly with `fixest`. There will be two main capabilities that this vignette covers:
 
 1. Adding the mean of the dependent variable.
 2. Collapsing fixed effects.
@@ -65,7 +65,7 @@ panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
   kable_classic(full_width = F, html_font = "Cambria") 
 ```
 
-Notice that a new row was placed before the "Num.Obs." row in each panel with the mean of the dependent variable. This is the default setting. If you would like to change where the mean is placed, you will need to customize using the `panelsummary::panelsummary_raw` function (see the  [Adding Rows to a panelsummary Table](https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html) vignette for more details). Now, using `gof_map` (see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map)) the goodness-of-fit statistics will be mapped/renamed. **Note: Observe that the mean of the dependent variable is not included in the mapped statistics and  cannot be reordered without panelsummary::panelsummary_raw.**
+Notice that a new row was placed before the "Num.Obs." row in each panel with the mean of the dependent variable. This is the default setting. If you would like to change where the mean is placed, you will need to customize using the `panelsummary::panelsummary_raw` function (see the  [Adding Rows to a panelsummary Table](https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html) vignette for more details). Now, using `gof_map` (see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map)) the goodness-of-fit statistics will be mapped/renamed. **Note that the mean of the dependent variable is not included in the mapped statistics and  cannot be reordered without using panelsummary::panelsummary_raw.**
 
 ```{r}
 ## creating a renaming tibble to pass into panelsummary 
@@ -83,16 +83,18 @@ panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
              gof_map = gm,
              caption = "Automated Mean of Dependent Variable-Renamed and Reordered") |> 
-  kable_classic(full_width = F, html_font = "Cambria") |> 
-  footnote("'mean' is the raw name when mapping")
+  kable_classic(full_width = F, html_font = "Cambria") 
 
 ```
 
+Lastly, as an important aside, any models that are not of class `fixest` will not return a dependent variable mean. There are plans to accommodate more models for this feature in the future.
+
 ## Collapsing Fixed Effects
 
-Notice that in the tables above that the fixed effects in columns (1) and (2) are the same across each panel. To reduce the number of rows, the `collapse_fe` argument can be used to show a separate panel containing only the fixed effects:
+Notice that in the tables above that the fixed effects in columns (1) and (2) are the same across each panel. To reduce the number of rows, the `collapse_fe` argument can be used to show a separate panel containing only the fixed effects. Observe that there is also a warning message returned when this command is used; the warning message is telling the user that the function assumes both panels have the same fixed effects for the same models.
 
 ```{r}
+## collapsing fixed effects with collapse_fe = T
 panelsummary(list(mpg_1, mpg_2), list(disp_1, disp_2),
              mean_dependent = TRUE,
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"),
