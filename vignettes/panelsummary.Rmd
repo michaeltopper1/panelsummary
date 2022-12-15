@@ -24,7 +24,7 @@ $( document ).ready(function() {
 });
 ```
 
-`panelsummary` consists of one main function, `panelsummary::panelsummary`, to provide a simple, yet customizable way to create a regression table with multiple panels. As of this writing, the package is intended for use with regressions of class `lm` and `fixest`, with an emphasis on the latter. There are more classes in the pipeline, and you can always check `panelsummary::models_supported` for an exhaustive list of models supported. 
+`panelsummary` consists of one main function, `panelsummary::panelsummary`, to provide a simple, yet customizable way to create a regression table with multiple panels. As of this writing, the package is intended for use with regressions of class `lm` and `fixest`, with an emphasis on the latter. There are more classes in the pipeline, and you can always check `panelsummary::models_supported` for an exhaustive list of models supported. However, it is likely that a regression package will work if `modelsummary` supports it, although some functionality may be limited (e.g., `mean_dependent` argument will only work with `fixest` regressions). 
 
 To begin, load in the `panelsummary` package.
 
@@ -151,7 +151,7 @@ table_stars
 ```
 
 
-However, you if you plan on using the econonomics convention of \*=.1, \*\*=.05, \*\*\*=.01, you can simply pass in the word "econ".
+However, you if you plan on using the economics convention of \*=.1, \*\*=.05, \*\*\*=.01, you can simply pass in the word "econ".
 
 ## Customizing With `kableExtra`
 
