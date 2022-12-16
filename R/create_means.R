@@ -13,7 +13,7 @@
 
 change_to_lists <- function(models){
   for (i in seq_along(models)){
-    if (class(models[[i]]) != "list"){
+    if (!is(models[[i]],"list")) {
       models[[i]] <- list(models[[i]])
     }
   }
