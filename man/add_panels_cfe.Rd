@@ -7,12 +7,12 @@
 add_panels_cfe(
   regression_table,
   num_panels,
-  bold = F,
-  italic = T,
+  bold = FALSE,
+  italic = TRUE,
   latex_gap_space = "0.5cm",
   panel_labels,
   rows_per_model,
-  hline_after = F,
+  hline_after = FALSE,
   hline_before_fe = T
 )
 }
