@@ -13,7 +13,7 @@ add_panels_cfe(
   panel_labels,
   rows_per_model,
   hline_after = FALSE,
-  hline_before_fe = T
+  hline_before_fe = TRUE
 )
 }
 \arguments{

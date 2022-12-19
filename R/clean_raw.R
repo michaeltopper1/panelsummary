@@ -46,7 +46,7 @@ clean_raw <- function(data.frame,
                                       align = alignment,
                                       caption = caption,
                                       format = format,
-                                      booktabs = T)
+                                      booktabs = TRUE)
   return(panel_df_cleaned)
 }
 

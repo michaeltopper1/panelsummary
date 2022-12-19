@@ -165,7 +165,7 @@ panelsummary <- function(
   ## this helps to align where the pack_rows arguments will go.
   rows_per_model <- get_panel_indices(panel_df)
 
-  if (collapse_fe == TRUE & num_panels > 1) {
+  if (isTRUE(collapse_fe) & num_panels > 1) {
     warning("panelsummary does not check if the fixed effects in each panel match. It always assumes they do!")
 
     ## removing fixed effects from all but the last panel
@@ -200,11 +200,11 @@ panelsummary <- function(
 
   table_initial <- kableExtra::kbl(panel_df_cleaned, col.names = colnames, align = alignment,
                                      caption = caption, format = format,
-                                     booktabs = T)
+                                     booktabs = TRUE)
 
 
   ## adding the final panels to the kable object. This creates the panels
-  if (collapse_fe == TRUE) {
+  if (isTRUE(collapse_fe)) {
     table_final <- table_initial |>
       add_panels_cfe(num_panels = num_panels,
                  panel_labels = panel_labels,

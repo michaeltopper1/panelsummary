@@ -57,7 +57,7 @@ add_panels <- function(regression_table, num_panels, bold = FALSE, italic = TRUE
 #' @keywords internal
 #'
 add_panels_cfe <- function(regression_table, num_panels, bold = FALSE, italic = TRUE, latex_gap_space = "0.5cm", panel_labels,
-                       rows_per_model, hline_after = FALSE, hline_before_fe = T) {
+                       rows_per_model, hline_after = FALSE, hline_before_fe = TRUE) {
   if (dplyr::between(num_panels, 2, 5)) {
     length_labels <- length(panel_labels)
     for (i in seq_along(panel_labels)) {
