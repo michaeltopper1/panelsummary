@@ -27,6 +27,7 @@ usethis::use_coverage()
 
 [![Codecov test coverage](https://codecov.io/gh/michaeltopper1/panelsummary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/michaeltopper1/panelsummary?branch=master)
 [![R-CMD-check](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/panelsummary)](https://CRAN.R-project.org/package=panelsummary)
 <!-- badges: end -->
 
 `panelsummary` creates publication-quality regression tables that have multiple panels. Paneled regression tables are particularly useful for showing output for models that are estimated with multiple dependent variables. A simple call to `panelsummary::panelsummary` will create a regression table that can be viewed in the RStudio Viewer panel, be edited with `kableExtra`'s suite of customization functions, and be output to latex. 

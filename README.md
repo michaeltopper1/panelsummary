@@ -8,6 +8,8 @@
 [![Codecov test
 coverage](https://codecov.io/gh/michaeltopper1/panelsummary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/michaeltopper1/panelsummary?branch=master)
 [![R-CMD-check](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/michaeltopper1/panelsummary/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/panelsummary)](https://CRAN.R-project.org/package=panelsummary)
 <!-- badges: end -->
 
 `panelsummary` creates publication-quality regression tables that have
@@ -52,11 +54,11 @@ Under the hood, `panelsummary::panelsummary` calls
 `modelsummary::modelsummary` and inherits many of the same arguments.
 Some examples of arguments that are shared:
 
--   `stars` - indicate significance.
--   `coef_map` - subset, rename, and reorder coefficients.
--   `coef_omit` - use regular expressions to determine which
-    coefficients should be omitted from the table.
--   `gof_map` - rename, reorder, and omit goodness-of-fit statistics.
+- `stars` - indicate significance.
+- `coef_map` - subset, rename, and reorder coefficients.
+- `coef_omit` - use regular expressions to determine which coefficients
+  should be omitted from the table.
+- `gof_map` - rename, reorder, and omit goodness-of-fit statistics.
 
 ### Learn more!
 
