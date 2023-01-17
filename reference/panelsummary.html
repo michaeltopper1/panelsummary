@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">panelsummary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -149,12 +149,18 @@
 
 
 <dt>fmt</dt>
-<dd><p>determines how to format numeric values</p><ul><li><p>integer: the number of digits to keep after the decimal: <code>format(x, digits = 1, nsmall = fmt, scientific = FALSE)</code></p></li>
-<li><p>function: returns a formatted character string. For example, the <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format()</a></code> function can be used in combination with the <code>fmt</code> argument for full control of number formatting: number of digits, number of digits after the decimal, scientific notation, etc. See the Examples section below.</p></li>
-<li><p>character: passed to the <code>sprintf</code> function (e.g., '%.3f' keeps 3 digits with trailing zero). See <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">?sprintf</a></code></p></li>
-<li><p>NULL: does not format numbers, which allows users to include function in the "glue" strings in the <code>estimate</code> and <code>statistic</code> arguments.</p></li>
-<li><p>A named list to format distinct elements of the table differently. Names correspond to column names produced by <code>get_estimates(model)</code> or <code>get_gof(model)</code>. Values are integers, characters, or functions, as described above. The <code>fmt</code> element is used as default for unspecified elements Ex: <code>fmt=list("estimate"=2, "std.error"=1, "r.squared"=4, "fmt"=3)</code></p></li>
-<li><p>LaTeX output: To ensure proper typography, all numeric entries are enclosed in the <code>\num{}</code> command, which requires the <code>siunitx</code> package to be loaded in the LaTeX preamble. This behavior can be altered with global options. See the 'Details' section.</p></li>
+<dd><p>how to format numeric values: integer, user-supplied function, or <code>modelsummary</code> function.</p><ul><li><p>Integer: Number of decimal digits</p></li>
+<li><p>User-supplied functions:</p><ul><li><p>Any function which accepts a numeric vector and returns a character vector of the same length.</p></li>
+</ul></li>
+<li><p><code>modelsummary</code> functions:</p><ul><li><p><code>fmt = fmt_significant(2)</code>: Two significant digits (at the term-level)</p></li>
+<li><p><code>fmt = fmt_decimal(digits = 2, pdigits = 3)</code>: Decimal digits for estimate and p values</p></li>
+<li><p><code>fmt = fmt_sprintf("%.3f")</code>: See <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">?sprintf</a></code></p></li>
+<li><p><code>fmt = fmt_term("(Intercept)" = 1, "X" = 2)</code>: Format terms differently</p></li>
+<li><p><code>fmt = fmt_statistic("estimate" = 1, "std.error" = 2)</code>: Format statistics differently.</p></li>
+<li><p><code>fmt = fmt_identity()</code>: unformatted raw values</p></li>
+</ul></li>
+<li><p>string:</p></li>
+<li><p>Note on LaTeX output: To ensure proper typography, all numeric entries are enclosed in the <code>\num{}</code> command, which requires the <code>siunitx</code> package to be loaded in the LaTeX preamble. This behavior can be altered with global options. See the 'Details' section.</p></li>
 </ul></dd>
 
 
