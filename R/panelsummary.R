@@ -139,6 +139,8 @@ panelsummary <- function(
     means <- get_means_fixest(models, fmt)
   }
 
+  options(modelsummary_model_labels="model")
+
   panel_df <- lapply(models, function(x) modelsummary::modelsummary(x,
                                                                     output = "data.frame",
                                                                     fmt = fmt, estimate = estimate,

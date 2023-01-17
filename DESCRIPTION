@@ -1,7 +1,7 @@
 Type: Package
 Package: panelsummary
 Title: Create Publication-Ready Regression Tables with Panels
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Michael", "Topper", , "miketopper123@gmail.com", role = c("aut", "cre")),
     person("Vincent", "Arel-Bundock", role = c("cph"), 
@@ -18,7 +18,7 @@ Imports:
     fixest (>= 0.10.4),
     kableExtra (>= 1.3.4),
     methods (>= 4.1.3),
-    modelsummary (>= 1.0.2),
+    modelsummary (>= 1.3.0),
     rlang (>= 1.0.6),
     stringr (>= 1.4.1),
     tidyselect (>= 1.2.0)
