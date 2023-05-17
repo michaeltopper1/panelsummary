@@ -107,10 +107,9 @@ will only work with <code>fixest</code> regressions).</p>
 </h2>
 <p>To motivate the power of <code>panelsummary</code>, consider a model
 using the <code>mtcars</code> dataset:</p>
-<p><span class="math display">\[ Y_{i} = hp_i + cyl_i + e_i\]</span>
-Where <span class="math inline">\(Y_i\)</span> is the dependent
-variable, which can be either <span class="math inline">\(mpg_i\)</span>
-or <span class="math inline">\(disp\)</span> of car <span class="math inline">\(i\)</span>, <span class="math inline">\(hp_i\)</span> is the horsepower, <span class="math inline">\(cyl_i\)</span> is the number of cylinders, and
+<p><span class="math display">\[ Y_{i} = \beta_0 + \beta_1hp_i +
+\beta_2cyl_i + e_i\]</span> Where <span class="math inline">\(Y_i\)</span> is the dependent variable, which can
+be either <span class="math inline">\(mpg_i\)</span> or <span class="math inline">\(disp\)</span> of car <span class="math inline">\(i\)</span>, <span class="math inline">\(hp_i\)</span> is the horsepower, <span class="math inline">\(cyl_i\)</span> is the number of cylinders, and
 <span class="math inline">\(e_i\)</span> is the error term. To estimate
 this model with both of the dependent variables, the following code is
 provided:</p>
