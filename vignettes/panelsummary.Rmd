@@ -37,7 +37,7 @@ library(panelsummary)
 
 To motivate the power of `panelsummary`, consider a model using the `mtcars` dataset:
 
-$$ Y_{i} = hp_i + cyl_i + e_i$$
+$$ Y_{i} = \beta_0 + \beta_1hp_i + \beta_2cyl_i + e_i$$
 Where $Y_i$ is the dependent variable, which can be either $mpg_i$ or $disp$ of car $i$, $hp_i$ is the horsepower, $cyl_i$ is the number of cylinders, and $e_i$ is the error term. To estimate this model with both of the dependent variables, the following code is provided:
 
 ```{r}
