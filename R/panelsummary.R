@@ -18,6 +18,7 @@
 #'    * `NULL` (the default): colnames are defaulted to a whitespace, followed by (1), (2), ....etc.
 #' @param caption A string. The table caption.
 #' @param format A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.
+#' @param pretty_num A logical. If TRUE, then numbers over 999 have a comma printing format.
 #' @param collapse_fe A boolean. For use with fixest objects only. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
 #'    * `FALSE` (the default): fixed effects are shown in each panel.
 #'    * `TRUE`: fixed effects are shown only at the bottom of the final panel, separated by a horizontal line (see hline_before_fe)
@@ -96,6 +97,7 @@ panelsummary <- function(
     colnames = NULL,
     caption = NULL,
     format = NULL,
+    pretty_num = FALSE,
     collapse_fe = FALSE,
     bold = FALSE,
     italic = FALSE,
@@ -198,6 +200,11 @@ panelsummary <- function(
 
   ## aligning models
   alignment <- create_alignment(number_models)
+
+  ## pretty numbers
+  if (isTRUE(pretty_num)) {
+    panel_df_cleaned <- create_pretty_numbers(panel_df_cleaned)
+  }
 
 
   table_initial <- kableExtra::kbl(panel_df_cleaned, col.names = colnames, align = alignment,

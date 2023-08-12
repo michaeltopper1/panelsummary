@@ -9,6 +9,7 @@
 #'    * `NULL` (the default): colnames are defaulted to a whitespace, followed by (1), (2), ....etc.
 #' @param caption A string. The table caption.
 #' @param format A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.
+#' @param pretty_num A logical. If TRUE, then numbers over 999 have a comma printing format.
 #' @param alignment A character string. By default, it is set to left adjusting the first column, and centering the rest of the columns. For example, a model with three columns will have adjustment of "lcc".
 #'
 #' @returns A raw data frame that is ready for further manipulation.
@@ -33,7 +34,8 @@ clean_raw <- function(data.frame,
                       alignment = NULL,
                       colnames = NULL,
                       format = NULL,
-                      caption = NULL){
+                      caption = NULL,
+                      pretty_num = FALSE){
   number_models <- ncol(data.frame)
   if (is.null(alignment)){
     alignment <- create_alignment(number_models)
@@ -41,6 +43,9 @@ clean_raw <- function(data.frame,
   if (is.null(colnames)){
     colnames <- create_column_names(number_models)
   }
+  if (isTRUE(pretty_num)){
+    data.frame <- create_pretty_numbers(data.frame)
+    }
   panel_df_cleaned <- kableExtra::kbl(data.frame,
                                       col.names = colnames,
                                       align = alignment,

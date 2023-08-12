@@ -191,6 +191,10 @@ panelsummary(list(mpg_1, mpg_2, mpg_3), disp_1,
 
 The labels passed into `panel_labels` can be changed to bold and/or italics using the `bold` and `italic` arguments. Furthermore, horizontal lines can be added below each label using the `hline_after` argument.
 
+## Pretty Numbers
+
+Setting the `pretty_num` argument to `TRUE` will give comma-separated numbers. For instance, default printing of the number one-thousand is "1000", while with `pretty_num = TRUE`, this would be "1,000".
+
 ## Output 
 
 The output is controlled using the `format` argument. By default, a `kableExtra` object is created which works seamlessly with Rmarkdown and knits automatically to LaTeX and HTML. For users that prefer to use their own LaTeX software over Rmarkdown, the `format` option can be switched to "latex" to give the corresponding LaTeX code for the table. *Note:* the tables are automatically set to booktabs style and therefore the booktabs LaTeX package is necessary (`usepackage{booktabs}`) in your tex file if the LaTeX output is copy and pasted. 

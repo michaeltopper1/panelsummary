@@ -11,6 +11,7 @@ panelsummary(
   colnames = NULL,
   caption = NULL,
   format = NULL,
+  pretty_num = FALSE,
   collapse_fe = FALSE,
   bold = FALSE,
   italic = FALSE,
@@ -49,6 +50,8 @@ panelsummary(
 
 \item{format}{A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.}
 
+\item{pretty_num}{A logical. If TRUE, then numbers over 999 have a comma printing format.}
+
 \item{collapse_fe}{A boolean. For use with fixest objects only. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
 * `FALSE` (the default): fixed effects are shown in each panel.
 * `TRUE`: fixed effects are shown only at the bottom of the final panel, separated by a horizontal line (see hline_before_fe)}
@@ -80,7 +83,7 @@ panelsummary(
 \item \code{fmt = fmt_decimal(digits = 2, pdigits = 3)}: Decimal digits for estimate and p values
 \item \code{fmt = fmt_sprintf("\%.3f")}: See \code{?sprintf}
 \item \code{fmt = fmt_term("(Intercept)" = 1, "X" = 2)}: Format terms differently
-\item \code{fmt = fmt_statistic("estimate" = 1, "std.error" = 2)}: Format statistics differently.
+\item \code{fmt = fmt_statistic("estimate" = 1, "r.sqared" = 6)}: Format statistics differently.
 \item \code{fmt = fmt_identity()}: unformatted raw values
 }
 \item string:
@@ -100,8 +103,8 @@ the data.frame produced by \code{get_estimates(model)}, and strings with curly b
 statistics to report vertically below the estimate. NULL omits all
 uncertainty statistics.
 \itemize{
-\item "conf.int", "std.error", "statistic", "p.value", "conf.low", "conf.high",
-or any column name produced by: \code{get_estimates(model)}
+\item "conf.int", "std.error", "statistic", "p.value", "conf.low", "conf.high", .
+or any column name produced by \code{get_estimates(model)}
 \item \code{glue} package strings with braces, with or without R functions, such as:
 \itemize{
 \item \code{"{p.value} [{conf.low}, {conf.high}]"}
@@ -110,6 +113,7 @@ or any column name produced by: \code{get_estimates(model)}
 }
 \item Numbers are automatically rounded and converted to strings. To apply functions to their numeric values, as in the last \code{glue} example, users must set \code{fmt=NULL}.
 \item Parentheses are added automatically unless the string includes \code{glue} curly braces \code{{}}.
+\item Some statistics are not supported for all models. See column names in \code{get_estimates(model)}, and visit the website to learn how to add custom statistics.
 }}
 
 \item{vcov}{robust standard errors and other manual statistics. The \code{vcov}
@@ -169,7 +173,7 @@ Examples section below.}
 model information. This argument accepts 4 types of values:
 \itemize{
 \item NULL (default): the \code{modelsummary::gof_map} dictionary is used for formatting, and all unknown statistic are included.
-\item character vector: "all", "none", or a vector of statistics such as \code{c("rmse", "nobs", "r.squared")}. Elements correspond to colnames in the data.frame produced by \code{get_gof(model)}. The \code{modelsummary::gof_map}default dictionary is used to format and rename statistics.
+\item character vector: "all", "none", or a vector of statistics such as \code{c("rmse", "nobs", "r.squared")}. Elements correspond to colnames in the data.frame produced by \code{get_gof(model)}. The \code{modelsummary::gof_map} default dictionary is used to format and rename statistics.
 \item NA: excludes all statistics from the bottom part of the table.
 \item data.frame with 3 columns named "raw", "clean", "fmt". Unknown statistics are omitted. See the 'Examples' section below.
 \item list of lists, each of which includes 3 elements named "raw", "clean", "fmt". Unknown statistics are omitted. See the 'Examples section below'.

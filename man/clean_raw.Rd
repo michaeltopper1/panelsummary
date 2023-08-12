@@ -9,7 +9,8 @@ clean_raw(
   alignment = NULL,
   colnames = NULL,
   format = NULL,
-  caption = NULL
+  caption = NULL,
+  pretty_num = FALSE
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ clean_raw(
 \item{format}{A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.}
 
 \item{caption}{A string. The table caption.}
+
+\item{pretty_num}{A logical. If TRUE, then numbers over 999 have a comma printing format.}
 }
 \value{
 A raw data frame that is ready for further manipulation.

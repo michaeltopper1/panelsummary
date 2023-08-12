@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-There were no ERRORS or WARNINGS or NOTES.
+This is a minor release (0.1.2) which features one new argument. There were no ERRORS or WARNINGS or NOTES.
 
 ## Downstream dependencies
 
