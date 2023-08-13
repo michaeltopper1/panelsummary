@@ -211,8 +211,6 @@ panelsummary(ols_1, ols_1, mean_dependent = TRUE,
 
 ## Collapsing fixed effects (fixest-only)----------------
 
-ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-
 panelsummary(ols_1, ols_1, mean_dependent = TRUE,
             collapse_fe = TRUE, panel_labels = c("Panel A: MPG", "Panel B: DISP"),
             caption = "The effect of cyl on MPG and DISP",
@@ -220,7 +218,6 @@ panelsummary(ols_1, ols_1, mean_dependent = TRUE,
 
 ## Including multiple models------------------
 
-ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
 panelsummary(list(ols_1, ols_1, ols_1), ols_1,
              panel_labels = c("Panel A: MPG", "Panel B: DISP"),

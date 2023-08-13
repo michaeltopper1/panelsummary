@@ -27,8 +27,6 @@
 #'
 #' ## Including multiple models------------------
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-#'
 #' panelsummary_raw(list(ols_1, ols_1, ols_1), ols_1,
 #'               caption = "Multiple models",
 #'               stars = TRUE)
