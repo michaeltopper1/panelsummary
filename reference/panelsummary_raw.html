@@ -239,78 +239,70 @@ model information. This argument accepts 4 types of values:</p><ul><li><p>NULL (
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ols_1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span>, nthreads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ols_2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span>, nthreads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">panelsummary_raw</span><span class="op">(</span><span class="va">ols_1</span>, <span class="va">ols_2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              term  Model 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             cyl   -0.907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  (0.789)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Num.Obs.       32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              R2    0.818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         R2 Adj.    0.755</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       R2 Within    0.058</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  R2 Within Adj.    0.017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             AIC    168.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9             BIC    181.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           RMSE     2.53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11     Std.Errors   by: hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12       FE: gear        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       FE: carb        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14            cyl   43.306</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                (13.075)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16       Num.Obs.       32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17             R2    0.909</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18        R2 Adj.    0.878</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      R2 Within    0.399</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 R2 Within Adj.    0.373</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21            AIC    339.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22            BIC    352.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23           RMSE    36.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24     Std.Errors   by: hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25       FE: gear        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26       FE: carb        X</span>
+<span class="r-in"><span><span class="fu">panelsummary_raw</span><span class="op">(</span><span class="va">ols_1</span>, <span class="va">ols_1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              term Model 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             cyl  -0.907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 (0.789)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Num.Obs.      32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              R2   0.818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         R2 Adj.   0.755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       R2 Within   0.058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  R2 Within Adj.   0.017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8             AIC   168.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9             BIC   181.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10           RMSE    2.53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     Std.Errors  by: hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12       FE: gear       X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13       FE: carb       X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14            cyl  -0.907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                (0.789)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16       Num.Obs.      32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17             R2   0.818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18        R2 Adj.   0.755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      R2 Within   0.058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 R2 Within Adj.   0.017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21            AIC   168.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22            BIC   181.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23           RMSE    2.53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24     Std.Errors  by: hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25       FE: gear       X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26       FE: carb       X</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Including multiple models------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ols_1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span>, nthreads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ols_2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span>, nthreads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ols_3</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span>, nthreads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ols_4</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu">fixest</span><span class="fu">::</span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html" class="external-link">feols</a></span><span class="op">(</span><span class="va">disp</span> <span class="op">~</span>  <span class="va">cyl</span> <span class="op">|</span> <span class="va">gear</span> <span class="op">+</span> <span class="va">carb</span>, cluster <span class="op">=</span> <span class="op">~</span><span class="va">hp</span>, nthreads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">panelsummary_raw</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">ols_1</span>, <span class="va">ols_2</span>, <span class="va">ols_3</span><span class="op">)</span>, <span class="va">ols_4</span>,</span></span>
+<span class="r-in"><span><span class="fu">panelsummary_raw</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">ols_1</span>, <span class="va">ols_1</span>, <span class="va">ols_1</span><span class="op">)</span>, <span class="va">ols_1</span>,</span></span>
 <span class="r-in"><span>              caption <span class="op">=</span> <span class="st">"Multiple models"</span>,</span></span>
 <span class="r-in"><span>              stars <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              term  Model 1 Model 2 Model 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             cyl   -0.907  -0.907  -0.907</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  (0.789) (0.789) (0.789)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Num.Obs.       32      32      32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              R2    0.818   0.818   0.818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         R2 Adj.    0.755   0.755   0.755</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       R2 Within    0.058   0.058   0.058</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  R2 Within Adj.    0.017   0.017   0.017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             AIC    168.3   168.3   168.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9             BIC    181.4   181.4   181.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           RMSE     2.53    2.53    2.53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11     Std.Errors   by: hp  by: hp  by: hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12       FE: gear        X       X       X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       FE: carb        X       X       X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14            cyl 43.306**                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                (13.075)                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16       Num.Obs.       32                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17             R2    0.909                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18        R2 Adj.    0.878                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      R2 Within    0.399                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 R2 Within Adj.    0.373                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21            AIC    339.5                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22            BIC    352.7                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23           RMSE    36.76                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24     Std.Errors   by: hp                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25       FE: gear        X                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26       FE: carb        X                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              term Model 1 Model 2 Model 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             cyl  -0.907  -0.907  -0.907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 (0.789) (0.789) (0.789)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Num.Obs.      32      32      32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              R2   0.818   0.818   0.818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         R2 Adj.   0.755   0.755   0.755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       R2 Within   0.058   0.058   0.058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  R2 Within Adj.   0.017   0.017   0.017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8             AIC   168.3   168.3   168.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9             BIC   181.4   181.4   181.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10           RMSE    2.53    2.53    2.53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     Std.Errors  by: hp  by: hp  by: hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12       FE: gear       X       X       X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13       FE: carb       X       X       X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14            cyl  -0.907                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                (0.789)                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16       Num.Obs.      32                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17             R2   0.818                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18        R2 Adj.   0.755                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      R2 Within   0.058                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 R2 Within Adj.   0.017                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21            AIC   168.3                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22            BIC   181.4                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23           RMSE    2.53                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24     Std.Errors  by: hp                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25       FE: gear       X                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26       FE: carb       X                </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
