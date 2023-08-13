@@ -87,7 +87,8 @@
 #'
 #' @export
 #'
-
+## quiets concerns of R CMD check re: the .'s that appear in pipelines
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("part"))
 #' @importFrom rlang .data
 panelsummary <- function(
     ...,
@@ -186,7 +187,7 @@ panelsummary <- function(
 
   panel_df_cleaned <- panel_df |>
     dplyr::mutate(term = ifelse(.data$statistic == "std.error", "", .data$term)) |>
-    dplyr::select(-.data$part, -.data$statistic)
+    dplyr::select(-part, -statistic)
 
   ## getting the number of columns/models in the dataframe
   number_models <- ncol(panel_df_cleaned)
