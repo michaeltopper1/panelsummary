@@ -2,13 +2,13 @@
 
 test_that("panelsummary produces output with single arguments", {
   reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_3 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp, nthreads = 1)
 
 
   models <- list(reg_1, reg_2, reg_3)
@@ -29,13 +29,13 @@ test_that("panelsummary produces output with single arguments", {
 
 test_that("panelsummary produces error if too many arguments in labels and only one model argument", {
   reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_3 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp, nthreads = 1)
 
 
   models <- list(reg_1, reg_2, reg_3)
@@ -56,13 +56,13 @@ test_that("panelsummary produces error if too many arguments in labels and only 
 
 test_that("panelsummary produces output with list argument and non-list argument", {
   reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_3 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp, nthreads = 1)
 
 
   models <- list(reg_1, reg_2, reg_3)
@@ -82,13 +82,13 @@ test_that("panelsummary produces output with list argument and non-list argument
 
 test_that("panelsummary actually produces output with lists as arguments", {
   reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_3 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp, nthreads = 1)
 
 
   models <- list(reg_1, reg_2, reg_3)
@@ -107,13 +107,13 @@ test_that("panelsummary actually produces output with lists as arguments", {
 
 test_that("panelsummary actually produces an output with labels when panel_labels is NULL", {
   reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_3 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb + am, cluster = ~hp, nthreads = 1)
 
 
   models <- list(reg_1, reg_2, reg_3)
