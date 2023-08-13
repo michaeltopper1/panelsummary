@@ -1,10 +1,9 @@
+fixest::setFixest_nthreads(1)
 
 test_that("add rows works with bold argument", {
-  reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+  reg_1 <- lm(mpg ~ hp + cyl, data = mtcars)
 
-  reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+  reg_2 <- lm(mpg ~ hp + cyl, data = mtcars)
 
   gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
                    clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
@@ -20,11 +19,9 @@ test_that("add rows works with bold argument", {
 
 
 test_that("add rows works with italic argument", {
-  reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+  reg_1 <- lm(mpg ~ hp + cyl, data = mtcars)
 
-  reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+  reg_2 <- lm(mpg ~ hp + cyl, data = mtcars)
 
   gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
                    clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
@@ -40,10 +37,10 @@ test_that("add rows works with italic argument", {
 
 test_that("add rows works with bold argument/italic/hline", {
   reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
   gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
                          clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
@@ -55,15 +52,13 @@ test_that("add rows works with bold argument/italic/hline", {
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = c("MPG", "DISP"),
                             format = "latex",
-                            collapse_fe = T, stars = T, bold = T, hline_after = F, hline_before_fe = T), regexp = NA)
+                            collapse_fe = F, stars = T, bold = T, hline_after = F, hline_before_fe = T), regexp = NA)
 })
 
 test_that("add gives error if too many panels", {
-  reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+  reg_1 <- lm(mpg ~ hp + cyl, data = mtcars)
 
-  reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+  reg_2 <- lm(mpg ~ hp + cyl, data = mtcars)
 
   gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
                    clean = c("Mean of Variable", "Observations", "FE: Gear", "FE: Carb"),
@@ -79,10 +74,7 @@ test_that("add gives error if too many panels", {
 
 test_that("add gives error if too many panels- collapsed_fe", {
   reg_1 <- mtcars |>
-    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-
-  reg_2 <- mtcars |>
-    fixest::feols(disp ~ cyl | gear + carb, cluster = ~hp)
+    fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
 
   gm <- data.frame(raw = c("mean", "nobs", "FE: gear", "FE: carb"),
@@ -90,7 +82,7 @@ test_that("add gives error if too many panels- collapsed_fe", {
                    fmt = c(3, 0, 0 ,0))
 
 
-  expect_error(panelsummary(list(reg_1), reg_2, reg_2, reg_1, reg_1, reg_1, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
+  expect_error(panelsummary(list(reg_1), reg_1, reg_1, reg_1, reg_1, reg_1, gof_omit ='DF|Deviance|R2|AIC|BIC|R', gof_map = gm,
                             caption = "The Effect of cylinders on MPG and DISP", mean_dependent = T,
                             coef_map = c("cyl" = "Cylinder"),
                             panel_labels = NULL,

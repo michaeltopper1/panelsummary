@@ -174,7 +174,7 @@ A kableExtra object that is instantly customizable by kableExtra's suite of func
 
 ## Using panelsummary_raw
 
-ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 2)
+ols_1 <- lm(mpg ~ hp + cyl, data = mtcars)
 
 panelsummary_raw(ols_1, ols_1)
 

@@ -200,7 +200,7 @@ panelsummary(reg_1, reg_2, panel_labels = c("Panel A: MPG", "Panel B: Displaceme
 
 
 # Panelsummary with fixest -------------------------
-
+\dontrun{
 ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 2)
 
 panelsummary(ols_1, ols_1, mean_dependent = TRUE,
@@ -224,5 +224,5 @@ panelsummary(list(ols_1, ols_1, ols_1), ols_1,
               caption = "Multiple models",
               stars = TRUE)
 
-
+}
 }

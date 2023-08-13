@@ -20,7 +20,7 @@
 #'
 #' ## Using panelsummary_raw
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 2)
+#' ols_1 <- lm(mpg ~ hp + cyl, data = mtcars)
 #'
 #' panelsummary_raw(ols_1, ols_1)
 #'
@@ -100,7 +100,7 @@ panelsummary_raw <- function(
     dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~stringr::str_replace_na(., replacement = "")))
 
   panel_df_cleaned <- panel_df |>
-    dplyr::mutate(term = ifelse(.data$statistic == "std.error", "", .data$term)) |>
+    dplyr::mutate(term = ifelse(statistic == "std.error", "", term)) |>
     dplyr::select(-part, -statistic)
 
   ## getting the number of columns/models in the dataframe

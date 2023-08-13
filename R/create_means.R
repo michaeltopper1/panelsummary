@@ -90,8 +90,8 @@ connect_means <- function(panel_df, means) {
       dplyr::bind_rows(means[[i]])
   }
   panel_df <- lapply(panel_df, function(x) x|>
-                       dplyr::mutate(term = ifelse(is.na(.data$term), "mean", .data$term),
-                                     part = ifelse(is.na(.data$part), "gof", .data$part)))
+                       dplyr::mutate(term = ifelse(is.na(term), "mean", term),
+                                     part = ifelse(is.na(part), "gof", part)))
   return(panel_df)
 }
 
