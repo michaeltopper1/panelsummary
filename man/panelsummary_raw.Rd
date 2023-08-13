@@ -176,22 +176,14 @@ A kableExtra object that is instantly customizable by kableExtra's suite of func
 
 ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
-ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-
-panelsummary_raw(ols_1, ols_2)
+panelsummary_raw(ols_1, ols_1)
 
 
 ## Including multiple models------------------
 
 ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
-ols_2 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-
-ols_3 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-
-ols_4 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-
-panelsummary_raw(list(ols_1, ols_2, ols_3), ols_4,
+panelsummary_raw(list(ols_1, ols_1, ols_1), ols_1,
               caption = "Multiple models",
               stars = TRUE)
 

@@ -50,9 +50,8 @@
 #' # Panelsummary with fixest -------------------------
 #'
 #' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 #'
-#' panelsummary(ols_1, ols_2, mean_dependent = TRUE,
+#' panelsummary(ols_1, ols_1, mean_dependent = TRUE,
 #'             panel_labels = c("Panel A:MPG", "Panel B: DISP"),
 #'             caption = "The effect of cyl on MPG and DISP",
 #'             italic = TRUE, stars = TRUE)
@@ -62,9 +61,7 @@
 #'
 #' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 #'
-#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-#'
-#' panelsummary(ols_1, ols_2, mean_dependent = TRUE,
+#' panelsummary(ols_1, ols_1, mean_dependent = TRUE,
 #'             collapse_fe = TRUE, panel_labels = c("Panel A: MPG", "Panel B: DISP"),
 #'             caption = "The effect of cyl on MPG and DISP",
 #'             italic = TRUE, stars = TRUE)
@@ -73,13 +70,7 @@
 #'
 #' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 #'
-#' ols_2 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-#'
-#' ols_3 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-#'
-#' ols_4 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
-#'
-#' panelsummary(list(ols_1, ols_2, ols_3), ols_4,
+#' panelsummary(list(ols_1, ols_1, ols_1), ols_1,
 #'              panel_labels = c("Panel A: MPG", "Panel B: DISP"),
 #'               caption = "Multiple models",
 #'               stars = TRUE)
