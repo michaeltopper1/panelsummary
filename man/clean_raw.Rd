@@ -34,9 +34,9 @@ A raw data frame that is ready for further manipulation.
 
 ## Cleaning a panelsummary_raw dataframe with clean_raw
 
-ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
-ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
+ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp, nthreads = 1)
 
 panelsummary_raw(ols_1, ols_2) |> clean_raw()
 
