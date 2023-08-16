@@ -1,6 +1,6 @@
 # panelsummary 0.1.2
 
-* New argument `pretty_num` allows for comma-styled numbers in tables.
+* New `pretty_num` argument for large numbers with commas.
 
 # panelsummary 0.1.1
 

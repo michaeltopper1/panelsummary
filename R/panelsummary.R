@@ -49,11 +49,10 @@
 #'
 #'
 #' # Panelsummary with fixest -------------------------
+#' \dontrun{
+#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp, nthreads = 2)
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' panelsummary(ols_1, ols_2, mean_dependent = TRUE,
+#' panelsummary(ols_1, ols_1, mean_dependent = TRUE,
 #'             panel_labels = c("Panel A:MPG", "Panel B: DISP"),
 #'             caption = "The effect of cyl on MPG and DISP",
 #'             italic = TRUE, stars = TRUE)
@@ -61,34 +60,22 @@
 #'
 #' ## Collapsing fixed effects (fixest-only)----------------
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' panelsummary(ols_1, ols_2, mean_dependent = TRUE,
+#' panelsummary(ols_1, ols_1, mean_dependent = TRUE,
 #'             collapse_fe = TRUE, panel_labels = c("Panel A: MPG", "Panel B: DISP"),
 #'             caption = "The effect of cyl on MPG and DISP",
 #'             italic = TRUE, stars = TRUE)
 #'
 #' ## Including multiple models------------------
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
 #'
-#' ols_2 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' ols_3 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' ols_4 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' panelsummary(list(ols_1, ols_2, ols_3), ols_4,
+#' panelsummary(list(ols_1, ols_1, ols_1), ols_1,
 #'              panel_labels = c("Panel A: MPG", "Panel B: DISP"),
 #'               caption = "Multiple models",
 #'               stars = TRUE)
 #'
-#'
+#'}
 #' @export
 #'
-
 #' @importFrom rlang .data
 panelsummary <- function(
     ...,
@@ -114,6 +101,7 @@ panelsummary <- function(
     coef_rename = NULL,
     gof_map     = NULL,
     gof_omit    = NULL) {
+
 
 
   models <- list(...)
@@ -187,8 +175,8 @@ panelsummary <- function(
     dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~stringr::str_replace_na(., replacement = "")))
 
   panel_df_cleaned <- panel_df |>
-    dplyr::mutate(term = ifelse(.data$statistic == "std.error", "", .data$term)) |>
-    dplyr::select(-.data$part, -.data$statistic)
+    dplyr::mutate(term = ifelse(statistic == "std.error", "", term)) |>
+    dplyr::select(-part, -statistic)
 
   ## getting the number of columns/models in the dataframe
   number_models <- ncol(panel_df_cleaned)

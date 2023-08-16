@@ -20,32 +20,20 @@
 #'
 #' ## Using panelsummary_raw
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+#' ols_1 <- lm(mpg ~ hp + cyl, data = mtcars)
 #'
-#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' panelsummary_raw(ols_1, ols_2)
+#' panelsummary_raw(ols_1, ols_1)
 #'
 #'
 #' ## Including multiple models------------------
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' ols_2 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' ols_3 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' ols_4 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' panelsummary_raw(list(ols_1, ols_2, ols_3), ols_4,
+#' panelsummary_raw(list(ols_1, ols_1, ols_1), ols_1,
 #'               caption = "Multiple models",
 #'               stars = TRUE)
 #'
 #'
 #' @export
 #'
-
-
 #' @importFrom rlang .data
 panelsummary_raw <- function(
     ...,
@@ -64,7 +52,6 @@ panelsummary_raw <- function(
     coef_rename = NULL,
     gof_map     = NULL,
     gof_omit    = NULL) {
-
 
   models <- list(...)
 
@@ -113,8 +100,8 @@ panelsummary_raw <- function(
     dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~stringr::str_replace_na(., replacement = "")))
 
   panel_df_cleaned <- panel_df |>
-    dplyr::mutate(term = ifelse(.data$statistic == "std.error", "", .data$term)) |>
-    dplyr::select(-.data$part, -.data$statistic)
+    dplyr::mutate(term = ifelse(statistic == "std.error", "", term)) |>
+    dplyr::select(-part, -statistic)
 
   ## getting the number of columns/models in the dataframe
   number_models <- ncol(panel_df_cleaned)

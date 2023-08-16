@@ -1,5 +1,7 @@
+fixest::setFixest_nthreads(1)
 
 test_that("row indices for each panel appear and are correct::fixest", {
+  skip_on_cran()
   reg_1 <- mtcars |>
     fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
   reg_2 <- mtcars |>
@@ -36,6 +38,7 @@ test_that("row indices for each panel appear and are correct::lm", {
 
 
 test_that("row indices for each panel appear and are correct::fixest with collapsed fe", {
+  skip_on_cran()
   reg_mt1 <- mtcars |>
     fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
   reg_mt2 <- mtcars |>

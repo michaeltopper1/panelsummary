@@ -18,11 +18,9 @@
 #'
 #' ## Cleaning a panelsummary_raw dataframe with clean_raw
 #'
-#' ols_1 <- mtcars |> fixest::feols(mpg ~  cyl | gear + carb, cluster = ~hp)
+#' ols_1 <- lm(mpg ~ hp + cyl, data = mtcars)
 #'
-#' ols_2 <- mtcars |> fixest::feols(disp ~  cyl | gear + carb, cluster = ~hp)
-#'
-#' panelsummary_raw(ols_1, ols_2) |> clean_raw()
+#' panelsummary_raw(ols_1, ols_1) |> clean_raw()
 #'
 #'
 #'
