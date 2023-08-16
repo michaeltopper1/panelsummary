@@ -91,3 +91,13 @@ econ_stars <- function() {
   return(stars)
 }
 
+
+#' creates prettyNum with commas for anything larger than 1000
+#'
+#' @keywords internal
+create_pretty_numbers <- function(df){
+  df <- df |>
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~prettyNum(.,digits = 2, big.mark = ",", format = "f"))) |>
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~stringr::str_replace(., pattern = "NA", replacement = "")))
+  return(df)
+}

@@ -11,6 +11,7 @@ panelsummary(
   colnames = NULL,
   caption = NULL,
   format = NULL,
+  pretty_num = FALSE,
   collapse_fe = FALSE,
   bold = FALSE,
   italic = FALSE,
@@ -48,6 +49,8 @@ panelsummary(
 \item{caption}{A string. The table caption.}
 
 \item{format}{A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.}
+
+\item{pretty_num}{A logical. If TRUE, then numbers over 999 have a comma printing format.}
 
 \item{collapse_fe}{A boolean. For use with fixest objects only. Determines whether fixed effects should only be included in the bottom of the table. This is suited for when each panel has the same models with the same fixed effects.
 * `FALSE` (the default): fixed effects are shown in each panel.
