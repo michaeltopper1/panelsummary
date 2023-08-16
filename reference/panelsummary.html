@@ -68,6 +68,7 @@
 <span>  colnames <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  format <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pretty_num <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  collapse_fe <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  bold <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  italic <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -118,6 +119,10 @@
 
 <dt>format</dt>
 <dd><p>A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.</p></dd>
+
+
+<dt>pretty_num</dt>
+<dd><p>A logical. If TRUE, then numbers over 999 have a comma printing format.</p></dd>
 
 
 <dt>collapse_fe</dt>
