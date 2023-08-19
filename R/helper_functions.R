@@ -97,7 +97,7 @@ econ_stars <- function() {
 #' @keywords internal
 create_pretty_numbers <- function(df){
   df <- df |>
-    dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~prettyNum(.,digits = 2, big.mark = ",", format = "f"))) |>
+    dplyr::mutate(dplyr::across(tidyselect::c(-1), ~prettyNum(.,digits = 2, big.mark = ",", format = "f"))) |>
     dplyr::mutate(dplyr::across(tidyselect::where(is.character), ~stringr::str_replace(., pattern = "NA", replacement = "")))
   return(df)
 }
