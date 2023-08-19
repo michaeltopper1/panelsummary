@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">panelsummary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -252,8 +252,8 @@ Examples section below.</p></dd>
 
 <dt>gof_map</dt>
 <dd><p>rename, reorder, and omit goodness-of-fit statistics and other
-model information. This argument accepts 4 types of values:</p><ul><li><p>NULL (default): the <code><a href="https://vincentarelbundock.github.io/modelsummary/reference/gof_map.html" class="external-link">modelsummary::gof_map</a></code> dictionary is used for formatting, and all unknown statistic are included.</p></li>
-<li><p>character vector: "all", "none", or a vector of statistics such as <code>c("rmse", "nobs", "r.squared")</code>. Elements correspond to colnames in the data.frame produced by <code>get_gof(model)</code>. The <code><a href="https://vincentarelbundock.github.io/modelsummary/reference/gof_map.html" class="external-link">modelsummary::gof_map</a></code> default dictionary is used to format and rename statistics.</p></li>
+model information. This argument accepts 4 types of values:</p><ul><li><p>NULL (default): the <code><a href="https://modelsummary.com/reference/gof_map.html" class="external-link">modelsummary::gof_map</a></code> dictionary is used for formatting, and all unknown statistic are included.</p></li>
+<li><p>character vector: "all", "none", or a vector of statistics such as <code>c("rmse", "nobs", "r.squared")</code>. Elements correspond to colnames in the data.frame produced by <code>get_gof(model)</code>. The <code><a href="https://modelsummary.com/reference/gof_map.html" class="external-link">modelsummary::gof_map</a></code> default dictionary is used to format and rename statistics.</p></li>
 <li><p>NA: excludes all statistics from the bottom part of the table.</p></li>
 <li><p>data.frame with 3 columns named "raw", "clean", "fmt". Unknown statistics are omitted. See the 'Examples' section below.</p></li>
 <li><p>list of lists, each of which includes 3 elements named "raw", "clean", "fmt". Unknown statistics are omitted. See the 'Examples section below'.</p></li>
