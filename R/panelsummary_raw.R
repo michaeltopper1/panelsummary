@@ -56,6 +56,11 @@ panelsummary_raw <- function(
   models <- list(...)
 
   num_panels <- length(models)
+  
+  ## fix change in attribute name introduced in fixest v0.14.0
+  if (packageVersion("fixest") >= "0.14.0") {
+    models = fixest_fix_vcov_type_attribute(models)
+  }
 
   ## creates economic significance convention stars
   if (length(stars) == 1){
@@ -111,6 +116,35 @@ panelsummary_raw <- function(
     colnames <- create_column_names(number_models)
   }
   return(panel_df_cleaned)
+}
+
+
+fixest_fix_vcov_type_attribute = function(all_models){
+  ## all_models:
+  ## - a list of (possible) fixest/fixest_multi models
+  ## - a list of lists containing (possible) fixest models
+  ## => we create a recursive function: easier to handle the generality
+  ## 
+  
+  if(identical(class(all_models), "list") || inherits(all_models, "fixest_multi")){
+    # plain lists of models, or fixest_multi object which behave like lists
+    for (i in seq_along(all_models)) {
+      all_models[[i]] <- fixest_fix_vcov_type_attribute(all_models[[i]])
+    }
+    
+    return(all_models)
+  }
+  
+  if (inherits(all_models, "fixest")) {
+    ## we need to apply summary, since this is applied later in modelsummary
+    model_sum <- summary(all_models)
+    attr(model_sum[["se"]], "type") <- attr(model_sum[["se"]], "vcov_type")
+    return(model_sum)
+  } 
+  
+  ## nothing done for non fixest objects
+  all_models
+  
 }
 
 
