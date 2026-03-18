@@ -1,99 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/404.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/articles/panelsummary.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/articles/with_fixest.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/index.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/add_panels.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/add_panels_cfe.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/change_to_lists.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/check_class_fixest.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/check_dimensions_match.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/clean_raw.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/connect_means.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_alignment.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_column_names.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_panels_null.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/create_pretty_numbers.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/econ_stars.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_lpanel_fe.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_means_fixest.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices_collapse.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/models_supported.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary-package.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary_raw.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/remove_fe.html</loc>
-  </url>
-  <url>
-    <loc>https://michaeltopper1.github.io/panelsummary/reference/shift_means.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://michaeltopper1.github.io/panelsummary/404.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/LICENSE.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/articles/index.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/articles/panelsummary.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/articles/with_fixest.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/authors.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/index.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/news/index.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/add_panels.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/add_panels_cfe.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/change_to_lists.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/check_class_fixest.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/check_dimensions_match.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/clean_raw.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/connect_means.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/create_alignment.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/create_column_names.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/create_panels_null.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/create_pretty_numbers.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/econ_stars.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/get_lpanel_fe.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/get_means_fixest.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/get_panel_indices_collapse.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/index.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/models_supported.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary-package.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/panelsummary_raw.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/remove_fe.html</loc></url>
+<url><loc>https://michaeltopper1.github.io/panelsummary/reference/shift_means.html</loc></url>
 </urlset>
+
