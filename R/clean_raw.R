@@ -11,6 +11,8 @@
 #' @param format A character string. Possible values are latex, html, pipe (Pandoc's pipe tables), simple (Pandoc's simple tables), and rst. The value of this argument will be automatically determined if the function is called within a knitr document. The format value can also be set in the global option knitr.table.format. If format is a function, it must return a character string.
 #' @param pretty_num A logical. If TRUE, then numbers over 999 have a comma printing format.
 #' @param alignment A character string. By default, it is set to left adjusting the first column, and centering the rest of the columns. For example, a model with three columns will have adjustment of "lcc".
+#' @param booktabs T/F for whether to enable the booktabs format for tables. I personally would recommend you turn this on for every latex table except some special cases.
+#' @param linesep By default, in booktabs tables, kable insert an extra space every five rows for clear display. If you don't want this feature or if you want to do it in a different pattern, you can consider change this option. The default is c(”, ”, ”, ”, '\\addlinespace'). Also, if you are not using booktabs, but you want a cleaner display, you can change this to ”.
 #'
 #' @returns A raw data frame that is ready for further manipulation.
 #'
@@ -33,7 +35,9 @@ clean_raw <- function(data.frame,
                       colnames = NULL,
                       format = NULL,
                       caption = NULL,
-                      pretty_num = FALSE){
+                      pretty_num = FALSE,
+                      booktabs = FALSE,
+                      linesep = if (booktabs) c("", "", "", "", "\\addlinespace") else "\\hline"){
   number_models <- ncol(data.frame)
   if (is.null(alignment)){
     alignment <- create_alignment(number_models)
@@ -49,7 +53,8 @@ clean_raw <- function(data.frame,
                                       align = alignment,
                                       caption = caption,
                                       format = format,
-                                      booktabs = TRUE)
+                                      booktabs = booktabs,
+                                      linesep = linesep)
   return(panel_df_cleaned)
 }
 

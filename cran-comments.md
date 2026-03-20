@@ -1,11 +1,16 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
 
+* This is a maintenance update.
+* The only NOTE is:
+  - "unable to verify current time" (environment-specific, not package-related)
 
-This is a submission of panelsummary 0.1.2.1. This is a hot fix for a small bug.
+## Changes
 
-There were no ERRORS or WARNINGS or NOTES.
+* Fixed compatibility with recent `fixest` versions
+* Updated documentation and vignettes
+* Resolved CRAN check warnings and notes (URLs, namespace issues)
 
 
 

@@ -10,7 +10,9 @@ clean_raw(
   colnames = NULL,
   format = NULL,
   caption = NULL,
-  pretty_num = FALSE
+  pretty_num = FALSE,
+  booktabs = FALSE,
+  linesep = if (booktabs) c("", "", "", "", "\\\\addlinespace") else "\\\\hline"
 )
 }
 \arguments{
@@ -26,6 +28,10 @@ clean_raw(
 \item{caption}{A string. The table caption.}
 
 \item{pretty_num}{A logical. If TRUE, then numbers over 999 have a comma printing format.}
+
+\item{booktabs}{T/F for whether to enable the booktabs format for tables. I personally would recommend you turn this on for every latex table except some special cases.}
+
+\item{linesep}{By default, in booktabs tables, kable insert an extra space every five rows for clear display. If you don't want this feature or if you want to do it in a different pattern, you can consider change this option. The default is c(”, ”, ”, ”, '\\addlinespace'). Also, if you are not using booktabs, but you want a cleaner display, you can change this to ”.}
 }
 \value{
 A raw data frame that is ready for further manipulation.
