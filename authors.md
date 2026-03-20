@@ -13,13 +13,13 @@ Source:
 [`DESCRIPTION`](https://github.com/michaeltopper1/panelsummary/blob/master/DESCRIPTION)
 
 Topper M (2026). *panelsummary: Create Publication-Ready Regression
-Tables with Panels*. R package version 0.1.2.1,
+Tables with Panels*. R package version 0.1.3,
 <https://github.com/michaeltopper1/panelsummary>.
 
     @Manual{,
       title = {panelsummary: Create Publication-Ready Regression Tables with Panels},
       author = {Michael Topper},
       year = {2026},
-      note = {R package version 0.1.2.1},
+      note = {R package version 0.1.3},
       url = {https://github.com/michaeltopper1/panelsummary},
     }

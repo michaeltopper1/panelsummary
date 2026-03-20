@@ -39,8 +39,9 @@ panelsummary_raw(
     extracts parameter estimates. Available arguments depend on model
     type, but include:
 
-    - `standardize`, `centrality`, `dispersion`, `test`, `ci_method`,
-      `prior`, `diagnostic`, `rope_range`, `power`, `cluster`, etc.
+    - `standardize`, `include_reference`, `centrality`, `dispersion`,
+      `test`, `ci_method`, `prior`, `diagnostic`, `rope_range`, `power`,
+      `cluster`, etc.
 
   - [performance::model_performance](https://easystats.github.io/performance/reference/model_performance.html)
     extracts goodness-of-fit statistics. Available arguments depend on
@@ -48,9 +49,13 @@ panelsummary_raw(
 
     - `metrics`, `estimator`, etc.
 
-  - [kableExtra::kbl](https://rdrr.io/pkg/kableExtra/man/kbl.html) or
+  - [tinytable::tt](https://vincentarelbundock.github.io/tinytable/man/tt.html),
+    [kableExtra::kbl](https://rdrr.io/pkg/kableExtra/man/kbl.html) or
     [gt::gt](https://gt.rstudio.com/reference/gt.html) draw tables,
-    depending on the value of the `output` argument.
+    depending on the value of the `output` argument. For example, by
+    default `modelsummary` creates tables with
+    [tinytable::tt](https://vincentarelbundock.github.io/tinytable/man/tt.html),
+    which accepts a `width` and `theme` arguments.
 
 - mean_dependent:
 
@@ -105,12 +110,13 @@ panelsummary_raw(
     - `fmt = fmt_term("(Intercept)" = 1, "X" = 2)`: Format terms
       differently
 
-    - `fmt = fmt_statistic("estimate" = 1, "r.sqared" = 6)`: Format
+    - `fmt = fmt_statistic("estimate" = 1, "r.squared" = 6)`: Format
       statistics differently.
 
     - `fmt = fmt_identity()`: unformatted raw values
 
-  - string:
+  - string: Passing the string `s` is equivalent to passing
+    `fmt_sprintf(s)`
 
   - Note on LaTeX output: To ensure proper typography, all numeric
     entries are enclosed in the `\num{}` command, which requires the
@@ -130,14 +136,20 @@ panelsummary_raw(
 
   - `"{estimate} [{conf.low}, {conf.high}]"`
 
+  - Numbers are automatically rounded and converted to strings. To let
+    glue apply functions to numeric values, users must set `fmt=NULL`.
+    For more complex formatting, users are encouraged to use the `fmt`
+    argument, which accepts custom functions.
+
 - statistic:
 
   vector of strings or `glue` strings which select uncertainty
-  statistics to report vertically below the estimate. NULL omits all
-  uncertainty statistics.
+  statistics to report vertically below the estimate (ex: standard
+  errors, confidence intervals, p values). NULL omits all uncertainty
+  statistics.
 
   - "conf.int", "std.error", "statistic", "p.value", "conf.low",
-    "conf.high", . or any column name produced by `get_estimates(model)`
+    "conf.high", or any column name produced by `get_estimates(model)`
 
   - `glue` package strings with braces, with or without R functions,
     such as:
@@ -146,18 +158,21 @@ panelsummary_raw(
 
     - `"Std.Error: {std.error}"`
 
-    - \`"exp(estimate) \* std.error"
+    - `"{exp(estimate) * std.error}"`
 
-  - Numbers are automatically rounded and converted to strings. To apply
-    functions to their numeric values, as in the last `glue` example,
-    users must set `fmt=NULL`.
+  - Notes:
 
-  - Parentheses are added automatically unless the string includes
-    `glue` curly braces [`{}`](https://rdrr.io/r/base/Paren.html).
+    - The names of the `statistic` are used a column names when using
+      the `shape` argument to display statistics as columns:
 
-  - Some statistics are not supported for all models. See column names
-    in `get_estimates(model)`, and visit the website to learn how to add
-    custom statistics.
+      - `statistic=c("p"="p.value", "["="conf.low", "]"="conf.high")`
+
+    - Some statistics are not supported for all models. See column names
+      in `get_estimates(model)`, and visit the website to learn how to
+      add custom statistics.
+
+    - Parentheses are added automatically unless the string includes
+      `glue` curly braces [`{}`](https://rdrr.io/r/base/Paren.html).
 
 - vcov:
 
@@ -173,11 +188,13 @@ panelsummary_raw(
     "stata"), "HC2", "HC3" (alias: "robust"), "HC4", "HC4m", "HC5",
     "HAC", "NeweyWest", "Andrews", "panel-corrected", "outer-product",
     and "weave" use variance-covariance matrices computed using
-    functions from the `sandwich` package, or equivalent method. The
-    behavior of those functions can (and sometimes *must*) be altered by
-    passing arguments to `sandwich` directly from `modelsummary` through
-    the ellipsis (`...`), but it is safer to define your own custom
-    functions as described in the next bullet.
+    functions from the `sandwich` package, or equivalent method. "BS",
+    "bootstrap", "residual", "mammen", "webb", "xy", "wild" use the
+    [`sandwich::vcovBS()`](https://sandwich.R-Forge.R-project.org/reference/vcovBS.html).
+    The behavior of those functions can (and sometimes *must*) be
+    altered by passing arguments to `sandwich` directly from
+    `modelsummary` through the ellipsis (`...`), but it is safer to
+    define your own custom functions as described in the next bullet.
 
   - function or (named) list of functions which return
     variance-covariance matrices with row and column names equal to the
@@ -211,7 +228,7 @@ panelsummary_raw(
 
   - FALSE (default): no significance stars.
 
-  - TRUE: +=.1, \*=.05, \*\*=.01, \*\*\*=0.001
+  - TRUE: `c("+" = .1, "*" = .05, "**" = .01, "***" = 0.001)`
 
   - Named numeric vector for custom stars such as
     `c('*' = .1, '+' = .05)`
@@ -228,7 +245,11 @@ panelsummary_raw(
   be a named or an unnamed character vector. If `coef_map` is a named
   vector, its values define the labels that must appear in the table,
   and its names identify the original term names stored in the model
-  object: `c("hp:mpg"="HPxM/G")`. See Examples section below.
+  object: `c("hp:mpg"="HPxM/G")`. If `coef_map` is an unnamed vector,
+  its values must be raw variable names if `coef_rename=FALSE` and
+  variable labels if `coef_rename=TRUE`. See
+  [`modelsummary::get_estimates`](https://modelsummary.com/man/get_estimates.html)
+  to get the coefficient out of a model. See Examples section below.
 
 - coef_omit:
 
@@ -266,7 +287,10 @@ panelsummary_raw(
   logical, named or unnamed character vector, or function
 
   - Logical: TRUE renames variables based on the "label" attribute of
-    each column. See the Example section below.
+    each column. See the Example section below. Note: renaming is done
+    by the `parameters` package at the extraction stage, before other
+    arguments are applied like `coef_omit`. Therefore, this only works
+    for models with builtin support and not for custom models.
 
   - Unnamed character vector of length equal to the number of
     coefficients in the final table, after `coef_omit` is applied.
@@ -300,11 +324,15 @@ panelsummary_raw(
   - NA: excludes all statistics from the bottom part of the table.
 
   - data.frame with 3 columns named "raw", "clean", "fmt". Unknown
-    statistics are omitted. See the 'Examples' section below.
+    statistics are omitted. See the 'Examples' section below. The `fmt`
+    column in this data frame only accepts integers. For more
+    flexibility, use a list of lists, as described in the next bullet.
 
   - list of lists, each of which includes 3 elements named "raw",
-    "clean", "fmt". Unknown statistics are omitted. See the 'Examples
-    section below'.
+    "clean", "fmt". Unknown statistics are omitted. The `fmt` element
+    can be a string (`?fmt_sprintf`), numeric value (`?fmt_decimal`), or
+    function which will be used to round/format the string in question.
+    See the 'Examples section below'.
 
 - gof_omit:
 

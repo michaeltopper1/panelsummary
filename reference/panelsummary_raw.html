@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">panelsummary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,11 +70,11 @@
 
 
 <dl><dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>all other arguments are passed through to three functions. See the documentation of these functions for lists of available arguments.</p><ul><li><p><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a> extracts parameter estimates. Available arguments depend on model type, but include:</p><ul><li><p><code>standardize</code>, <code>centrality</code>, <code>dispersion</code>, <code>test</code>, <code>ci_method</code>, <code>prior</code>, <code>diagnostic</code>, <code>rope_range</code>, <code>power</code>, <code>cluster</code>, etc.</p></li>
+<dd><p>all other arguments are passed through to three functions. See the documentation of these functions for lists of available arguments.</p><ul><li><p><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a> extracts parameter estimates. Available arguments depend on model type, but include:</p><ul><li><p><code>standardize</code>, <code>include_reference</code>, <code>centrality</code>, <code>dispersion</code>, <code>test</code>, <code>ci_method</code>, <code>prior</code>, <code>diagnostic</code>, <code>rope_range</code>, <code>power</code>, <code>cluster</code>, etc.</p></li>
 </ul></li>
 <li><p><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance</a> extracts goodness-of-fit statistics. Available arguments depend on model type, but include:</p><ul><li><p><code>metrics</code>, <code>estimator</code>, etc.</p></li>
 </ul></li>
-<li><p><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kableExtra::kbl</a> or <a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt::gt</a> draw tables, depending on the value of the <code>output</code> argument.</p></li>
+<li><p><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tinytable::tt</a>, <a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kableExtra::kbl</a> or <a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt::gt</a> draw tables, depending on the value of the <code>output</code> argument. For example, by default <code>modelsummary</code> creates tables with <a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tinytable::tt</a>, which accepts a <code>width</code> and <code>theme</code> arguments.</p></li>
 </ul></dd>
 
 
@@ -105,10 +105,10 @@
 <li><p><code>fmt = fmt_decimal(digits = 2, pdigits = 3)</code>: Decimal digits for estimate and p values</p></li>
 <li><p><code>fmt = fmt_sprintf("%.3f")</code>: See <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">?sprintf</a></code></p></li>
 <li><p><code>fmt = fmt_term("(Intercept)" = 1, "X" = 2)</code>: Format terms differently</p></li>
-<li><p><code>fmt = fmt_statistic("estimate" = 1, "r.sqared" = 6)</code>: Format statistics differently.</p></li>
+<li><p><code>fmt = fmt_statistic("estimate" = 1, "r.squared" = 6)</code>: Format statistics differently.</p></li>
 <li><p><code>fmt = fmt_identity()</code>: unformatted raw values</p></li>
 </ul></li>
-<li><p>string:</p></li>
+<li><p>string: Passing the string <code>s</code> is equivalent to passing <code>fmt_sprintf(s)</code></p></li>
 <li><p>Note on LaTeX output: To ensure proper typography, all numeric entries are enclosed in the <code>\num{}</code> command, which requires the <code>siunitx</code> package to be loaded in the LaTeX preamble. This behavior can be altered with global options. See the 'Details' section.</p></li>
 </ul></dd>
 
@@ -119,21 +119,21 @@ number of models. Valid entries include any column name of
 the data.frame produced by <code>get_estimates(model)</code>, and strings with curly braces compatible with the <code>glue</code> package format. Examples:</p><ul><li><p><code>"estimate"</code></p></li>
 <li><p><code>"{estimate} ({std.error}){stars}"</code></p></li>
 <li><p><code>"{estimate} [{conf.low}, {conf.high}]"</code></p></li>
+<li><p>Numbers are automatically rounded and converted to strings. To let glue apply functions to numeric values, users must set <code>fmt=NULL</code>. For more complex formatting, users are encouraged to use the <code>fmt</code> argument, which accepts custom functions.</p></li>
 </ul></dd>
 
 
 <dt id="arg-statistic">statistic<a class="anchor" aria-label="anchor" href="#arg-statistic"></a></dt>
-<dd><p>vector of strings or <code>glue</code> strings which select uncertainty
-statistics to report vertically below the estimate. NULL omits all
-uncertainty statistics.</p><ul><li><p>"conf.int", "std.error", "statistic", "p.value", "conf.low", "conf.high", .
-or any column name produced by <code>get_estimates(model)</code></p></li>
+<dd><p>vector of strings or <code>glue</code> strings which select uncertainty statistics to report vertically below the estimate (ex: standard errors, confidence intervals, p values). NULL omits all uncertainty statistics.</p><ul><li><p>"conf.int", "std.error", "statistic", "p.value", "conf.low", "conf.high", or any column name produced by <code>get_estimates(model)</code></p></li>
 <li><p><code>glue</code> package strings with braces, with or without R functions, such as:</p><ul><li><p><code>"{p.value} [{conf.low}, {conf.high}]"</code></p></li>
 <li><p><code>"Std.Error: {std.error}"</code></p></li>
-<li><p>`"exp(estimate) * std.error"</p></li>
+<li><p><code>"{exp(estimate) * std.error}"</code></p></li>
 </ul></li>
-<li><p>Numbers are automatically rounded and converted to strings. To apply functions to their numeric values, as in the last <code>glue</code> example, users must set <code>fmt=NULL</code>.</p></li>
-<li><p>Parentheses are added automatically unless the string includes <code>glue</code> curly braces <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code>.</p></li>
+<li><p>Notes:</p><ul><li><p>The names of the <code>statistic</code> are used a column names when using the <code>shape</code> argument to display statistics as columns:</p><ul><li><p><code>statistic=c("p"="p.value", "["="conf.low", "]"="conf.high")</code></p></li>
+</ul></li>
 <li><p>Some statistics are not supported for all models. See column names in <code>get_estimates(model)</code>, and visit the website to learn how to add custom statistics.</p></li>
+<li><p>Parentheses are added automatically unless the string includes <code>glue</code> curly braces <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code>.</p></li>
+</ul></li>
 </ul></dd>
 
 
@@ -141,7 +141,7 @@ or any column name produced by <code>get_estimates(model)</code></p></li>
 <dd><p>robust standard errors and other manual statistics. The <code>vcov</code>
 argument accepts six types of input (see the 'Details' and 'Examples'
 sections below):</p><ul><li><p>NULL returns the default uncertainty estimates of the model object</p></li>
-<li><p>string, vector, or (named) list of strings. "iid", "classical", and "constant" are aliases for <code>NULL</code>, which returns the model's default uncertainty estimates. The strings "HC", "HC0", "HC1" (alias: "stata"), "HC2", "HC3" (alias: "robust"), "HC4", "HC4m", "HC5", "HAC", "NeweyWest", "Andrews", "panel-corrected", "outer-product", and "weave" use variance-covariance matrices computed using functions from the <code>sandwich</code> package, or equivalent method. The behavior of those functions can (and sometimes <em>must</em>) be altered by passing arguments to <code>sandwich</code> directly from <code>modelsummary</code> through the ellipsis (<code>...</code>), but it is safer to define your own custom functions as described in the next bullet.</p></li>
+<li><p>string, vector, or (named) list of strings. "iid", "classical", and "constant" are aliases for <code>NULL</code>, which returns the model's default uncertainty estimates. The strings "HC", "HC0", "HC1" (alias: "stata"), "HC2", "HC3" (alias: "robust"), "HC4", "HC4m", "HC5", "HAC", "NeweyWest", "Andrews", "panel-corrected", "outer-product", and "weave" use variance-covariance matrices computed using functions from the <code>sandwich</code> package, or equivalent method. "BS", "bootstrap", "residual", "mammen", "webb", "xy", "wild" use the <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovBS.html" class="external-link">sandwich::vcovBS()</a></code>. The behavior of those functions can (and sometimes <em>must</em>) be altered by passing arguments to <code>sandwich</code> directly from <code>modelsummary</code> through the ellipsis (<code>...</code>), but it is safer to define your own custom functions as described in the next bullet.</p></li>
 <li><p>function or (named) list of functions which return variance-covariance matrices with row and column names equal to the names of your coefficient estimates (e.g., <code><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">stats::vcov</a></code>, <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html" class="external-link">sandwich::vcovHC</a></code>, <code>function(x) vcovPC(x, cluster="country")</code>).</p></li>
 <li><p>formula or (named) list of formulas with the cluster variable(s) on the right-hand side (e.g., ~clusterid).</p></li>
 <li><p>named list of <code>length(models)</code> variance-covariance matrices with row and column names equal to the names of your coefficient estimates.</p></li>
@@ -157,7 +157,7 @@ confidence intervals, which can be faster for some models.</p></dd>
 
 <dt id="arg-stars">stars<a class="anchor" aria-label="anchor" href="#arg-stars"></a></dt>
 <dd><p>to indicate statistical significance</p><ul><li><p>FALSE (default): no significance stars.</p></li>
-<li><p>TRUE: +=.1, *=.05, **=.01, ***=0.001</p></li>
+<li><p>TRUE: <code>c("+" = .1, "*" = .05, "**" = .01, "***" = 0.001)</code></p></li>
 <li><p>Named numeric vector for custom stars such as <code>c('*' = .1, '+' = .05)</code></p></li>
 <li><p>Note: a legend will not be inserted at the bottom of the table when the <code>estimate</code> or <code>statistic</code> arguments use "glue strings" with <code>{stars}</code>.</p></li>
 </ul></dd>
@@ -169,8 +169,11 @@ Coefficients omitted from this vector are omitted from the table. The order
 of the vector determines the order of the table. <code>coef_map</code> can be a named
 or an unnamed character vector. If <code>coef_map</code> is a named vector, its values
 define the labels that must appear in the table, and its names identify the
-original term names stored in the model object: <code>c("hp:mpg"="HPxM/G")</code>. See
-Examples section below.</p></dd>
+original term names stored in the model object: <code>c("hp:mpg"="HPxM/G")</code>.
+If <code>coef_map</code> is an unnamed vector, its values must be raw variable
+names if <code>coef_rename=FALSE</code> and variable labels if <code>coef_rename=TRUE</code>.
+See <code><a href="https://modelsummary.com/man/get_estimates.html" class="external-link">modelsummary::get_estimates</a></code> to get the coefficient out of a model.
+See Examples section below.</p></dd>
 
 
 <dt id="arg-coef-omit">coef_omit<a class="anchor" aria-label="anchor" href="#arg-coef-omit"></a></dt>
@@ -187,7 +190,7 @@ Examples section below.</p></dd>
 
 
 <dt id="arg-coef-rename">coef_rename<a class="anchor" aria-label="anchor" href="#arg-coef-rename"></a></dt>
-<dd><p>logical, named or unnamed character vector, or function</p><ul><li><p>Logical: TRUE renames variables based on the "label" attribute of each column. See the Example section below.</p></li>
+<dd><p>logical, named or unnamed character vector, or function</p><ul><li><p>Logical: TRUE renames variables based on the "label" attribute of each column. See the Example section below. Note: renaming is done by the <code>parameters</code> package at the extraction stage, before other arguments are applied like <code>coef_omit</code>. Therefore, this only works for models with builtin support and not for custom models.</p></li>
 <li><p>Unnamed character vector of length equal to the number of coefficients in the final table, after <code>coef_omit</code> is applied.</p></li>
 <li><p>Named character vector: Values refer to the variable names that will appear in the table. Names refer to the original term names stored in the model object. Ex: c("hp:mpg"="hp X mpg")</p></li>
 <li><p>Function: Accepts a character vector of the model's term names and returns a named vector like the one described above. The <code>modelsummary</code> package supplies a <code>coef_rename()</code> function which can do common cleaning tasks: <code>modelsummary(model, coef_rename = coef_rename)</code></p></li>
@@ -199,8 +202,8 @@ Examples section below.</p></dd>
 model information. This argument accepts 4 types of values:</p><ul><li><p>NULL (default): the <code><a href="https://modelsummary.com/man/gof_map.html" class="external-link">modelsummary::gof_map</a></code> dictionary is used for formatting, and all unknown statistic are included.</p></li>
 <li><p>character vector: "all", "none", or a vector of statistics such as <code>c("rmse", "nobs", "r.squared")</code>. Elements correspond to colnames in the data.frame produced by <code>get_gof(model)</code>. The <code><a href="https://modelsummary.com/man/gof_map.html" class="external-link">modelsummary::gof_map</a></code> default dictionary is used to format and rename statistics.</p></li>
 <li><p>NA: excludes all statistics from the bottom part of the table.</p></li>
-<li><p>data.frame with 3 columns named "raw", "clean", "fmt". Unknown statistics are omitted. See the 'Examples' section below.</p></li>
-<li><p>list of lists, each of which includes 3 elements named "raw", "clean", "fmt". Unknown statistics are omitted. See the 'Examples section below'.</p></li>
+<li><p>data.frame with 3 columns named "raw", "clean", "fmt". Unknown statistics are omitted. See the 'Examples' section below. The <code>fmt</code> column in this data frame only accepts integers. For more flexibility, use a list of lists, as described in the next bullet.</p></li>
+<li><p>list of lists, each of which includes 3 elements named "raw", "clean", "fmt". Unknown statistics are omitted. The <code>fmt</code> element can be a string (<code>?fmt_sprintf</code>), numeric value (<code>?fmt_decimal</code>), or function which will be used to round/format the string in question. See the 'Examples section below'.</p></li>
 </ul></dd>
 
 

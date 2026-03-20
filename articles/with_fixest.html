@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">panelsummary</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -463,11 +463,10 @@ setting. If you would like to change where the mean is placed, you will
 need to customize using the <code><a href="../reference/panelsummary_raw.html">panelsummary::panelsummary_raw</a></code>
 function (see the <a href="https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html">Adding
 Rows to a panelsummary Table</a> vignette for more details). Now, using
-<code>gof_map</code> (see the <a href="https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map" class="external-link">modelsummary
-website</a>) the goodness-of-fit statistics will be mapped/renamed.
-<strong>Note that the mean of the dependent variable is not included in
-the mapped statistics and cannot be reordered without using
-panelsummary::panelsummary_raw.</strong></p>
+<code>gof_map</code>, the goodness-of-fit statistics will be
+mapped/renamed. <strong>Note that the mean of the dependent variable is
+not included in the mapped statistics and cannot be reordered without
+using panelsummary::panelsummary_raw.</strong></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## creating a renaming tibble to pass into panelsummary </span></span>
 <span><span class="va">gm</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>

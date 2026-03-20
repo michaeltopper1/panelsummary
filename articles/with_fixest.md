@@ -71,11 +71,10 @@ customize using the
 [`panelsummary::panelsummary_raw`](https://michaeltopper1.github.io/panelsummary/reference/panelsummary_raw.md)
 function (see the [Adding Rows to a panelsummary
 Table](https://michaeltopper1.github.io/panelsummary/articles/adding_rows.html)
-vignette for more details). Now, using `gof_map` (see the [modelsummary
-website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map))
-the goodness-of-fit statistics will be mapped/renamed. **Note that the
-mean of the dependent variable is not included in the mapped statistics
-and cannot be reordered without using panelsummary::panelsummary_raw.**
+vignette for more details). Now, using `gof_map`, the goodness-of-fit
+statistics will be mapped/renamed. **Note that the mean of the dependent
+variable is not included in the mapped statistics and cannot be
+reordered without using panelsummary::panelsummary_raw.**
 
 ``` r
 ## creating a renaming tibble to pass into panelsummary 
