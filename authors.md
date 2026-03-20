@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/michaeltopper1/panelsummary/blob/v0.1.3/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/michaeltopper1/panelsummary/blob/master/DESCRIPTION)
 
 Topper M (2026). *panelsummary: Create Publication-Ready Regression
 Tables with Panels*. R package version 0.1.3,
