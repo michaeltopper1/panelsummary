@@ -2,6 +2,8 @@
 
 ## panelsummary 0.1.3
 
+CRAN release: 2026-03-20
+
 - `clean_raw` now includes a `booktabs` and `linesep` argument that will
   be passed directly into
   [`kableExtra::kbl`](https://rdrr.io/pkg/kableExtra/man/kbl.html)
