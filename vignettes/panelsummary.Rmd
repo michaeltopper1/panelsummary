@@ -68,7 +68,7 @@ panelsummary(mpg_1, disp_1,
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
 ```
 
-For more information on `coef_map`, see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#coef-renameomitmap).
+For more information on `coef_map`, see the `modelsummary` documentation.
 
 ## Excluding Goodness-of-Fit Statistics
 
@@ -89,7 +89,7 @@ panelsummary(mpg_1, disp_1,
              panel_labels = c("Panel A: MPG", "Panel B: Displacement"))
 ```
 
-For more information on how to use `gof_map`, see the [modelsummary website](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html#gof_map).
+For more information on how to use `gof_map`, see the modelsummary documentation.
 
 ## Adding Additional Models to the Table
 

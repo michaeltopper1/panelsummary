@@ -40,7 +40,7 @@ devtools::install_github("michaeltopper1/panelsummary")
 `panelsummary` can easily create beautiful paneled tables without any
 manual editing:
 
-<img src="man/figures/example_table_readme.png" width="100%" />
+<img src="man/figures/example_table_readme.png" alt="" width="100%" />
 
 ### Edit with `kableExtra`
 
